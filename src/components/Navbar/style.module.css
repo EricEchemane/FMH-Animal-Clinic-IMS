@@ -1,0 +1,52 @@
+.nav {
+  border: 1px solid black;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1080px;
+  margin: auto;
+}
+
+.logoDiv {
+  height: 100%;
+  background-color: red;
+}
+
+.navLinks {
+  background-color: aqua;
+  transition: 200ms ease;
+  position: relative;
+}
+
+.navLinks ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.hamburger {
+  display: none;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 0;
+}
+
+/* ========================================== media queries */
+
+@media (max-width: 500px) {
+  .navLinks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    translate: 100% 0;
+  }
+  .navLinks ul {
+    flex-direction: column;
+  }
+  .hamburger {
+    display: inline;
+  }
+}
