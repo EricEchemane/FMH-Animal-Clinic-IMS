@@ -13,23 +13,25 @@
 
 .wrapper {
     width: 1080px;
-    height: 100vh;
+    min-height: 100vh;
     /* background-color: grey; */
     display: flex;
     flex-wrap: wrap;
-    padding-top: 5rem;
-    gap: 5rem;
     justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 .contentCon {
     width: 500px;
     height: 500px;
+    padding: 0 1rem;
     /* background: violet; */
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .imageCon {
@@ -61,19 +63,69 @@
 
 .googleButton {
     margin-top: 5rem;
-    background: var(--white);
+    background: rgb(255, 255, 255);
     padding: 0.8rem 5rem;
     color: grey;
     border: none;
     border-radius: 4rem;
     font-size: 1rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.googleButton:hover {
+    background: rgb(222, 222, 222);
 }
 
 
-
-@media (max-width: 1013px) {
+@media (max-width: 1054px) {
     .imageCon {
         display: none;
+    }
+
+    .contentCon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+@media (max-width:436px) {
+    .title {
+        font-size: 3.4rem;
+        font-weight: 700;
+        color: var(--brown);
+    }
+
+    .titleQoute {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .googleButton {
+        padding: 0.6rem 3rem;
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 371px) {
+    .title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--brown);
+    }
+}
+
+@media (max-width: 331px) {
+    .title {
+        font-size: 2.7rem;
+        font-weight: 700;
+        color: var(--brown);
     }
 }

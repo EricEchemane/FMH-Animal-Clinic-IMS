@@ -1,226 +1,145 @@
 .main {
     width: 100%;
-    height: 150vh;
+    height: auto;
     background: #E2F6FF;
     display: flex;
     justify-content: center;
+    padding-bottom: 2rem;
 }
 
 .wrapper {
     width: 1080px;
-    height: 150vh;
-    background-color: rgb(234, 21, 21);
+    min-height: 150vh;
+    /* background-color: rgb(0, 255, 191); */
+}
+
+.titleCon {
+    width: 100%;
+    height: 150px;
+    /* background: red; */
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.textCon {
+    text-align: center;
+    max-width: 1080px;
+    height: 100px;
+    padding: 0 2rem;
+    /* background: pink; */
+}
+
+.titleh6 {
+    color: var(--brown);
+    font-size: 1rem;
+    font-family: Nunito;
+}
+
+.titleh1 {
+    margin-bottom: 1rem;
+    color: var(--brown);
+    font-size: 3rem;
+    font-family: Nunito;
+}
+
+.spanText {
+    color: var(--violet);
+    font-size: 3rem;
+    font-family: Nunito;
+}
+
+.cardCon {
+    width: 100%;
+    height: auto;
+    /* background: yellow; */
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.cardConWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    gap: 2rem;
     flex-wrap: wrap;
 }
 
-.titleHead {
-    width: 100%;
-    background: rgba(53, 224, 173, 0.736);
+.cards {
+    width: 400px;
+    height: 300px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 2px solid var(--brown);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+}
+
+.cards:hover {
+    background: rgb(245, 245, 4);
+    cursor: pointer;
+}
+
+.cardsTitleCon {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    height: 150px;
     gap: 1rem;
 }
 
-.titleTextH6 {
-    color: white;
-    font-family: Nunito;
-    font-size: 0.8rem;
+.titleVaccine {
     color: var(--brown);
-}
-
-.titleTexth1 {
-    color: white;
-    font-family: Nunito;
-    font-size: 2.2rem;
-    color: var(--brown);
-}
-
-.spanText {
-    color: var(--violet);
-    font-family: Nunito;
-    font-size: 2.2rem;
-}
-
-.serviceCon {
-    width: 100%;
-    background: blue;
-}
-
-
-
-
-
-.cardContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
-    padding: 2rem;
-    max-width: 1080px;
-    margin: auto;
-}
-
-.card {
-    width: 450px;
-    height: 300px;
-    background-color: #E3E8F0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid var(--brown);
-    border-radius: 1rem;
-    padding: .4rem;
-}
-
-.titleLogo {
-    border-radius: 50%;
-}
-
-.titleCon {
-    width: 100%;
-    display: flex;
-    /* background: red; */
-    align-items: center;
-    padding: 1rem;
-}
-
-.titleTextCon {
-    width: 100%;
-    margin-left: 1rem;
-}
-
-.titleText {
-    font-size: 2rem;
-    font-family: Nunito;
-    font-weight: 700;
-    color: var(--brown);
-}
-
-.paragraph {
-    width: 100%;
-    padding: 0 2rem;
-}
-
-.paragraph p {
-    font-size: 1.1rem;
-    color: var(--brown);
-    font-weight: 400;
-}
-
-.getService {
-    width: 100%;
-    height: 70px;
-    /* background: red; */
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
-
-.getSeriveButton {
-    color: var(--brown);
-    border: none;
-    background: none;
-    padding: 1rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
-
-.getSeriveButton:hover {
-    color: #c97207;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-.titleCon {
-    background-color: rgb(249, 118, 118);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 0;
-}
-
-.titleH6 {
-    color: var(--brown);
-    font-size: 1rem;
     font-family: 'Nunito';
-    font-weight: bold;
 }
 
-.titleH1 {
-    margin-top: 1rem;
+.cardsParagraph {
+    font-family: 'Roboto';
     color: var(--brown);
-    font-size: 3rem;
-    font-family: 'Nunito';
-    font-weight: bold;
 }
 
-.spanText {
-    font-family: 'Nunito';
-    color: var(--violet);
-}
 
-.cardsCon {
+.getServiceCon {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5rem;
 }
 
-.card {
-    width: 500px;
-    height: 400px;
-    background: red;
-} */
+.getServiceButton {
+    color: var(--brown);
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.getServiceButton:hover {
+    color: rgb(239, 137, 2);
+}
+
+/* ======================================media================= */
+
+@media (max-width: 432px) {
+    .cards {
+        width: 350px;
+    }
+}
+
+@media (max-width: 381px) {
+    .titleh6 {
+        font-size: 0.8rem;
+    }
+
+    .titleh1 {
+        font-size: 2.4rem;
+    }
+
+    .spanText {
+        font-size: 2.4rem;
+    }
+
+    .cards {
+        width: 280px;
+    }
+}
