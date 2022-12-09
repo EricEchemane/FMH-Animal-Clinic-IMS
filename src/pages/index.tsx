@@ -1,10 +1,15 @@
 import React from 'react'
-import Navbar from '~/components/Navbar';
 import SampleCards from '~/components/SampleCards';
+import Hero from '~/components/Hero';
+import Navbar from '~/components/Navbar';
+import Service from '~/components/Servicess';
+
+
 
 export default function HomePage() {
   return <>
-    {/* <Navbar/> */}
-    <SampleCards/>
+    <Navbar/>
+    <Hero />
+    <Service />
   </>
 }
