@@ -27,7 +27,7 @@ export default function Navbar() {
 
       <nav className={style.nav}>
         <div className={style.logoDiv}>
-          <Image src={logo} alt="logo" width="200" />
+          <Image src={logo} alt="logo" width="180" />
         </div>
 
         <div 

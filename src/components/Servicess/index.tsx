@@ -14,7 +14,20 @@ export default function Service() {
         <div className={style.main}>
 
             <div className={style.wrapper}>
-                <div className={style.cardContainer}>
+
+                <div className={style.titleHead}>
+                    <div className={style.titleH6}>
+                        <h6 className={style.titleTextH6}>OUR SERIVICES</h6>
+                    </div>
+                    <div className={style.titleH1}>
+                        <h1 className={style.titleTexth1}>All Pet Care <span className={style.spanText}>Services</span></h1>
+                    </div>
+                </div>
+                <div className={style.serviceCon}>
+                card con
+                </div>
+
+                {/* <div className={style.cardContainer}>
                     <div className={style.card}>
                         <div className={style.titleCon}>
                             <div className={style.titleLogo}>
@@ -111,7 +124,7 @@ export default function Service() {
                                 <button className={style.getSeriveButton}>Get Service <i className='bx bx-right-arrow-alt'></i></button>
                             </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

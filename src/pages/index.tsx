@@ -9,7 +9,7 @@ import Service from '~/components/Servicess';
 export default function HomePage() {
   return <>
     <Navbar/>
-    <Hero />
-    <Service />
+    {/* <Hero />
+    <Service /> */}
   </>
 }

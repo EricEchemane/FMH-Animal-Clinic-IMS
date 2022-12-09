@@ -6,6 +6,7 @@
   align-items: center;
   max-width: 1080px;
   margin: auto;
+  padding: 0 1rem;
   /* background: blue; */
 }
 
@@ -14,6 +15,10 @@
   /* background-color: rgb(255, 215, 215); */
   display: flex;
   align-items: center;
+}
+
+.logoDiv img {
+  width: 200px;
 }
 
 .navLinks {
@@ -50,8 +55,14 @@
 }
 
 /* ========================================== media queries */
+@media (max-width:320px) {
+  .logoDiv img {
+    max-width: 170px;
+  }
+}
 
-@media (max-width: 757px) {
+@media (max-width: 758px) {
+
   .navLinks {
     background-color: #E2F6FF;
     position: fixed;
@@ -63,6 +74,7 @@
 
   .navLinks ul {
     flex-direction: column;
+    padding: 2rem;
   }
 
   .hamburger {
@@ -71,7 +83,23 @@
 
   .closeIcon {
     position: absolute;
-    right: 0;
+    top: 1rem;
+    right: 1rem;
     display: inline;
+
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .nav {
+    /* border-bottom: 1px solid black; */
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: auto;
+    padding: 0 1rem;
   }
 }
