@@ -51,9 +51,21 @@
 
 /* ========================================== media queries */
 
-@media (max-width: 757px) {
+@media (max-width: 758px) {
+  .nav {
+    /* border-bottom: 1px solid black; */
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: auto;
+    padding: 0 .5rem;
+    /* padding: .5rem; */
+  }
+
   .navLinks {
-    background-color: #E2F6FF;
+    background-color: #1396d3;
     position: fixed;
     top: 0;
     left: 0;
@@ -73,5 +85,31 @@
     position: absolute;
     right: 0;
     display: inline;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    /* border-bottom: 1px solid black; */
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: auto;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    /* border-bottom: 1px solid black; */
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: auto;
+    padding: 0 1rem;
   }
 }
