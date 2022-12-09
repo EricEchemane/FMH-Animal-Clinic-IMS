@@ -1,6 +1,10 @@
 import React, { useRef } from 'react'
+import Image from 'next/image'
 import logo from './assets/logo.svg'
 import style from './style.module.css'
+
+
+
 
 export default function Navbar() {
   const navLinkRef = useRef<HTMLDivElement>(null)
@@ -20,19 +24,22 @@ export default function Navbar() {
   }
 
   return (
+
       <nav className={style.nav}>
-        <div className={style.logoDiv}> logo </div>
+        <div className={style.logoDiv}>
+          <Image src={logo} alt="logo" width="200" />
+        </div>
 
         <div 
           ref={navLinkRef}
           className={style.navLinks}>
           <ul>
             <i onClick={toggleNavbar} className={`bx bx-x ${style.closeIcon}`}></i> 
-            <li> <a href=""> Link 1</a> </li>
-            <li> <a href=""> Link 1</a> </li>
-            <li> <a href=""> Link 1</a> </li>
-            <li> <a href=""> Link 1</a> </li>
-            <li> <a href=""> Link 1</a> </li>
+            <li> <a href="#" className={style.navLinkText}>Home</a> </li>
+            <li> <a href="#">Services</a> </li>
+            <li> <a href="#">Products</a> </li>
+            <li> <a href="#">Book Schedule</a> </li>
+            <li> <a href="#">Customer Review</a> </li>
           </ul>
         </div>
 
