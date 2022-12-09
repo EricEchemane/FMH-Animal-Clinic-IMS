@@ -4,7 +4,7 @@
     background: #E2F6FF;
     display: flex;
     justify-content: center;
-    padding-bottom: 2rem;
+    /* padding-bottom: 5rem; */
 }
 
 .wrapper {
@@ -64,7 +64,7 @@
     display: flex;
     justify-content: center;
     padding-top: 2rem;
-    gap: 2rem;
+    gap: 3rem;
     flex-wrap: wrap;
 }
 
