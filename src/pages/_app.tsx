@@ -1,8 +1,18 @@
 import '../../styles/global.css';
-import type { AppType } from 'next/app';
+import type { AppProps } from 'next/app';
+import { SessionProvider } from "next-auth/react";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
-};
+interface AppPropsWithSession extends AppProps {
+  pageProps: { session: any; };
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithSession) {
+
+  return (
+    <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+}
 
 export default MyApp;
