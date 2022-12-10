@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&family=Roboto:wght@100;400;700&display=swap');
 
+
 :root {
   /* color pallette */
   --yellow: #EBEF20;
@@ -14,10 +15,19 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Nunino', 'Roboto', sans-serif;
-  overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
 
 .bx {
   font-size: 2rem;

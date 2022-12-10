@@ -1,0 +1,183 @@
+.main {
+    width: 100%;
+    height: auto;
+    background: #e2f6ff39;
+    display: flex;
+    justify-content: center;
+}
+
+.mainWrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E2F6FF;
+}
+
+.wrapper {
+    width: 1080px;
+    height: fit-content;
+}
+
+.titleCon {
+    width: 100%;
+    height: 150px;
+    /* background-color: coral; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.titleh6 {
+    font-size: 1rem;
+    color: var(--brown);
+    font-family: 'Nunito';
+}
+
+.titleh1 {
+    color: var(--brown);
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.spanText {
+    color: var(--violet);
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.productCon {
+    width: 100%;
+    height: auto;
+    padding: 1rem 1rem 3rem 1rem;
+    /* background: rgb(6, 225, 218); */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    background: #E2F6FF;
+}
+
+.productCard {
+    width: 403px;
+    height: 350px;
+    /* background: rgb(255, 255, 255); */
+    margin-top: 1rem;
+    border: 2px solid var(--brown);
+    border-radius: 10px;
+    display: flex;
+    background: var(--white);
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.titleAccCon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.imgCon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.starCon {
+    width: 100%;
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.priceText {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.checkAccLink {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: yellow;
+    padding: .57rem;
+    gap: 1rem;
+    border-radius: 0 0 10px 10px;
+}
+
+.checkAccLink a {
+    color: var(--blcak);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.checkAccLink a:hover {
+    color: rgb(101, 101, 101);
+}
+
+.titleh2 {
+    color: var(--brown);
+    font-family: 'Nunito';
+}
+
+.priceText {
+    color: rgb(235, 55, 0);
+    font-size: 1.8rem;
+}
+
+/* =============================================media======================== */
+
+@media (max-width: 432px) {
+
+    .productCard {
+        width: 360px;
+        height: 350px;
+    }
+
+    .titleh1 {
+        font-size: 2.5rem;
+    }
+
+    .spanText {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 447px) {
+    .titleh1 {
+        font-size: 2.5rem;
+    }
+
+    .spanText {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .productCard {
+        width: 290px;
+        height: 350px;
+    }
+
+    .checkAccLink a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .productCard {
+        width: 280px;
+        height: 350px;
+    }
+}

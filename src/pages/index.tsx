@@ -3,13 +3,17 @@ import SampleCards from '~/components/SampleCards';
 import Hero from '~/components/Hero';
 import Navbar from '~/components/Navbar';
 import Service from '~/components/Servicess';
-
-
+import Products from '~/components/Products';
+import Testimonials from '~/components/Testimonials';
+import Footer from '~/components/Footer';
 
 export default function HomePage() {
   return <>
-    <Navbar/>
-    {/* <Hero />
-    <Service /> */}
+    <Navbar />
+    <Hero />
+    <Service />
+    <Products />
+    <Testimonials />
+    <Footer />
   </>
 }
