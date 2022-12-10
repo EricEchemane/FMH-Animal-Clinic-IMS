@@ -1,6 +1,7 @@
 import '../../styles/global.css';
 import type { AppProps } from 'next/app';
 import { SessionProvider } from "next-auth/react";
+import { MantineProvider } from '@mantine/core';
 
 interface AppPropsWithSession extends AppProps {
   pageProps: { session: any; };
@@ -9,9 +10,16 @@ interface AppPropsWithSession extends AppProps {
 function MyApp({ Component, pageProps }: AppPropsWithSession) {
 
   return (
-    <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{
+        colorScheme: 'light',
+      }}>
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </MantineProvider>
   );
 }
 
