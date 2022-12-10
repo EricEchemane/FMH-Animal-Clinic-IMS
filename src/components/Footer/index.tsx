@@ -10,6 +10,7 @@ export default function Footer() {
             <div className={style.socialLinks}>
 
                 <div className={style.socialLinksContainer}>
+
                     <div className={style.logo}>
                         <Image src={fmhLogo} alt="logo" />
                     </div>

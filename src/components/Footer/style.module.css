@@ -4,6 +4,10 @@
   background: var(--white);
 }
 
+.socialLinksContainer * {
+  color: var(--brown);
+}
+
 .socialLinksContainer {
   height: auto;
   /* background: blue; */
@@ -16,7 +20,6 @@
 }
 
 .socialLinksContainer a {
-  color: black;
   font-size: 1rem;
 }
 .socialLinksContainer > div {
@@ -29,10 +32,13 @@
   display: block;
 }
 
+.socialLinksContainer > div > ul > li {
+  padding: 0.3rem 0;
+}
+
 .socialLinksContainer > div > ul {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 .location {
   display: flex;
