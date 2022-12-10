@@ -1,145 +1,144 @@
 .main {
-    width: 100%;
-    height: auto;
-    background: #E2F6FF;
-    display: flex;
-    justify-content: center;
-    /* padding-bottom: 5rem; */
+  width: 100%;
+  height: auto;
+  background: #e2f6ff;
+  display: flex;
+  justify-content: center;
+  /* padding-bottom: 5rem; */
 }
 
 .wrapper {
-    width: 1080px;
-    min-height: 150vh;
-    /* background-color: rgb(0, 255, 191); */
+  width: 1080px;
+  min-height: 150vh;
+  /* background-color: rgb(0, 255, 191); */
 }
 
 .titleCon {
-    width: 100%;
-    height: 150px;
-    /* background: red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 150px;
+  /* background: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .textCon {
-    text-align: center;
-    max-width: 1080px;
-    height: 100px;
-    padding: 0 2rem;
-    /* background: pink; */
+  text-align: center;
+  max-width: 1080px;
+  height: 100px;
+  padding: 0 2rem;
+  /* background: pink; */
 }
 
 .titleh6 {
-    color: var(--brown);
-    font-size: 1rem;
-    font-family: Nunito;
+  color: var(--brown);
+  font-size: 1rem;
+  font-family: Nunito;
 }
 
 .titleh1 {
-    margin-bottom: 1rem;
-    color: var(--brown);
-    font-size: 3rem;
-    font-family: Nunito;
+  margin-bottom: 1rem;
+  color: var(--brown);
+  font-size: 3rem;
+  font-family: Nunito;
 }
 
 .spanText {
-    color: var(--violet);
-    font-size: 3rem;
-    font-family: Nunito;
+  color: var(--violet);
+  font-size: 3rem;
+  font-family: Nunito;
 }
 
 .cardCon {
-    width: 100%;
-    height: auto;
-    /* background: yellow; */
-    padding: 0 1rem;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  height: auto;
+  /* background: yellow; */
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .cardConWrapper {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    padding-top: 2rem;
-    gap: 3rem;
-    flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  gap: 3rem;
+  flex-wrap: wrap;
 }
 
 .cards {
-    width: 400px;
-    height: 300px;
-    background: rgb(255, 255, 255);
-    border-radius: 10px;
-    border: 2px solid var(--brown);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 1.5rem;
+  width: 400px;
+  height: 300px;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 2px solid var(--brown);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.5rem;
 }
 
 .cards:hover {
-    background: rgb(245, 245, 4);
-    cursor: pointer;
+  background: rgb(245, 245, 4);
+  cursor: pointer;
 }
 
 .cardsTitleCon {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .titleVaccine {
-    color: var(--brown);
-    font-family: 'Nunito';
+  color: var(--brown);
+  font-family: 'Nunito';
 }
 
 .cardsParagraph {
-    font-family: 'Roboto';
-    color: var(--brown);
+  font-family: 'Roboto';
+  color: var(--brown);
 }
 
-
 .getServiceCon {
-    display: flex;
+  display: flex;
 }
 
 .getServiceButton {
-    color: var(--brown);
-    font-size: 1.2rem;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+  color: var(--brown);
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .getServiceButton:hover {
-    color: rgb(239, 137, 2);
+  color: rgb(239, 137, 2);
 }
 
 /* ======================================media================= */
 
 @media (max-width: 432px) {
-    .cards {
-        width: 350px;
-    }
+  .cards {
+    width: 350px;
+  }
 }
 
 @media (max-width: 381px) {
-    .titleh6 {
-        font-size: 0.8rem;
-    }
+  .titleh6 {
+    font-size: 0.8rem;
+  }
 
-    .titleh1 {
-        font-size: 2.4rem;
-    }
+  .titleh1 {
+    font-size: 2.4rem;
+  }
 
-    .spanText {
-        font-size: 2.4rem;
-    }
+  .spanText {
+    font-size: 2.4rem;
+  }
 
-    .cards {
-        width: 280px;
-    }
+  .cards {
+    width: 280px;
+  }
 }
