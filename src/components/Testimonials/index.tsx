@@ -10,7 +10,7 @@ export default function Testimonials() {
             <div className={style.mainWrapper}>
                 <div className={style.testimonialContainer}>
                     <div className={style.titleContainer}>
-                        <h1 className={style.titleh1}>OUR CUSTOMERS FEEDBACK</h1>
+                        <h1 className={style.titleh1}>OUR CUSTOMER FEEDBACK</h1>
                         <h3 className={style.titleh3}>Don’t take our word for it. Trust our customers</h3>
                     </div>
                     <div className={style.cardContainer}>
