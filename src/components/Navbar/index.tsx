@@ -9,7 +9,7 @@ export default function Navbar() {
   const showRef = useRef<boolean>(false);
 
   const toggleNavbar = () => {
-    if (!navLinkRef.current) return;
+    if (!navLinkRef.current || window.innerWidth > 758) return;
 
     if (showRef.current === false) {
       navLinkRef.current.style.translate = '0% 0';
