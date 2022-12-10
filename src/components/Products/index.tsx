@@ -8,7 +8,7 @@ import petMedImg from './assets/PetMedicine.svg'
 
 export default function Products() {
     return (
-        <div className={style.main}>
+        <div className={style.main} id='products'>
             <div className={style.mainWrapper}>
                 <div className={style.wrapper}>
                     <div className={style.titleCon}>

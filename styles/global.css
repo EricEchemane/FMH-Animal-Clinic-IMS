@@ -17,7 +17,17 @@
   font-family: 'Nunino', 'Roboto', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
 
 .bx {
   font-size: 2rem;

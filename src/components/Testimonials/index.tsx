@@ -6,7 +6,7 @@ import profilePic from './assets/Profilepic.svg'
 
 export default function Testimonials() {
     return (
-        <div className={style.main}>
+        <div className={style.main} id='testimonials'>
             <div className={style.mainWrapper}>
                 <div className={style.testimonialContainer}>
                     <div className={style.titleContainer}>

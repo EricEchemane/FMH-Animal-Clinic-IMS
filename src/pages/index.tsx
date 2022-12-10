@@ -5,7 +5,7 @@ import Navbar from '~/components/Navbar';
 import Service from '~/components/Servicess';
 import Products from '~/components/Products';
 import Testimonials from '~/components/Testimonials';
-
+import Footer from '~/components/Footer';
 
 export default function HomePage() {
   return <>
@@ -14,5 +14,6 @@ export default function HomePage() {
     <Service />
     <Products />
     <Testimonials />
+    <Footer />
   </>
 }
