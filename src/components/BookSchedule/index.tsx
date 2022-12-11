@@ -1,23 +1,12 @@
-import React, { useEffect } from 'react';
-import useUserSession from '~/hooks/useUserSession';
+import useCustomerSignIn from '~/hooks/useCustomerSignIn';
 import { useCustomer } from '~/providers/customer-provider';
 
 export default function BookSchedule() {
-  const { customer, dispatch } = useCustomer();
-  const { session, status } = useUserSession({});
+  useCustomerSignIn();
+  const { customer } = useCustomer();
 
-  useEffect(() => {
-    if (!session || !session.user) return;
+  console.log(customer);
 
-    dispatch({
-      action: 'sign-in', payload: {
-        email: session.user.email,
-        password: session.user.name,
-      }
-    });
-  }, [session]);
-
-  console.log('customer', customer);
 
   return (
     <div>BookSchedule</div>

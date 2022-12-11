@@ -9,11 +9,13 @@ export enum UserRole {
 
 export interface Customer {
   email: string;
+  name: string;
+  image: string;
   access_token: string;
 }
 
 export interface DispatchConfig {
-  action: 'sign-in' | 'set-user';
+  action: 'set-customer' | 'set-access-token';
   payload: any;
 }
 

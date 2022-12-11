@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from 'react';
-import { signIn, signUp } from './helpers';
 import { CustomerProviderProps, DispatchConfig, ICustomerContext } from './types';
 
 const CustomerContext = createContext<any>(null);
@@ -17,18 +16,12 @@ export function CustomerContextProvider(props: CustomerProviderProps) {
 
 const reducer = (state: any, { payload, action }: DispatchConfig) => {
 
-  if (action === 'sign-in') {
-    signIn(payload).then(data => {
-      if (data.ok) {
-        return { ...state, access_token: data.data?.access_token };
-      }
-      signUp({ ...payload, role: 'customer' }).then(data => {
-        return { ...state, access_token: data.data?.access_token };
-      });
-    });
-  }
-  else if (action === 'set-user') {
+  if (action === 'set-customer') {
     return { ...state, ...payload };
+  }
+
+  if (action === 'set-access-token') {
+    return { ...state, access_token: payload };
   }
 
   return state;
