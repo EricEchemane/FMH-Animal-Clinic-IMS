@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import logo from './assets/logo.svg';
 import style from './style.module.css';
+import Link from 'next/link';
 
 
 export default function Navbar() {
@@ -57,7 +58,7 @@ export default function Navbar() {
           <li> <a onClick={toggleNavbar} href="#" className={style.navLinkText}>Home</a> </li>
           <li> <a onClick={toggleNavbar} href="#services">Services</a> </li>
           <li> <a onClick={toggleNavbar} href="#products">Products</a> </li>
-          <li> <a onClick={toggleNavbar} href="#">Book Schedule</a> </li>
+          <li> <Link onClick={toggleNavbar} href="/book-schedule">Book Schedule</Link> </li>
           <li> <a onClick={toggleNavbar} href="#testimonials">Customer Review</a> </li>
         </ul>
       </div>
