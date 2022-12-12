@@ -1,9 +1,8 @@
-import React from 'react'
-import style from './style.module.css'
-import Image from 'next/image'
-import accessoriesImg from './assets/Accessories.svg'
-import starIcon from './assets/bxs-star.svg'
-import petMedImg from './assets/PetMedicine.svg'
+import React from 'react';
+import style from './style.module.css';
+import Image from 'next/image';
+import accessoriesImg from './assets/Accessories.svg';
+import petMedImg from './assets/PetMedicine.svg';
 
 
 export default function Products() {
@@ -58,5 +57,5 @@ export default function Products() {
 
             </div>
         </div>
-    )
+    );
 }
