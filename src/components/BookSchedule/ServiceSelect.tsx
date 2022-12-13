@@ -43,10 +43,17 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
 	)
 );
 
-export default function ServiceSelect() {
+type Props = {
+	value: string | null;
+	onChange: (value: string | null) => void;
+};
+
+export default function ServiceSelect({ onChange, value }: Props) {
 	return (
 		<Select
 			required
+			value={value}
+			onChange={onChange}
 			size='lg'
 			label='Service you want to avail'
 			placeholder='Pick one'

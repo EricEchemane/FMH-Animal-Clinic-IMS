@@ -10,9 +10,3 @@
 	pointer-events: none;
 	color: #999;
 }
-
-.available {
-	border-radius: 1rem;
-	background-color: hsla(120, 100%, 25%, 0.1);
-	scale: 0.8;
-}
