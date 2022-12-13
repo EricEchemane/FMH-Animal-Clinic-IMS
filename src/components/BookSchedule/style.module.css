@@ -1,0 +1,18 @@
+.signinRoot {
+	height: 100vh;
+	background-image: url('/assets/footprints.svg');
+}
+
+.full {
+	border-radius: 1rem;
+	background-color: hsla(0, 83%, 47%, 0.1);
+	scale: 0.8;
+	pointer-events: none;
+	color: #999;
+}
+
+.available {
+	border-radius: 1rem;
+	background-color: hsla(120, 100%, 25%, 0.1);
+	scale: 0.8;
+}

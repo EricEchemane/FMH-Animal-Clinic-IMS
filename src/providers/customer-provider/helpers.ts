@@ -1,15 +1,25 @@
 import { backendUrl } from '~/constants/backend';
 import { AccessToken, ErrorFromBackend, SignInDto, SignUpDto } from './types';
 
-export function createFetch<T>(url: string, dto: T, token = '') {
+export function createFetch<T>(url: string, dto: T, access_token = '') {
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(dto),
     headers: {
       'Content-type': 'application/json',
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + access_token
     }
   });
+
+}
+
+export async function createGet(path: string, access_token = '') {
+  return fetch(backendUrl + path, {
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + access_token
+    }
+  }).then(res => res.json());
 }
 
 export async function signIn(dto: SignInDto) {

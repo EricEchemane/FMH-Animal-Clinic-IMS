@@ -6,7 +6,7 @@ import { UserRole } from '~/providers/customer-provider/types';
 
 export default function useCustomerSignIn() {
   const { dispatch } = useCustomer();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   useEffect(() => {
     if (!session || !session.user) return;
@@ -44,5 +44,5 @@ export default function useCustomerSignIn() {
         });
       }
     });
-  }, [session, session?.user]);
+  }, [dispatch, session]);
 }
