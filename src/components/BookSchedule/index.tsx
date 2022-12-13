@@ -171,8 +171,7 @@ export default function BookSchedule() {
 								onClick={() => setShowModal(true)}
 								size='lg'
 							>
-								{' '}
-								Book Now{' '}
+								Book Now
 							</Button>
 						</Group>
 					)}
@@ -183,7 +182,6 @@ export default function BookSchedule() {
 					>
 						<LoadingOverlay visible={isLoading} />
 						<Calendar
-							size='xl'
 							value={chosenDate}
 							onChange={setChosenDate}
 							minDate={dayjs(new Date()).toDate()}
