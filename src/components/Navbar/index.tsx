@@ -46,7 +46,7 @@ export default function Navbar() {
 		<nav className={style.nav}>
 			<div className={style.logoDiv}>
 				<Image
-					src={'/assets/logo.svg'}
+					src={'/assets/Logo.svg'}
 					alt='logo'
 					width={180}
 					height={80}
