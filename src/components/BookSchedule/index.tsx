@@ -16,20 +16,15 @@ import { signIn, signOut } from 'next-auth/react';
 import Head from 'next/head';
 import useCustomerSignIn from '~/hooks/useCustomerSignIn';
 import { useCustomer } from '~/providers/customer-provider';
-import { IconBrandGoogle, IconCheck, IconCircleCheck } from '@tabler/icons';
+import { IconBrandGoogle, IconCircleCheck } from '@tabler/icons';
 import style from './style.module.css';
 import dayjs from 'dayjs';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Calendar } from '@mantine/dates';
-import useSWR from 'swr';
-import useSWRMutation from 'swr/mutation';
-import {
-	createGet,
-	createMutation,
-} from '~/providers/customer-provider/helpers';
 import { Schedule } from '~/entities-interfaces/schedule.entity';
 import ServiceSelect from './ServiceSelect';
 import Router from 'next/router';
+import Http from '~/utils/http-adapter';
 
 const formatdate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
@@ -52,20 +47,19 @@ export default function BookSchedule() {
 	const [petName, setPetName] = useState('');
 	const [concern, setConcern] = useState('');
 	const [submitted, setSubmitted] = useState(false);
+	const [schedules, setSchedules] = useState<Schedule[]>([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const { data } = useSWR('scheds', () =>
-		createGet(
-			'/scheduling/from-this-month-and-next',
-			customer?.access_token || ''
-		)
-	);
-	const { trigger, isMutating } = useSWRMutation(
-		'/scheduling',
-		async (url, { arg }) =>
-			createMutation(url, arg, customer?.access_token || '')
-	);
-
-	const schdules: Schedule[] = data ? data.map((sched: Schedule) => sched) : [];
+	useEffect(() => {
+		Http.get('/scheduling/from-this-month-and-next', {
+			accessToken: customer?.access_token,
+			onSuccess: (data) => {
+				setSchedules(data);
+				console.log(data);
+			},
+		});
+	}, [customer?.access_token]);
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -76,17 +70,15 @@ export default function BookSchedule() {
 			date: chosenDate?.toISOString(),
 			name: customer.name,
 		};
-		const res = await trigger(payload);
-		const data = await res?.json();
-		console.log(data);
-
-		if (res && res.ok) setSubmitted(true);
-		else {
-			alert('Something went wrong');
-		}
+		Http.post('/scheduling', payload, {
+			onFail: alert,
+			onSuccess: () => setSubmitted(true),
+			accessToken: customer?.access_token,
+			loadingToggler: setIsSubmitting,
+		});
 	};
 
-	if (!customer)
+	if (!customer || !customer.access_token)
 		return (
 			<>
 				<Head>
@@ -189,7 +181,7 @@ export default function BookSchedule() {
 						align={'center'}
 						sx={{ position: 'relative' }}
 					>
-						<LoadingOverlay visible={!data} />
+						<LoadingOverlay visible={isLoading} />
 						<Calendar
 							size='xl'
 							value={chosenDate}
@@ -200,13 +192,13 @@ export default function BookSchedule() {
 								.endOf('month')
 								.toDate()}
 							excludeDate={(date) => {
-								const count = countSchedules(schdules, date);
+								const count = countSchedules(schedules, date);
 								const isFull = count >= scheduleThresholdPerDay;
 								return date.getDay() === 0 || date.getDay() === 6 || isFull;
 							}}
 							renderDay={(date) => {
 								const day = date.getDate();
-								const count = countSchedules(schdules, date);
+								const count = countSchedules(schedules, date);
 								const isFull = count >= scheduleThresholdPerDay;
 								return (
 									<div>
@@ -224,6 +216,7 @@ export default function BookSchedule() {
 			<Modal
 				size={'lg'}
 				opened={showModal}
+				closeOnClickOutside={false}
 				onClose={() => setShowModal(false)}
 				title="😊 Let's complete your appoinment"
 			>
@@ -232,7 +225,7 @@ export default function BookSchedule() {
 						style={{ position: 'relative' }}
 						onSubmit={handleSubmit}
 					>
-						<LoadingOverlay visible={isMutating} />
+						<LoadingOverlay visible={isSubmitting} />
 						<Stack spacing={'xl'}>
 							<TextInput
 								size='lg'

@@ -12,17 +12,6 @@ export function createFetch<T>(url: string, dto: T, access_token = '') {
   });
 }
 
-export const createMutation = (url: string, payload: any, access_token: string) => {
-  return fetch(backendUrl + url, {
-    method: 'POST',
-    body: JSON.stringify(payload),
-    headers: {
-      'Authorization': `Bearer ${access_token}`,
-      'Content-type': 'application/json'
-    },
-  });
-};
-
 export async function createGet(path: string, access_token = '') {
   return fetch(backendUrl + path, {
     headers: {
