@@ -54,11 +54,15 @@ export default function BookSchedule() {
 	const [submitted, setSubmitted] = useState(false);
 
 	const { data } = useSWR('scheds', () =>
-		createGet('/scheduling/from-this-month-and-next', customer?.access_token)
+		createGet(
+			'/scheduling/from-this-month-and-next',
+			customer?.access_token || ''
+		)
 	);
 	const { trigger, isMutating } = useSWRMutation(
 		'/scheduling',
-		async (url, { arg }) => createMutation(url, arg, customer?.access_token)
+		async (url, { arg }) =>
+			createMutation(url, arg, customer?.access_token || '')
 	);
 
 	const schdules: Schedule[] = data ? data.map((sched: Schedule) => sched) : [];
