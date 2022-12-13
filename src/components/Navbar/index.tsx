@@ -3,11 +3,14 @@ import Image from 'next/image';
 import logo from './assets/logo.svg';
 import style from './style.module.css';
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
+import { Button } from '@mantine/core';
 
 
 export default function Navbar() {
   const navLinkRef = useRef<HTMLDivElement>(null);
   const showRef = useRef<boolean>(false);
+  const { data: session } = useSession();
 
   const toggleNavbar = () => {
     if (!navLinkRef.current || window.innerWidth > 758) return;
@@ -60,6 +63,11 @@ export default function Navbar() {
           <li> <a onClick={toggleNavbar} href="#products">Products</a> </li>
           <li> <Link onClick={toggleNavbar} href="/book-schedule">Book Schedule</Link> </li>
           <li> <a onClick={toggleNavbar} href="#testimonials">Customer Review</a> </li>
+          {session && session.user && <li>
+            <Button onClick={() => signOut()} variant='default'> 
+              Sign out
+            </Button>
+          </li>}
         </ul>
       </div>
 

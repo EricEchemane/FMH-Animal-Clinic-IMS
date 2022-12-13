@@ -24,7 +24,6 @@
 
 .contentCon {
   width: 500px;
-  height: 500px;
   padding: 0 1rem;
   /* background: violet; */
   display: flex;
@@ -79,10 +78,6 @@
   background: rgb(222, 222, 222);
 }
 
-.user {
-  margin-top: 3rem;
-}
-
 @media (max-width: 1054px) {
   .imageCon {
     display: none;
@@ -95,6 +90,10 @@
   }
 
   .title {
+    text-align: center;
+  }
+
+  .user {
     text-align: center;
   }
 }
