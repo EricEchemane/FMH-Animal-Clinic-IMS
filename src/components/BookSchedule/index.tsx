@@ -7,9 +7,10 @@ import {
 	Stack,
 	Title,
 	Text,
-	Box,
 	LoadingOverlay,
-	Indicator,
+	Modal,
+	TextInput,
+	Textarea,
 } from '@mantine/core';
 import { signIn, signOut } from 'next-auth/react';
 import Head from 'next/head';
@@ -23,6 +24,7 @@ import { Calendar } from '@mantine/dates';
 import useSWR from 'swr';
 import { createGet } from '~/providers/customer-provider/helpers';
 import { Schedule } from '~/entities-interfaces/schedule.entity';
+import ServiceSelect from './ServiceSelect';
 
 const formatdate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
@@ -40,6 +42,7 @@ export default function BookSchedule() {
 	const { customer } = useCustomer();
 
 	const [chosenDate, setChosenDate] = useState<Date | null>(null);
+	const [showModal, setShowModal] = useState(false);
 
 	const { data, error, isLoading } = useSWR('scheds', () =>
 		createGet('/scheduling/from-this-month-and-next', customer.access_token)
@@ -122,14 +125,27 @@ export default function BookSchedule() {
 					spacing={'xl'}
 				>
 					{!chosenDate ? (
-						<Text>Please choose a date for your appointment</Text>
+						<Text
+							align='center'
+							color={'violet'}
+							weight={'bold'}
+						>
+							Please choose a date for your appointment by tapping a date from
+							the calendar
+						</Text>
 					) : (
 						<Group position={'apart'}>
 							<div>
 								<Text>Chosen Date:</Text>
 								<Text weight={'bold'}>{formatChosenDate(chosenDate)}</Text>
 							</div>
-							<Button size='lg'> Book Now </Button>
+							<Button
+								onClick={() => setShowModal(true)}
+								size='lg'
+							>
+								{' '}
+								Book Now{' '}
+							</Button>
 						</Group>
 					)}
 
@@ -166,6 +182,40 @@ export default function BookSchedule() {
 					</Stack>
 				</Stack>
 			</Stack>
+
+			<Modal
+				size={'lg'}
+				opened={showModal}
+				onClose={() => setShowModal(false)}
+				title="😊 Let's complete your appoinment"
+			>
+				<form>
+					<Stack spacing={'xl'}>
+						<TextInput
+							size='lg'
+							placeholder="Your pet's name"
+							label="Your pet's name"
+							required
+						/>
+						<ServiceSelect />
+						<Textarea
+							placeholder='Other concern'
+							label='Other concern'
+							required
+							size='lg'
+						/>
+						<Group position='right'>
+							<Button
+								size='lg'
+								color={'violet'}
+								type='submit'
+							>
+								Submit Appointment
+							</Button>
+						</Group>
+					</Stack>
+				</form>
+			</Modal>
 		</>
 	);
 }
