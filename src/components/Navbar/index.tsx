@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import style from './style.module.css';
 import Link from 'next/link';
@@ -21,26 +21,6 @@ export default function Navbar() {
 			showRef.current = false;
 		}
 	};
-
-	useEffect(() => {
-		const resizeListener = () => {
-			if (!window || !navLinkRef.current) return;
-
-			if (window.innerWidth > 758) {
-				navLinkRef.current.style.translate = '0% 0';
-				showRef.current = true;
-			} else {
-				navLinkRef.current.style.translate = '100% 0';
-				showRef.current = false;
-			}
-		};
-
-		window.addEventListener('resize', resizeListener);
-
-		return () => {
-			window.removeEventListener('resize', resizeListener);
-		};
-	}, []);
 
 	return (
 		<nav className={style.nav}>

@@ -1,106 +1,90 @@
 .nav {
-  /* border-bottom: 1px solid black; */
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1080px;
-  margin: auto;
-  padding: 0 1rem;
-  /* background: blue; */
+	/* border-bottom: 1px solid black; */
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1080px;
+	margin: auto;
+	padding: 0 1rem;
+	/* background: blue; */
 }
 
 .logoDiv {
-  height: 100%;
-  /* background-color: rgb(255, 215, 215); */
-  display: flex;
-  align-items: center;
+	height: 100%;
+	/* background-color: rgb(255, 215, 215); */
+	display: flex;
+	align-items: center;
 }
 
 .logoDiv img {
-  width: 200px;
+	width: 200px;
 }
 
 .navLinks {
-  /* background-color: #E2F6FF; */
-  transition: 200ms ease;
-  position: relative;
+	/* background-color: #E2F6FF; */
+	transition: 200ms ease;
+	position: relative;
 }
 
 .navLinks ul {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
+	display: flex;
+	list-style: none;
+	gap: 2rem;
+	align-items: center;
 }
 
 .navLinks ul li a {
-  font-size: 1rem;
-  text-decoration: none;
-  color: var(--brown);
+	font-size: 1rem;
+	text-decoration: none;
+	color: var(--brown);
 }
 
 .navLinkText {
-  text-decoration: none;
+	text-decoration: none;
 }
 
-
 .hamburger {
-  display: none;
+	display: none;
 }
 
 .closeIcon {
-  position: absolute;
-  right: 0;
-  display: none;
+	position: absolute;
+	right: 0;
+	display: none;
 }
 
 /* ========================================== media queries */
-@media (max-width:320px) {
-  .logoDiv img {
-    max-width: 170px;
-  }
+@media (max-width: 320px) {
+	.logoDiv img {
+		max-width: 170px;
+	}
 }
 
-@media (max-width: 758px) {
+@media (max-width: 900px) {
+	.navLinks {
+		background-color: #e2f6ff;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		translate: 100% 0;
+	}
 
-  .navLinks {
-    background-color: #E2F6FF;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    translate: 100% 0;
-  }
+	.navLinks ul {
+		flex-direction: column;
+		padding: 2rem;
+	}
 
-  .navLinks ul {
-    flex-direction: column;
-    padding: 2rem;
-  }
+	.hamburger {
+		display: inline;
+	}
 
-  .hamburger {
-    display: inline;
-  }
-
-  .closeIcon {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: inline;
-
-  }
-}
-
-
-@media (max-width: 1024px) {
-  .nav {
-    /* border-bottom: 1px solid black; */
-    height: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1080px;
-    margin: auto;
-    padding: 0 1rem;
-  }
+	.closeIcon {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		display: inline;
+	}
 }
