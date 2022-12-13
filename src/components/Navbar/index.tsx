@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import logo from '../../../public/assets/logo.svg';
 import style from './style.module.css';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
@@ -47,9 +46,10 @@ export default function Navbar() {
 		<nav className={style.nav}>
 			<div className={style.logoDiv}>
 				<Image
-					src={logo}
+					src={'/assets/logo.svg'}
 					alt='logo'
-					width='180'
+					width={180}
+					height={80}
 				/>
 			</div>
 
