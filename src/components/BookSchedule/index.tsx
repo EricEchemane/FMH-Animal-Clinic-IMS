@@ -223,7 +223,7 @@ export default function BookSchedule() {
 				onClose={() => setShowModal(false)}
 				title="😊 Let's complete your appoinment"
 			>
-				{submitted ? (
+				{!submitted ? (
 					<form
 						style={{ position: 'relative' }}
 						onSubmit={handleSubmit}
