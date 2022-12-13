@@ -25,6 +25,7 @@ import { Schedule } from '~/entities-interfaces/schedule.entity';
 import ServiceSelect from './ServiceSelect';
 import Router from 'next/router';
 import Http from '~/utils/http-adapter';
+import { useViewportSize } from '@mantine/hooks';
 
 const formatdate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
@@ -41,6 +42,7 @@ export default function BookSchedule() {
 	useCustomerSignIn();
 	const { customer } = useCustomer();
 
+	const { width } = useViewportSize();
 	const [chosenDate, setChosenDate] = useState<Date | null>(null);
 	const [showModal, setShowModal] = useState(false);
 	const [service, setService] = useState<string | null>(null);
@@ -182,6 +184,7 @@ export default function BookSchedule() {
 					>
 						<LoadingOverlay visible={isLoading} />
 						<Calendar
+							size={width > 700 ? 'xl' : 'md'}
 							value={chosenDate}
 							onChange={setChosenDate}
 							minDate={dayjs(new Date()).toDate()}
