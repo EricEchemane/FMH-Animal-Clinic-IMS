@@ -31,6 +31,7 @@ export interface CustomerProviderProps {
 export interface SignInDto {
   email: string;
   password: string;
+  name: string;
 }
 
 export interface SignUpDto {
