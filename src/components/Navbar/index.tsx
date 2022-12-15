@@ -43,56 +43,77 @@ export default function Navbar() {
 						className={`bx bx-x ${style.closeIcon}`}
 					></i>
 					<li>
-						{' '}
 						<a
 							onClick={toggleNavbar}
 							href='#'
 							className={style.navLinkText}
 						>
-							Home
-						</a>{' '}
+							<Button
+								radius={'xl'}
+								variant='subtle'
+							>
+								Home
+							</Button>
+						</a>
 					</li>
 					<li>
-						{' '}
 						<a
 							onClick={toggleNavbar}
 							href='#services'
 						>
-							Services
-						</a>{' '}
+							<Button
+								radius={'xl'}
+								variant='subtle'
+							>
+								Services
+							</Button>
+						</a>
 					</li>
 					<li>
-						{' '}
 						<a
 							onClick={toggleNavbar}
 							href='#products'
 						>
-							Products
-						</a>{' '}
+							<Button
+								radius={'xl'}
+								variant='subtle'
+							>
+								Products
+							</Button>
+						</a>
 					</li>
 					<li>
-						{' '}
 						<Link
 							onClick={toggleNavbar}
 							href='/book-schedule'
 						>
-							Book Schedule
-						</Link>{' '}
+							<Button
+								radius={'xl'}
+								variant='subtle'
+							>
+								Book Schedule
+							</Button>
+						</Link>
 					</li>
 					<li>
-						{' '}
 						<a
 							onClick={toggleNavbar}
 							href='#testimonials'
 						>
-							Customer Review
-						</a>{' '}
+							<Button
+								radius={'xl'}
+								variant='subtle'
+							>
+								Customer Review
+							</Button>
+						</a>
 					</li>
 					{session && session.user && (
 						<li>
 							<Button
+								radius={'xl'}
 								onClick={() => signOut()}
-								variant='default'
+								variant='outline'
 							>
 								Sign out
 							</Button>
