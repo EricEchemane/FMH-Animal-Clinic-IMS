@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
+import React from 'react';
 import {
 	UserAdminContextProvider,
 	useUserAdmin,
@@ -8,9 +8,7 @@ import CreateAccountComponent from './CreateAccountComponent';
 import LoginComponent from './LoginComponent';
 
 function Admin() {
-	useState();
-	const adminContext = useUserAdmin();
-	console.log({ adminContext });
+	const { admin, dispatch } = useUserAdmin();
 
 	return (
 		<>
@@ -18,7 +16,7 @@ function Admin() {
 				<title> Admin - FMH Animal Clinic</title>
 			</Head>
 			{/* <LoginComponent /> */}
-			<CreateAccountComponent />
+			{/* <CreateAccountComponent /> */}
 		</>
 	);
 }

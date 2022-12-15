@@ -10,6 +10,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
+import Head from 'next/head';
 import React, { FormEvent, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
@@ -54,45 +55,50 @@ export default function LoginComponent() {
 	};
 
 	return (
-		<Center className={css.rootContainer}>
-			<form
-				className={css.form}
-				onSubmit={login}
-			>
-				<Card
-					shadow={'md'}
-					p='xl'
+		<>
+			<Head>
+				<title> Login - FMH Clinic </title>
+			</Head>
+			<Center className={css.rootContainer}>
+				<form
+					className={css.form}
+					onSubmit={login}
 				>
-					<Stack>
-						<div>
-							<Title color={'dimmed'}>Login</Title>
-							<Text>Please provide your credentials</Text>
-						</div>
-						<TextInput
-							size='lg'
-							required
-							label='Email'
-							placeholder='Email'
-							{...loginForm.getInputProps('email')}
-						/>
-						<PasswordInput
-							required
-							size='lg'
-							label='Password'
-							placeholder='Password'
-							{...loginForm.getInputProps('password')}
-						/>
-						<Button
-							size='lg'
-							mt={10}
-							type='submit'
-							loading={isLoading}
-						>
-							Login
-						</Button>
-					</Stack>
-				</Card>
-			</form>
-		</Center>
+					<Card
+						shadow={'md'}
+						p='xl'
+					>
+						<Stack>
+							<div>
+								<Title color={'dimmed'}>Login</Title>
+								<Text>Please provide your credentials</Text>
+							</div>
+							<TextInput
+								size='lg'
+								required
+								label='Email'
+								placeholder='Email'
+								{...loginForm.getInputProps('email')}
+							/>
+							<PasswordInput
+								required
+								size='lg'
+								label='Password'
+								placeholder='Password'
+								{...loginForm.getInputProps('password')}
+							/>
+							<Button
+								size='lg'
+								mt={10}
+								type='submit'
+								loading={isLoading}
+							>
+								Login
+							</Button>
+						</Stack>
+					</Card>
+				</form>
+			</Center>
+		</>
 	);
 }
