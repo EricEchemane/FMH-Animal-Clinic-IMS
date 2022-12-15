@@ -1,30 +1,17 @@
 import Head from 'next/head';
 import React from 'react';
-import {
-	UserAdminContextProvider,
-	useUserAdmin,
-} from '~/providers/user-admin-prodiver';
-import CreateAccountComponent from './CreateAccountComponent';
-import LoginComponent from './LoginComponent';
+import useAdminSignin from '~/hooks/useAdminSignin';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
 
-function Admin() {
+export default function Admin() {
 	const { admin, dispatch } = useUserAdmin();
+	useAdminSignin();
 
 	return (
 		<>
 			<Head>
 				<title> Admin - FMH Animal Clinic</title>
 			</Head>
-			{/* <LoginComponent /> */}
-			{/* <CreateAccountComponent /> */}
 		</>
-	);
-}
-
-export default function AdminWrapper() {
-	return (
-		<UserAdminContextProvider>
-			<Admin />
-		</UserAdminContextProvider>
 	);
 }

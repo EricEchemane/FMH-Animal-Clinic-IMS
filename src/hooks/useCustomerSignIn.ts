@@ -16,6 +16,11 @@ export default function useCustomerSignIn() {
     const name = session.user.name!;
     const image = session.user.image!;
 
+    console.log({
+      name, email
+    });
+
+
     Http.post(
       '/auth/signin',
       { email, password: name },
@@ -31,7 +36,8 @@ export default function useCustomerSignIn() {
             }
           });
         },
-        onFail: () => {
+        onFail: errorMessage => {
+          console.log({ errorMessage });
           Http.post(
             '/auth/signup',
             {

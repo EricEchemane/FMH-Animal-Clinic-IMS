@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react';
 import { MantineProvider } from '@mantine/core';
 import { CustomerContextProvider } from '~/providers/customer-provider';
 import { NotificationsProvider } from '@mantine/notifications';
+import { UserAdminContextProvider } from '~/providers/user-admin-prodiver';
 
 interface AppPropsWithSession extends AppProps {
 	pageProps: { session: any };
@@ -21,9 +22,11 @@ function MyApp({ Component, pageProps }: AppPropsWithSession) {
 		>
 			<NotificationsProvider>
 				<SessionProvider session={pageProps.session}>
-					<CustomerContextProvider>
-						<Component {...pageProps} />
-					</CustomerContextProvider>
+					<UserAdminContextProvider>
+						<CustomerContextProvider>
+							<Component {...pageProps} />
+						</CustomerContextProvider>
+					</UserAdminContextProvider>
 				</SessionProvider>
 			</NotificationsProvider>
 		</MantineProvider>

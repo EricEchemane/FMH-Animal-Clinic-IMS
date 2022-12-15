@@ -12,6 +12,7 @@ import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
+import Link from 'next/link';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { UserRole } from '~/providers/customer-provider/types';
 import Http from '~/utils/http-adapter';
@@ -154,6 +155,15 @@ export default function CreateAccountComponent() {
 									Use a different email
 								</Button>
 							</Group>
+							<Center>
+								<Link
+									href={'/sign-in'}
+									passHref
+								>
+									Already have an account?{' '}
+									<Button variant='white'>Sign in here</Button>
+								</Link>
+							</Center>
 						</Stack>
 					</Card>
 				</form>

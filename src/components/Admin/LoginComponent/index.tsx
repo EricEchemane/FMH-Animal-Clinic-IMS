@@ -11,6 +11,7 @@ import {
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import Head from 'next/head';
+import Link from 'next/link';
 import React, { FormEvent, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
@@ -70,7 +71,7 @@ export default function LoginComponent() {
 					>
 						<Stack>
 							<div>
-								<Title color={'dimmed'}>Login</Title>
+								<Title color={'dimmed'}>Sign in</Title>
 								<Text>Please provide your credentials</Text>
 							</div>
 							<TextInput
@@ -95,6 +96,14 @@ export default function LoginComponent() {
 							>
 								Login
 							</Button>
+
+							<Link
+								passHref
+								href={'/sign-up'}
+							>
+								<Button variant='white'> Sign up instead </Button> if you dont
+								have an account
+							</Link>
 						</Stack>
 					</Card>
 				</form>
