@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import style from './style.module.css';
 import Link from 'next/link';
-import { signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { Button } from '@mantine/core';
 
 export default function Navbar() {
@@ -108,7 +108,7 @@ export default function Navbar() {
 							</Button>
 						</a>
 					</li>
-					{session && session.user && (
+					{session && session.user ? (
 						<li>
 							<Button
 								radius={'xl'}
@@ -116,6 +116,16 @@ export default function Navbar() {
 								variant='outline'
 							>
 								Sign out
+							</Button>
+						</li>
+					) : (
+						<li>
+							<Button
+								radius={'xl'}
+								onClick={() => signIn('google')}
+								variant='filled'
+							>
+								Sign In
 							</Button>
 						</li>
 					)}
