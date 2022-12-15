@@ -7,6 +7,14 @@ import surgicalImg from './assets/Surgery.svg';
 import radiologyImg from './assets/Radiology.svg';
 import diagnosticImg from './assets/Diagnostic.svg';
 import therapeuticImg from './assets/Therapeutic.svg';
+import ultraSoundImg from './assets/Ultrasound.svg';
+import xrayImg from './assets/X-ray.svg';
+import minorSurgeryImg from './assets/Minor-Surgery.svg';
+import petGroomingImg from './assets/Pet-Grooming.svg';
+import confinementImg from './assets/Confinement.svg';
+
+
+
 
 export default function Service() {
 	return (
@@ -26,6 +34,7 @@ export default function Service() {
 
 				<div className={style.cardCon}>
 					<div className={style.cardConWrapper}>
+
 						<div className={style.cards}>
 							<div className={style.cardsTitleCon}>
 								<Image
@@ -59,13 +68,14 @@ export default function Service() {
 									alt='logo'
 									width='50'
 								/>
-								<h1 className={style.titleVaccine}>Anti-Rabbies</h1>
+								<h1 className={style.titleVaccine}>Deworming
+</h1>
 							</div>
 							<div className={style.cardsParagraph}>
 								<p>
-									We take the health and safety of your pets seriously, and
-									strongly recommend that all animals be up-to-date on their
-									vaccines, including the anti-rabies vaccine.
+									{
+										"We offer deworming services for dogs and cats. This treatment involves administering medication to kill any worms or parasites"
+									}
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
@@ -85,14 +95,14 @@ export default function Service() {
 									alt='logo'
 									width='50'
 								/>
-								<h1 className={style.titleVaccine}>Surgical</h1>
+								<h1 className={style.titleVaccine}>Check-up</h1>
 							</div>
 							<div className={style.cardsParagraph}>
 								<p>
-									We perform soft tissue surgeries like Neutering and spaying,
-									orthopaedic, and other speciality surgeries right here in our
-									clinic.
-								</p>
+									{
+									"Our team of skilled veterinarians and support staff are dedicated to providing high-quality care for your furry friends. Our check-up service includes a thorough examination of your pet to assess their overall health and well-being." 
+									}
+									</p>
 							</div>
 							<div className={style.getServiceCon}>
 								<a
@@ -111,7 +121,7 @@ export default function Service() {
 									alt='logo'
 									width='50'
 								/>
-								<h1 className={style.titleVaccine}>Radiology</h1>
+								<h1 className={style.titleVaccine}>Treatment</h1>
 							</div>
 							<div className={style.cardsParagraph}>
 								<p>
@@ -137,12 +147,12 @@ export default function Service() {
 									alt='logo'
 									width='50'
 								/>
-								<h1 className={style.titleVaccine}>Diagnostic</h1>
+								<h1 className={style.titleVaccine}>Rapid Test Kits</h1>
 							</div>
 							<div className={style.cardsParagraph}>
 								<p>
 									{
-										"We offer a range of therapeutic services for pets. Our team of experienced veterinarians provides specialized treatment to help manage and improve your pet's health."
+										"Rapid test kits can save pet owners time and money by allowing them to quickly determine whether their pet is suffering from a particular condition."
 									}
 								</p>
 							</div>
@@ -159,17 +169,119 @@ export default function Service() {
 						<div className={style.cards}>
 							<div className={style.cardsTitleCon}>
 								<Image
-									src={therapeuticImg}
+									src={ultraSoundImg}
 									alt='logo'
 									width='50'
 								/>
-								<h1 className={style.titleVaccine}>Therapuetic</h1>
+								<h1 className={style.titleVaccine}>Ultrasound</h1>
 							</div>
 							<div className={style.cardsParagraph}>
 								<p>
-									We’ll keep your pet safe from parvo, distemper, leptospirosis,
-									rabies, corona, kennel cough and more — and send reminders
-									when they’re due for a vaccine.
+									{"Our pet clinic offers ultrasound services for your furry friends. Ultrasound is a non-invasive and painless imaging technique that uses sound waves to produce pictures of the inside of the body."}
+								</p>
+							</div>
+							<div className={style.getServiceCon}>
+								<a
+									href='#'
+									className={style.getServiceButton}
+								>
+									Get Service <i className='bx bx-right-arrow-alt'></i>
+								</a>
+							</div>
+						</div>
+
+						<div className={style.cards}>
+							<div className={style.cardsTitleCon}>
+								<Image
+									src={xrayImg}
+									alt='logo'
+									width='50'
+								/>
+								<h1 className={style.titleVaccine}>X-ray</h1>
+							</div>
+							<div className={style.cardsParagraph}>
+								<p>
+									{
+										'Our pet clinic offers x-ray services for your beloved pets. X-ray, or radiography, is a common imaging technique that uses ionizing radiation to produce images of the inside of the body.'
+									}
+								</p>
+							</div>
+							<div className={style.getServiceCon}>
+								<a
+									href='#'
+									className={style.getServiceButton}
+								>
+									Get Service <i className='bx bx-right-arrow-alt'></i>
+								</a>
+							</div>
+						</div>
+
+						<div className={style.cards}>
+							<div className={style.cardsTitleCon}>
+								<Image
+									src={minorSurgeryImg}
+									alt='logo'
+									width='50'
+								/>
+								<h1 className={style.titleVaccine}>Minor Surgery</h1>
+							</div>
+							<div className={style.cardsParagraph}>
+								<p>
+									{
+										'Our pet clinic offers minor surgical services for your furry companions. Our experienced veterinarians are skilled in performing various types of minor surgeries, such as spaying and neutering, tooth extractions, and tumor removals.'
+									}
+								</p>
+							</div>
+							<div className={style.getServiceCon}>
+								<a
+									href='#'
+									className={style.getServiceButton}
+								>
+									Get Service <i className='bx bx-right-arrow-alt'></i>
+								</a>
+							</div>
+						</div>
+
+						<div className={style.cards}>
+							<div className={style.cardsTitleCon}>
+								<Image
+									src={petGroomingImg}
+									alt='logo'
+									width='50'
+								/>
+								<h1 className={style.titleVaccine}>Pet Grooming</h1>
+							</div>
+							<div className={style.cardsParagraph}>
+								<p>
+									{
+										'Our pet clinic offers professional grooming services for your furry friends. Our experienced groomers provide a range of services, including bathing, brushing, trimming, and nail clipping.'
+									}
+								</p>
+							</div>
+							<div className={style.getServiceCon}>
+								<a
+									href='#'
+									className={style.getServiceButton}
+								>
+									Get Service <i className='bx bx-right-arrow-alt'></i>
+								</a>
+							</div>
+						</div>
+
+						<div className={style.cards}>
+							<div className={style.cardsTitleCon}>
+								<Image
+									src={confinementImg}
+									alt='logo'
+									width='50'
+								/>
+								<h1 className={style.titleVaccine}>Confinement</h1>
+							</div>
+							<div className={style.cardsParagraph}>
+								<p>
+									{
+										'Our pet clinic offers confinement services for your furry companions. If your pet needs to be kept in a controlled environment for medical or other reasons, our clinic provides a safe and comfortable space for them to stay.'
+									}
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
