@@ -4,7 +4,8 @@ import {
 	UserAdminContextProvider,
 	useUserAdmin,
 } from '~/providers/user-admin-prodiver';
-import LoginComponent from './LoginComponent/LoginComponent';
+import CreateAccountComponent from './CreateAccountComponent';
+import LoginComponent from './LoginComponent';
 
 function Admin() {
 	useState();
@@ -16,7 +17,8 @@ function Admin() {
 			<Head>
 				<title> Admin - FMH Animal Clinic</title>
 			</Head>
-			<LoginComponent />
+			{/* <LoginComponent /> */}
+			<CreateAccountComponent />
 		</>
 	);
 }
