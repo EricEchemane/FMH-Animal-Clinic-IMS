@@ -12,6 +12,7 @@ import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import React, { FormEvent, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
@@ -44,6 +45,7 @@ export default function LoginComponent() {
 					title: 'Success',
 					color: 'green',
 				});
+				Router.replace('/admin');
 			},
 			onFail: (message) =>
 				showNotification({
