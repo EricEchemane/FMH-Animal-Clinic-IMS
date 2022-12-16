@@ -69,7 +69,7 @@ export default function Service() {
 									width='50'
 								/>
 								<h1 className={style.titleVaccine}>Deworming
-</h1>
+								</h1>
 							</div>
 							<div className={style.cardsParagraph}>
 								<p>
@@ -100,9 +100,9 @@ export default function Service() {
 							<div className={style.cardsParagraph}>
 								<p>
 									{
-									"Our team of skilled veterinarians and support staff are dedicated to providing high-quality care for your furry friends. Our check-up service includes a thorough examination of your pet to assess their overall health and well-being." 
+										"Our team of skilled veterinarians and support staff are dedicated to providing high-quality care for your furry friends. Our check-up service includes a thorough examination of your pet to assess their overall health and well-being."
 									}
-									</p>
+								</p>
 							</div>
 							<div className={style.getServiceCon}>
 								<a
