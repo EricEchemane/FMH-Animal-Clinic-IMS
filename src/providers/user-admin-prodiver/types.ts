@@ -1,9 +1,11 @@
+import { Schedule } from '~/entities-interfaces/schedule.entity';
 import { UserRole } from '../customer-provider/types';
 
 export interface Admin {
   email: string;
   name: string;
   access_token: string;
+  schedules: Schedule[];
 }
 
 export interface DispatchConfig {
