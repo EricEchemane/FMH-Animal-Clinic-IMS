@@ -153,4 +153,16 @@
   .cards {
     width: 280px;
   }
+
+  .titleVaccine {
+    color: var(--brown);
+    font-family: 'Nunito';
+    font-size: 1.5rem;
+  }
+
+  .cardsParagraph {
+    font-family: 'Roboto';
+    color: var(--brown);
+    font-size: .9rem;
+  }
 }
