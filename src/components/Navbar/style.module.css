@@ -18,7 +18,7 @@
 }
 
 .logoDiv img {
-	width: 200px;
+	width: 120px;
 }
 
 .navLinks {
@@ -57,7 +57,7 @@
 /* ========================================== media queries */
 @media (max-width: 320px) {
 	.logoDiv img {
-		max-width: 170px;
+		max-width: 100px;
 	}
 }
 

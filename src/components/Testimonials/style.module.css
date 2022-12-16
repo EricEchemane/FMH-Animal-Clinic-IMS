@@ -53,7 +53,7 @@
 
 .cardContainer {
   width: 365px;
-  background: var(--white);
+  background: rgb(246, 246, 246);
   border: 1px solid var(--brown);
   border-radius: 10px;
   padding: 2rem 2rem;
@@ -79,7 +79,7 @@
 .userName h2 {
   color: var(--brown);
   font-family: 'Nunito';
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .userMessage {

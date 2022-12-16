@@ -2,12 +2,6 @@ import React from 'react';
 import style from './style.module.css';
 import Image from 'next/image';
 import profilePic from './assets/Profilepic.svg';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-
 
 
 

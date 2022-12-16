@@ -72,7 +72,7 @@
 .cards {
   width: 400px;
   height: 300px;
-  background: rgb(255, 255, 255);
+  background-image: url(./assets//bg.svg);
   border-radius: 10px;
   border: 2px solid var(--brown);
   display: flex;
@@ -82,7 +82,7 @@
 }
 
 .cards:hover {
-  background: rgb(245, 245, 4);
+  background-image: url(./assets//bg2.svg);
   cursor: pointer;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .getServiceButton:hover {
-  color: rgb(239, 137, 2);
+  color: #f3f5f9;
 }
 
 /* ======================================media================= */

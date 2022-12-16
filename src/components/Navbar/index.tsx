@@ -31,8 +31,8 @@ export default function Navbar() {
 				<Image
 					src={Navlogo}
 					alt='logo'
-					width={180}
-					height={80}
+					width={110}
+					height={45}
 				/>
 			</div>
 
