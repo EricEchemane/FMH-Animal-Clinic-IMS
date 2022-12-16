@@ -114,11 +114,10 @@ export default function CreateAccountComponent() {
 							/>
 							<TextInput
 								required
-								readOnly
 								size='lg'
 								label='Name'
 								placeholder='Name'
-								defaultValue={signUpForm.values.name}
+								{...signUpForm.getInputProps('name')}
 							/>
 							<PasswordInput
 								required
