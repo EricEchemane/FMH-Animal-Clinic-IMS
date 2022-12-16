@@ -33,7 +33,7 @@ export default function Admin() {
 	const { data: session } = useSession({ required: true });
 	useAdminSignin();
 
-	const [currentTab, setCurrentTab] = useState<Tabs>('home');
+	const [currentTab, setCurrentTab] = useState<Tabs>('appointments');
 
 	return (
 		<>
@@ -69,14 +69,6 @@ export default function Admin() {
 							sx={{ height: '85%' }}
 						>
 							<Stack>
-								<Button
-									className={css.navButton}
-									leftIcon={<IconHome />}
-									variant={currentTab === 'home' ? 'light' : 'subtle'}
-									onClick={() => setCurrentTab('home')}
-								>
-									Home
-								</Button>
 								<Button
 									className={css.navButton}
 									leftIcon={<IconCalendarEvent />}

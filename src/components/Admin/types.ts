@@ -1,1 +1,1 @@
-export type Tabs = 'home' | 'appointments' | 'services' | 'inventory' | 'feedbacks' | 'accounts';
+export type Tabs = 'appointments' | 'services' | 'inventory' | 'feedbacks' | 'accounts';
