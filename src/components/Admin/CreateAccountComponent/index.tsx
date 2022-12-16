@@ -103,8 +103,7 @@ export default function CreateAccountComponent() {
 								order={2}
 								color={'dimmed'}
 							>
-								{' '}
-								Create Account{' '}
+								Create Account
 							</Title>
 							<TextInput
 								required

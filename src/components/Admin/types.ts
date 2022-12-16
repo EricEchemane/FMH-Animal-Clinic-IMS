@@ -1,0 +1,1 @@
+export type Tabs = 'home' | 'appointments' | 'services' | 'inventory' | 'feedbacks' | 'accounts';
