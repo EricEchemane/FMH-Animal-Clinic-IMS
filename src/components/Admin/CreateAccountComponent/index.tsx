@@ -13,6 +13,7 @@ import { showNotification } from '@mantine/notifications';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { UserRole } from '~/providers/customer-provider/types';
 import Http from '~/utils/http-adapter';
@@ -65,10 +66,11 @@ export default function CreateAccountComponent() {
 			{
 				onSuccess: (data) => {
 					showNotification({
-						message: 'Account created successfully',
-						title: 'Success',
+						title: 'Account created successfully',
+						message: 'You can now login to your account',
 						color: 'green',
 					});
+					Router.push('/sign-in');
 				},
 				onFail: (message) => {
 					showNotification({
