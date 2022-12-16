@@ -2,11 +2,15 @@
 	display: grid;
 	grid-template-columns: 350px 1fr;
 	grid-template-rows: 100vh;
-	gap: 2rem;
 }
 
-.root aside {
+.root aside,
+.root main {
 	padding: 1rem;
+}
+
+.root main section {
+	height: 100%;
 }
 
 .navButton > div {

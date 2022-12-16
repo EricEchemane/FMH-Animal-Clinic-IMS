@@ -19,7 +19,6 @@ import {
 	IconBuildingWarehouse,
 	IconCalendarEvent,
 	IconChevronRight,
-	IconHome,
 	IconPaw,
 	IconTrash,
 	IconUserExclamation,
@@ -27,6 +26,11 @@ import {
 	IconUsers,
 } from '@tabler/icons';
 import { signOut, useSession } from 'next-auth/react';
+import Appointments from './tabs/Appointments';
+import Accounts from './tabs/Accounts';
+import Feedbacks from './tabs/Feedbacks';
+import Inventory from './tabs/Inventory';
+import Services from './tabs/Services';
 
 export default function Admin() {
 	const { admin, dispatch } = useUserAdmin();
@@ -51,13 +55,13 @@ export default function Admin() {
 						<div>
 							<Title
 								order={2}
-								color='violet'
+								color={'dimmed'}
 							>
 								Admin
 							</Title>
 							<Title
-								color={'dimmed'}
-								order={5}
+								color={'violet'}
+								order={6}
 							>
 								FMH Animal Clinic
 							</Title>
@@ -70,6 +74,7 @@ export default function Admin() {
 						>
 							<Stack>
 								<Button
+									size='md'
 									className={css.navButton}
 									leftIcon={<IconCalendarEvent />}
 									variant={currentTab === 'appointments' ? 'light' : 'subtle'}
@@ -78,6 +83,7 @@ export default function Admin() {
 									Appointments
 								</Button>
 								<Button
+									size='md'
 									className={css.navButton}
 									leftIcon={<IconBuildingWarehouse />}
 									variant={currentTab === 'inventory' ? 'light' : 'subtle'}
@@ -86,6 +92,7 @@ export default function Admin() {
 									Inventory
 								</Button>
 								<Button
+									size='md'
 									className={css.navButton}
 									leftIcon={<IconUserExclamation />}
 									variant={currentTab === 'feedbacks' ? 'light' : 'subtle'}
@@ -94,6 +101,7 @@ export default function Admin() {
 									Feedbacks
 								</Button>
 								<Button
+									size='md'
 									className={css.navButton}
 									leftIcon={<IconPaw />}
 									variant={currentTab === 'services' ? 'light' : 'subtle'}
@@ -102,6 +110,7 @@ export default function Admin() {
 									Services
 								</Button>
 								<Button
+									size='md'
 									className={css.navButton}
 									leftIcon={<IconUsers />}
 									variant={currentTab === 'accounts' ? 'light' : 'subtle'}
@@ -162,7 +171,24 @@ export default function Admin() {
 						</Stack>
 					</Card>
 				</aside>
-				<main> main </main>
+
+				<main>
+					<section hidden={currentTab !== 'accounts'}>
+						<Accounts />
+					</section>
+					<section hidden={currentTab !== 'appointments'}>
+						<Appointments />
+					</section>
+					<section hidden={currentTab !== 'feedbacks'}>
+						<Feedbacks />
+					</section>
+					<section hidden={currentTab !== 'inventory'}>
+						<Inventory />
+					</section>
+					<section hidden={currentTab !== 'services'}>
+						<Services />
+					</section>
+				</main>
 			</div>
 		</>
 	);
