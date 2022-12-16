@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
-import {
-	UserAdminContextProvider,
-	useUserAdmin,
-} from '~/providers/user-admin-prodiver';
+import Head from 'next/head';
+import React from 'react';
+import useAdminSignin from '~/hooks/useAdminSignin';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
 
-function Admin() {
-	useState();
-	const adminContext = useUserAdmin();
-	console.log({ adminContext });
+export default function Admin() {
+	const { admin, dispatch } = useUserAdmin();
+	useAdminSignin();
 
-	return <div>Admin</div>;
-}
-
-export default function AdminWrapper() {
 	return (
-		<UserAdminContextProvider>
-			<Admin />
-		</UserAdminContextProvider>
+		<>
+			<Head>
+				<title> Admin - FMH Animal Clinic</title>
+			</Head>
+		</>
 	);
 }

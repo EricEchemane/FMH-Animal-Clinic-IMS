@@ -1,0 +1,7 @@
+.rootContainer {
+	min-height: 100vh;
+}
+
+.form {
+	width: min(400px, 95vw);
+}

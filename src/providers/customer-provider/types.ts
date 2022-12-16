@@ -5,6 +5,7 @@ export enum UserRole {
   staff = 'staff',
   super_admin = 'super_admin',
   customer = 'customer',
+  pending = 'pending'
 }
 
 export interface Customer {
@@ -31,6 +32,7 @@ export interface CustomerProviderProps {
 export interface SignInDto {
   email: string;
   password: string;
+  name: string;
 }
 
 export interface SignUpDto {
