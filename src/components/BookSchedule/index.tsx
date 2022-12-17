@@ -56,10 +56,7 @@ export default function BookSchedule() {
 	useEffect(() => {
 		Http.get('/scheduling/from-this-month-and-next', {
 			accessToken: customer?.access_token,
-			onSuccess: (data) => {
-				setSchedules(data);
-				console.log(data);
-			},
+			onSuccess: (data) => setSchedules(data),
 		});
 	}, [customer?.access_token]);
 
