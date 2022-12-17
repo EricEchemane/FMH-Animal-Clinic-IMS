@@ -38,10 +38,6 @@ export default function Appointments() {
 
 	return (
 		<>
-			<Head>
-				<title>Appointments - FMH Animal Clinic</title>
-			</Head>
-
 			<Stack
 				style={{
 					height: '100%',
