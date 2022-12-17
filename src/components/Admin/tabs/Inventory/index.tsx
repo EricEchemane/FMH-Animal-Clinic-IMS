@@ -25,7 +25,10 @@ export default function Inventory() {
 	const { admin, dispatch } = useUserAdmin();
 	const [currentTab, setCurrentTab] = useState<InventoryTabs>('all');
 
-	const products = admin?.products || [];
+	const products = (admin?.products || []).filter((p) => p.archived === false);
+	const archivedProducts = (admin?.products || []).filter(
+		(p) => p.archived === true
+	);
 
 	useEffect(() => {
 		if (!admin?.access_token) return;
@@ -99,7 +102,7 @@ export default function Inventory() {
 					<Table
 						striped
 						verticalSpacing='xl'
-						fontSize='lg'
+						fontSize='md'
 					>
 						<thead>
 							<tr>
@@ -141,7 +144,15 @@ export default function Inventory() {
 												<Menu.Divider />
 
 												<Menu.Label>Danger zone</Menu.Label>
-												<Menu.Item icon={<IconArchive size={14} />}>
+												<Menu.Item
+													onClick={() => {
+														dispatch({
+															action: 'archive-product',
+															payload: id,
+														});
+													}}
+													icon={<IconArchive size={14} />}
+												>
 													Archived
 												</Menu.Item>
 												<Menu.Item
@@ -159,7 +170,85 @@ export default function Inventory() {
 						</tbody>
 					</Table>
 				</section>
-				<section hidden={currentTab !== 'archive'}>Archive</section>
+
+				<section
+					style={{ paddingRight: '2rem' }}
+					hidden={currentTab !== 'archive'}
+				>
+					<Title
+						weight={'normal'}
+						order={2}
+						mb={'xl'}
+					>
+						Arhived Products
+					</Title>
+
+					<Table
+						striped
+						verticalSpacing='xl'
+						fontSize='md'
+					>
+						<thead>
+							<tr>
+								<th>Product Name</th>
+								<th>Description</th>
+								<th>Stock</th>
+								<th>Price/Unit</th>
+								<th>Menu</th>
+							</tr>
+						</thead>
+						<tbody>
+							{archivedProducts.map(
+								({ id, name, description, stock, unit_price }) => (
+									<tr key={id}>
+										<td>{name}</td>
+										<td>{description}</td>
+										<td>{stock}</td>
+										<td>{unit_price}</td>
+										<td>
+											<Menu
+												shadow='md'
+												width={200}
+												position='left-start'
+											>
+												<Menu.Target>
+													<ActionIcon>
+														<IconDots size={30} />
+													</ActionIcon>
+												</Menu.Target>
+
+												<Menu.Dropdown>
+													<Menu.Label>{name}</Menu.Label>
+													<Menu.Item icon={<IconListDetails size={14} />}>
+														View Details
+													</Menu.Item>
+													<Menu.Item icon={<IconPencil size={14} />}>
+														Edit
+													</Menu.Item>
+
+													<Menu.Divider />
+
+													<Menu.Label>Danger zone</Menu.Label>
+													<Menu.Item icon={<IconArchive size={14} />}>
+														Remove from archive
+													</Menu.Item>
+													<Menu.Item
+														disabled
+														color='red'
+														icon={<IconTrash size={14} />}
+													>
+														Delete permanently
+													</Menu.Item>
+												</Menu.Dropdown>
+											</Menu>
+										</td>
+									</tr>
+								)
+							)}
+						</tbody>
+					</Table>
+				</section>
+
 				<section hidden={currentTab !== 'add'}>Add</section>
 			</Stack>
 		</>

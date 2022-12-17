@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { Product } from '~/entities-interfaces/product.entity';
 import { Schedule } from '~/entities-interfaces/schedule.entity';
 import Http from '~/utils/http-adapter';
 import {
@@ -25,6 +26,20 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 	if (action === 'set-products') {
 		return { ...state, products: payload };
+	}
+
+	if (action === 'archive-product') {
+		const products = state.products;
+		const index = products.findIndex(
+			(product: Product) => product.id === payload
+		);
+		products[index].archived = true;
+		Http.patch(
+			'/product/' + payload,
+			{ archived: true },
+			{ accessToken: state.access_token }
+		);
+		return { ...state, products };
 	}
 
 	if (action === 'set-user-admin') {
