@@ -44,7 +44,8 @@ export default function Appointments() {
 						position: 'sticky',
 						top: 0,
 						zIndex: 1,
-						backgroundColor: 'white',
+						backdropFilter: 'blur(3rem)',
+						padding: '1rem',
 					}}
 					position='apart'
 				>

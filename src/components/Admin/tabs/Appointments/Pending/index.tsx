@@ -7,17 +7,26 @@ import {
 	Divider,
 	ActionIcon,
 	Menu,
+	Badge,
+	TextInput,
+	Select,
 } from '@mantine/core';
-import { Badge } from '@mantine/core';
 import {
 	IconArchive,
+	IconCalendar,
 	IconCheck,
 	IconDots,
+	IconFilter,
 	IconFolderOff,
+	IconSearch,
 	IconTrash,
 } from '@tabler/icons';
 import React from 'react';
-import { Schedule } from '~/entities-interfaces/schedule.entity';
+import {
+	ClinicServices,
+	ClinicServicesArray,
+	Schedule,
+} from '~/entities-interfaces/schedule.entity';
 import NoPending from './NoPending';
 
 type Props = {
@@ -38,6 +47,42 @@ export default function PendingAppointments({ pending }: Props) {
 			>
 				Pending Appointments
 			</Title>
+
+			<Group align={'center'}>
+				<TextInput
+					size='md'
+					icon={<IconSearch />}
+					label='Search schedule'
+					placeholder='Start typing'
+					radius={'xl'}
+					style={{ width: '30rem' }}
+				/>
+				<Select
+					size='md'
+					icon={<IconFilter />}
+					radius={'xl'}
+					label='Filter by service type'
+					placeholder='Pick service type'
+					data={ClinicServicesArray.map((service) => ({
+						value: service,
+						label: service,
+					}))}
+				/>
+				<Select
+					size='md'
+					icon={<IconCalendar />}
+					radius={'xl'}
+					label='Filter by date'
+					placeholder='Filter by date'
+					data={[
+						{ value: 'Today', label: 'Today' },
+						{ value: 'Tomorrow', label: 'Tomorrow' },
+						{ value: 'This Week', label: 'This Week' },
+						{ value: 'Next Week', label: 'Next Week' },
+						{ value: 'This Month', label: 'This Month' },
+					]}
+				/>
+			</Group>
 
 			<div
 				style={{
@@ -124,13 +169,29 @@ export default function PendingAppointments({ pending }: Props) {
 	);
 }
 
-function getServiceBadgeColor(service: string) {
+function getServiceBadgeColor(service: ClinicServices) {
 	switch (service) {
-		case 'grooming':
-			return 'yellow';
-		case 'vet_consultation':
+		case 'Check-up':
+			return 'red';
+		case 'Confinement':
+			return 'pink';
+		case 'Deworming':
+			return 'grape';
+		case 'Minor Surgery':
+			return 'pink';
+		case 'Pet Grooming':
+			return 'violet';
+		case 'Rapid Test Kits':
+			return 'blue';
+		case 'Treatment':
+			return 'indigo';
+		case 'Ultrasound':
+			return 'cyan';
+		case 'Vaccination':
+			return 'teal';
+		case 'X-ray':
 			return 'green';
 		default:
-			return 'blue';
+			return '';
 	}
 }
