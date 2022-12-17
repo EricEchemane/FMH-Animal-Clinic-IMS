@@ -154,7 +154,7 @@ export default function Admin() {
 									</Menu.Target>
 
 									<Menu.Dropdown>
-										<Menu.Label>My Account</Menu.Label>
+										<Menu.Label>Settings</Menu.Label>
 										<Menu.Item
 											onClick={() => signOut()}
 											icon={<IconUserOff size={14} />}

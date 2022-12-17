@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
 import { AppointmentTabs } from '../../types';
-import PendingAppointments from './Pending';
+import AllAppointments from './AllAppointments';
 import css from './style.module.css';
 
 export default function Appointments() {
@@ -20,12 +20,21 @@ export default function Appointments() {
 		});
 	}, [admin?.access_token, dispatch]);
 
-	const [currentTab, setCurrentTab] = useState<AppointmentTabs>('Pending');
+	const [currentTab, setCurrentTab] = useState<AppointmentTabs>('All');
+	const [appointments, setAppointments] = useState(admin?.schedules || []);
 
-	const appointments = admin?.schedules || [];
-	const pending = appointments.filter((a) => a.status === 'pending');
-	const done = appointments.filter((a) => a.status === 'done');
-	const cancelled = appointments.filter((a) => a.status === 'cancelled');
+	const _appointments = admin?.schedules || [];
+	const pending = _appointments.filter((a) => a.status === 'pending');
+	const done = _appointments.filter((a) => a.status === 'done');
+	const cancelled = _appointments.filter((a) => a.status === 'cancelled');
+
+	useEffect(() => {
+		if (currentTab === 'All') setAppointments(admin?.schedules || []);
+		else if (currentTab === 'Pending') setAppointments(pending);
+		else if (currentTab === 'Done') setAppointments(done);
+		else if (currentTab === 'Cancelled') setAppointments(cancelled);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentTab]);
 
 	return (
 		<>
@@ -84,13 +93,13 @@ export default function Appointments() {
 							onClick={() => setCurrentTab('All')}
 							data-active={currentTab === 'All'}
 						>
-							<Title color='violet'>{appointments.length}</Title>
+							<Title color='violet'>{_appointments.length}</Title>
 							<Text>All</Text>
 						</button>
 					</Group>
 				</Group>
 
-				{currentTab === 'Pending' && <PendingAppointments pending={pending} />}
+				<AllAppointments appointments={appointments} />
 			</Stack>
 		</>
 	);

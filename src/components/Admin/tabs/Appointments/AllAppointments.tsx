@@ -23,7 +23,7 @@ import {
 	IconTrash,
 } from '@tabler/icons';
 import React, { useCallback, useEffect, useState } from 'react';
-import { dateFilters } from '~/components/Admin/types';
+import { dateFilters, ScheduleStatus } from '~/components/Admin/types';
 import {
 	ClinicServices,
 	ClinicServicesArray,
@@ -32,17 +32,17 @@ import {
 import NoPending from './NoPending';
 
 type Props = {
-	pending: Schedule[];
+	appointments: Schedule[];
 };
 
-export default function PendingAppointments(props: Props) {
-	const [pending, setPending] = useState(props.pending);
+export default function Appointments(props: Props) {
+	const [appointments, setAppointments] = useState(props.appointments);
 	const [serviceFilter, setServiceFilter] = useState('');
 	const [dateFilter, setDateFilter] = useState<dateFilters>('All');
 
 	const searchListener = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const search = e.target.value.toLowerCase();
-		const filtered = props.pending.filter((sched) => {
+		const filtered = props.appointments.filter((sched) => {
 			const date = new Date(sched.date).toDateString().toLowerCase();
 			const service = sched.service.toLowerCase();
 			const name = sched.name.toLowerCase();
@@ -57,17 +57,19 @@ export default function PendingAppointments(props: Props) {
 				date.includes(search)
 			);
 		});
-		setPending(filtered);
+		setAppointments(filtered);
 	};
 
 	const filterByService = (service: ClinicServices) => {
 		setServiceFilter(service);
-		const filtered = props.pending.filter((sched) => sched.service === service);
-		setPending(filtered);
+		const filtered = props.appointments.filter(
+			(sched) => sched.service === service
+		);
+		setAppointments(filtered);
 	};
 
 	const filterByDate = (filter: dateFilters) => {
-		const filtered = props.pending.filter((sched) => {
+		const filtered = props.appointments.filter((sched) => {
 			const date = new Date(sched.date);
 			const today = new Date();
 			const tomorrow = new Date();
@@ -91,34 +93,26 @@ export default function PendingAppointments(props: Props) {
 			}
 		});
 		setDateFilter(filter);
-		setPending(filtered);
+		setAppointments(filtered);
 	};
 
 	const resetFilters = useCallback(() => {
-		setPending(props.pending);
+		setAppointments(props.appointments);
 		setServiceFilter('');
 		setDateFilter('All');
-	}, [props.pending]);
+	}, [props.appointments]);
 
 	useEffect(() => {
 		resetFilters();
 	}, [resetFilters]);
 
-	if (props.pending.length === 0) return <NoPending />;
+	if (props.appointments.length === 0) return <NoPending />;
 
 	return (
 		<Stack
 			pr={'xl'}
 			spacing={30}
 		>
-			<Title
-				order={2}
-				color='dimmed'
-				weight={'normal'}
-			>
-				Pending Appointments
-			</Title>
-
 			<Group align={'flex-end'}>
 				<TextInput
 					onChange={searchListener}
@@ -175,7 +169,7 @@ export default function PendingAppointments(props: Props) {
 					gap: '2rem',
 				}}
 			>
-				{pending.map((sched) => (
+				{appointments.map((sched) => (
 					<Card
 						shadow='sm'
 						p={'xl'}
@@ -196,6 +190,13 @@ export default function PendingAppointments(props: Props) {
 										color={getServiceBadgeColor(sched.service)}
 									>
 										{sched.service}
+									</Badge>
+									<Badge
+										variant='outline'
+										size='lg'
+										color={getStatusBadgeColor(sched.status)}
+									>
+										{sched.status}
 									</Badge>
 									<Text mb='md'>{new Date(sched.date).toDateString()}</Text>
 								</Group>
@@ -251,6 +252,19 @@ export default function PendingAppointments(props: Props) {
 			</div>
 		</Stack>
 	);
+}
+
+function getStatusBadgeColor(status: ScheduleStatus) {
+	switch (status) {
+		case 'pending':
+			return 'blue';
+		case 'cancelled':
+			return 'orange';
+		case 'done':
+			return 'green';
+		default:
+			return 'violet';
+	}
 }
 
 function getServiceBadgeColor(service: ClinicServices) {
