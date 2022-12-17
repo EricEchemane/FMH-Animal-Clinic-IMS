@@ -188,11 +188,26 @@ export default function Admin() {
 				</aside>
 
 				<main>
-					{currentTab === 'appointments' && <Appointments />}
+					<section hidden={currentTab !== 'appointments'}>
+						<Appointments />
+					</section>
+					<section hidden={currentTab !== 'inventory'}>
+						<Inventory />
+					</section>
+					<section hidden={currentTab !== 'feedbacks'}>
+						<Feedbacks />
+					</section>
+					<section hidden={currentTab !== 'services'}>
+						<Services />
+					</section>
+					<section hidden={currentTab !== 'accounts'}>
+						<Accounts />
+					</section>
+					{/*{currentTab === 'appointments' && <Appointments />}
 					{currentTab === 'inventory' && <Inventory />}
 					{currentTab === 'feedbacks' && <Feedbacks />}
 					{currentTab === 'services' && <Services />}
-					{currentTab === 'accounts' && <Accounts />}
+					{currentTab === 'accounts' && <Accounts />}*/}
 				</main>
 			</div>
 		</>
