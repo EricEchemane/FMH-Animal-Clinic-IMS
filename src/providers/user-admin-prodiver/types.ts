@@ -13,7 +13,8 @@ export interface DispatchConfig {
   | 'set-user-admin'
   | 'set-access-token'
   | 'set-schedules'
-  | 'mark-schedule-as-done';
+  | 'mark-schedule-as-done'
+  | 'mark-schedule-as-cancelled';
   payload: any;
 }
 

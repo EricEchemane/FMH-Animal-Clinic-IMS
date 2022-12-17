@@ -48,5 +48,19 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 		return { ...state, schedules };
 	}
 
+	if (action === 'mark-schedule-as-cancelled') {
+		const schedules = state.schedules;
+		const index = schedules.findIndex(
+			(schedule: any) => schedule.id === payload
+		);
+		schedules[index].status = 'cancelled';
+		Http.patch(
+			'/scheduling/' + payload,
+			{ status: 'cancelled' },
+			{ accessToken: state.access_token }
+		);
+		return { ...state, schedules };
+	}
+
 	return state;
 };

@@ -228,7 +228,15 @@ export default function Appointments(props: Props) {
 											>
 												Mark as done
 											</Menu.Item>
-											<Menu.Item icon={<IconFolderOff size={14} />}>
+											<Menu.Item
+												onClick={() => {
+													dispatch({
+														action: 'mark-schedule-as-cancelled',
+														payload: sched.id,
+													});
+												}}
+												icon={<IconFolderOff size={14} />}
+											>
 												Mark as cancelled
 											</Menu.Item>
 											<Menu.Item icon={<IconPaperclip size={14} />}>
