@@ -12,6 +12,15 @@
 .schedStatus:focus-visible {
 	box-shadow: 0 0 0 1px #999;
 }
-.schedStatus[data-active='true'] {
+.schedStatus:nth-child(1)[data-active='true'] {
 	border-bottom: 5px solid dodgerblue;
+}
+.schedStatus:nth-child(2)[data-active='true'] {
+	border-bottom: 5px solid lime;
+}
+.schedStatus:nth-child(3)[data-active='true'] {
+	border-bottom: 5px solid orange;
+}
+.schedStatus:nth-child(4)[data-active='true'] {
+	border-bottom: 5px solid #704be1;
 }
