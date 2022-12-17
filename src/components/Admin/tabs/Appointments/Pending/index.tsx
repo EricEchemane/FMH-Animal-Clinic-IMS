@@ -21,7 +21,7 @@ import {
 	IconSearch,
 	IconTrash,
 } from '@tabler/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	ClinicServices,
 	ClinicServicesArray,
@@ -33,8 +33,31 @@ type Props = {
 	pending: Schedule[];
 };
 
-export default function PendingAppointments({ pending }: Props) {
+export default function PendingAppointments(props: Props) {
+	const [pending, setPending] = useState(props.pending);
+
 	if (pending.length === 0) return <NoPending />;
+
+	const searchListener = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const search = e.target.value.toLowerCase();
+		const filtered = props.pending.filter((sched) => {
+			const date = new Date(sched.date).toDateString().toLowerCase();
+			const service = sched.service.toLowerCase();
+			const name = sched.name.toLowerCase();
+			const email = sched.email.toLowerCase();
+			const pet_name = sched.pet_name.toLowerCase();
+
+			return (
+				name.includes(search) ||
+				service.includes(search) ||
+				email.includes(search) ||
+				pet_name.includes(search) ||
+				date.includes(search)
+			);
+		});
+		setPending(filtered);
+	};
+
 	return (
 		<Stack
 			pr={'xl'}
@@ -50,6 +73,7 @@ export default function PendingAppointments({ pending }: Props) {
 
 			<Group align={'center'}>
 				<TextInput
+					onChange={searchListener}
 					size='md'
 					icon={<IconSearch />}
 					label='Search schedule'
