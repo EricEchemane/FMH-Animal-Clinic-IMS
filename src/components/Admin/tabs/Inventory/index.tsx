@@ -17,13 +17,16 @@ import {
 	IconTrash,
 } from '@tabler/icons';
 import React, { useEffect, useState } from 'react';
+import { Product } from '~/entities-interfaces/product.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
 import { InventoryTabs } from '../../types';
+import ViewProductModal from './ViewProductModal';
 
 export default function Inventory() {
 	const { admin, dispatch } = useUserAdmin();
 	const [currentTab, setCurrentTab] = useState<InventoryTabs>('all');
+	const [selectedProduct, setSelectedProduct] = useState<Product | undefined>();
 
 	const products = (admin?.products || []).filter((p) => p.archived === false);
 	const archivedProducts = (admin?.products || []).filter(
@@ -114,12 +117,12 @@ export default function Inventory() {
 							</tr>
 						</thead>
 						<tbody>
-							{products.map(({ id, name, description, stock, unit_price }) => (
-								<tr key={id}>
-									<td>{name}</td>
-									<td>{description}</td>
-									<td>{stock}</td>
-									<td>{unit_price}</td>
+							{products.map((product) => (
+								<tr key={product.id}>
+									<td>{product.name}</td>
+									<td>{product.description}</td>
+									<td>{product.stock}</td>
+									<td>{product.unit_price}</td>
 									<td>
 										<Menu
 											shadow='md'
@@ -133,8 +136,11 @@ export default function Inventory() {
 											</Menu.Target>
 
 											<Menu.Dropdown>
-												<Menu.Label>{name}</Menu.Label>
-												<Menu.Item icon={<IconListDetails size={14} />}>
+												<Menu.Label>{product.name}</Menu.Label>
+												<Menu.Item
+													onClick={() => setSelectedProduct(product)}
+													icon={<IconListDetails size={14} />}
+												>
 													View Details
 												</Menu.Item>
 												<Menu.Item icon={<IconPencil size={14} />}>
@@ -148,7 +154,7 @@ export default function Inventory() {
 													onClick={() => {
 														dispatch({
 															action: 'archive-product',
-															payload: id,
+															payload: product.id,
 														});
 													}}
 													icon={<IconArchive size={14} />}
@@ -198,67 +204,74 @@ export default function Inventory() {
 							</tr>
 						</thead>
 						<tbody>
-							{archivedProducts.map(
-								({ id, name, description, stock, unit_price }) => (
-									<tr key={id}>
-										<td>{name}</td>
-										<td>{description}</td>
-										<td>{stock}</td>
-										<td>{unit_price}</td>
-										<td>
-											<Menu
-												shadow='md'
-												width={200}
-												position='left-start'
-											>
-												<Menu.Target>
-													<ActionIcon>
-														<IconDots size={30} />
-													</ActionIcon>
-												</Menu.Target>
+							{archivedProducts.map((product) => (
+								<tr key={product.id}>
+									<td>{product.name}</td>
+									<td>{product.description}</td>
+									<td>{product.stock}</td>
+									<td>{product.unit_price}</td>
+									<td>
+										<Menu
+											shadow='md'
+											width={200}
+											position='left-start'
+										>
+											<Menu.Target>
+												<ActionIcon>
+													<IconDots size={30} />
+												</ActionIcon>
+											</Menu.Target>
 
-												<Menu.Dropdown>
-													<Menu.Label>{name}</Menu.Label>
-													<Menu.Item icon={<IconListDetails size={14} />}>
-														View Details
-													</Menu.Item>
-													<Menu.Item icon={<IconPencil size={14} />}>
-														Edit
-													</Menu.Item>
+											<Menu.Dropdown>
+												<Menu.Label>{product.name}</Menu.Label>
+												<Menu.Item
+													onClick={() => setSelectedProduct(product)}
+													icon={<IconListDetails size={14} />}
+												>
+													View Details
+												</Menu.Item>
+												<Menu.Item icon={<IconPencil size={14} />}>
+													Edit
+												</Menu.Item>
 
-													<Menu.Divider />
+												<Menu.Divider />
 
-													<Menu.Label>Danger zone</Menu.Label>
-													<Menu.Item
-														onClick={() => {
-															dispatch({
-																action: 'unarchive-product',
-																payload: id,
-															});
-														}}
-														icon={<IconArchive size={14} />}
-													>
-														Remove from archive
-													</Menu.Item>
-													<Menu.Item
-														disabled
-														color='red'
-														icon={<IconTrash size={14} />}
-													>
-														Delete permanently
-													</Menu.Item>
-												</Menu.Dropdown>
-											</Menu>
-										</td>
-									</tr>
-								)
-							)}
+												<Menu.Label>Danger zone</Menu.Label>
+												<Menu.Item
+													onClick={() => {
+														dispatch({
+															action: 'unarchive-product',
+															payload: product.id,
+														});
+													}}
+													icon={<IconArchive size={14} />}
+												>
+													Remove from archive
+												</Menu.Item>
+												<Menu.Item
+													disabled
+													color='red'
+													icon={<IconTrash size={14} />}
+												>
+													Delete permanently
+												</Menu.Item>
+											</Menu.Dropdown>
+										</Menu>
+									</td>
+								</tr>
+							))}
 						</tbody>
 					</Table>
 				</section>
 
 				<section hidden={currentTab !== 'add'}>Add</section>
 			</Stack>
+
+			<ViewProductModal
+				product={selectedProduct}
+				opened={selectedProduct !== undefined}
+				onClose={() => setSelectedProduct(undefined)}
+			/>
 		</>
 	);
 }
