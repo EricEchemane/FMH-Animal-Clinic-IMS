@@ -1,3 +1,4 @@
+import { Product } from '~/entities-interfaces/product.entity';
 import { Schedule } from '~/entities-interfaces/schedule.entity';
 import { UserRole } from '../customer-provider/types';
 
@@ -6,6 +7,7 @@ export interface Admin {
   name: string;
   access_token: string;
   schedules: Schedule[];
+  products: Product[];
 }
 
 export interface DispatchConfig {
@@ -16,7 +18,8 @@ export interface DispatchConfig {
   | 'mark-schedule-as-done'
   | 'mark-schedule-as-cancelled'
   | 'mark-schedule-as-pending'
-  | 'mark-schedule-as-archived';
+  | 'mark-schedule-as-archived'
+  | 'set-products';
   payload: any;
 }
 

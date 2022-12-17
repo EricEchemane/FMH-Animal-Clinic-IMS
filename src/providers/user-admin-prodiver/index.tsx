@@ -23,6 +23,10 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 }
 
 const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
+	if (action === 'set-products') {
+		return { ...state, products: payload };
+	}
+
 	if (action === 'set-user-admin') {
 		return { ...state, ...payload };
 	}
