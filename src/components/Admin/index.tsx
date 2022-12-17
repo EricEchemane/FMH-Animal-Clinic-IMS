@@ -13,13 +13,16 @@ import {
 	Text,
 	ActionIcon,
 	Menu,
+	useMantineColorScheme,
 } from '@mantine/core';
 import { Tabs } from './types';
 import {
 	IconBuildingWarehouse,
 	IconCalendarEvent,
 	IconDotsVertical,
+	IconMoon,
 	IconPaw,
+	IconSun,
 	IconTrash,
 	IconUserExclamation,
 	IconUserOff,
@@ -33,6 +36,9 @@ import Inventory from './tabs/Inventory';
 import Services from './tabs/Services';
 
 export default function Admin() {
+	const { toggleColorScheme, colorScheme } = useMantineColorScheme();
+	const dark = colorScheme === 'dark';
+
 	const { admin, dispatch } = useUserAdmin();
 	const { data: session } = useSession({ required: true });
 	useAdminSignin();
@@ -154,6 +160,14 @@ export default function Admin() {
 											icon={<IconUserOff size={14} />}
 										>
 											Sign Out
+										</Menu.Item>
+										<Menu.Item
+											onClick={() => toggleColorScheme()}
+											icon={
+												dark ? <IconSun size={14} /> : <IconMoon size={14} />
+											}
+										>
+											{dark ? 'Light Mode' : 'Dark Mode'}
 										</Menu.Item>
 
 										<Menu.Divider />

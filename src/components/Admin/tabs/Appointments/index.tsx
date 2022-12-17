@@ -43,7 +43,7 @@ export default function Appointments() {
 					style={{
 						position: 'sticky',
 						top: 0,
-						zIndex: 1,
+						zIndex: 2,
 						backdropFilter: 'blur(3rem)',
 						padding: '1rem',
 					}}
