@@ -10,6 +10,7 @@ import {
 	Badge,
 	TextInput,
 	Select,
+	Button,
 } from '@mantine/core';
 import {
 	IconArchive,
@@ -21,7 +22,8 @@ import {
 	IconSearch,
 	IconTrash,
 } from '@tabler/icons';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { dateFilters } from '~/components/Admin/types';
 import {
 	ClinicServices,
 	ClinicServicesArray,
@@ -35,8 +37,8 @@ type Props = {
 
 export default function PendingAppointments(props: Props) {
 	const [pending, setPending] = useState(props.pending);
-
-	if (pending.length === 0) return <NoPending />;
+	const [serviceFilter, setServiceFilter] = useState('');
+	const [dateFilter, setDateFilter] = useState<dateFilters>('All');
 
 	const searchListener = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const search = e.target.value.toLowerCase();
@@ -58,6 +60,52 @@ export default function PendingAppointments(props: Props) {
 		setPending(filtered);
 	};
 
+	const filterByService = (service: ClinicServices) => {
+		setServiceFilter(service);
+		const filtered = props.pending.filter((sched) => sched.service === service);
+		setPending(filtered);
+	};
+
+	const filterByDate = (filter: dateFilters) => {
+		const filtered = props.pending.filter((sched) => {
+			const date = new Date(sched.date);
+			const today = new Date();
+			const tomorrow = new Date();
+			tomorrow.setDate(today.getDate() + 1);
+			const thisWeek = new Date();
+			thisWeek.setDate(today.getDate() + 7);
+			const nextWeek = new Date();
+			nextWeek.setDate(today.getDate() + 14);
+
+			switch (filter) {
+				case 'Today':
+					return date.toDateString() === today.toDateString();
+				case 'Tomorrow':
+					return date.toDateString() === tomorrow.toDateString();
+				case 'This Week':
+					return date.toDateString() <= thisWeek.toDateString();
+				case 'Next Week':
+					return date.toDateString() <= nextWeek.toDateString();
+				default:
+					return true;
+			}
+		});
+		setDateFilter(filter);
+		setPending(filtered);
+	};
+
+	const resetFilters = useCallback(() => {
+		setPending(props.pending);
+		setServiceFilter('');
+		setDateFilter('All');
+	}, [props.pending]);
+
+	useEffect(() => {
+		resetFilters();
+	}, [resetFilters]);
+
+	if (props.pending.length === 0) return <NoPending />;
+
 	return (
 		<Stack
 			pr={'xl'}
@@ -71,7 +119,7 @@ export default function PendingAppointments(props: Props) {
 				Pending Appointments
 			</Title>
 
-			<Group align={'center'}>
+			<Group align={'flex-end'}>
 				<TextInput
 					onChange={searchListener}
 					size='md'
@@ -79,7 +127,7 @@ export default function PendingAppointments(props: Props) {
 					label='Search schedule'
 					placeholder='Start typing'
 					radius={'xl'}
-					style={{ width: '30rem' }}
+					style={{ width: '24rem' }}
 				/>
 				<Select
 					size='md'
@@ -91,6 +139,8 @@ export default function PendingAppointments(props: Props) {
 						value: service,
 						label: service,
 					}))}
+					onChange={filterByService}
+					value={serviceFilter}
 				/>
 				<Select
 					size='md'
@@ -99,13 +149,23 @@ export default function PendingAppointments(props: Props) {
 					label='Filter by date'
 					placeholder='Filter by date'
 					data={[
+						{ value: 'All', label: 'All' },
 						{ value: 'Today', label: 'Today' },
 						{ value: 'Tomorrow', label: 'Tomorrow' },
 						{ value: 'This Week', label: 'This Week' },
 						{ value: 'Next Week', label: 'Next Week' },
-						{ value: 'This Month', label: 'This Month' },
 					]}
+					value={dateFilter}
+					onChange={filterByDate}
 				/>
+				<Button
+					onClick={resetFilters}
+					variant='outline'
+					radius={'xl'}
+					size='md'
+				>
+					Reset filters
+				</Button>
 			</Group>
 
 			<div
