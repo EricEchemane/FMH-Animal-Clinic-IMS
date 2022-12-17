@@ -1,10 +1,11 @@
-import { Group, Stack, Title, Text, Button } from '@mantine/core';
+import { Group, Stack, Title, Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
 import { AppointmentTabs } from '../../types';
+import PendingAppointments from './Pending';
 import css from './style.module.css';
 
 export default function Appointments() {
@@ -32,8 +33,21 @@ export default function Appointments() {
 				<title>Appointments - FMH Animal Clinic</title>
 			</Head>
 
-			<Stack>
-				<Group position='apart'>
+			<Stack
+				style={{
+					height: '100%',
+					overflowY: 'auto',
+				}}
+			>
+				<Group
+					style={{
+						position: 'sticky',
+						top: 0,
+						zIndex: 1,
+						backgroundColor: 'white',
+					}}
+					position='apart'
+				>
 					<Title order={2}> Appointments </Title>
 					<Group spacing={30}>
 						<button
@@ -74,7 +88,8 @@ export default function Appointments() {
 						</button>
 					</Group>
 				</Group>
-				<Title order={3}> {currentTab} </Title>
+
+				{currentTab === 'Pending' && <PendingAppointments pending={pending} />}
 			</Stack>
 		</>
 	);
