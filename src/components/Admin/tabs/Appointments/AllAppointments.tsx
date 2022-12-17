@@ -19,6 +19,7 @@ import {
 	IconDots,
 	IconFilter,
 	IconFolderOff,
+	IconPaperclip,
 	IconSearch,
 	IconTrash,
 } from '@tabler/icons';
@@ -219,6 +220,9 @@ export default function Appointments(props: Props) {
 											</Menu.Item>
 											<Menu.Item icon={<IconFolderOff size={14} />}>
 												Mark as cancelled
+											</Menu.Item>
+											<Menu.Item icon={<IconPaperclip size={14} />}>
+												Mark as pending
 											</Menu.Item>
 
 											<Menu.Divider />
