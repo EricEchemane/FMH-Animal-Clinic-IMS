@@ -2,7 +2,7 @@ import { Center, Stack, Title } from '@mantine/core';
 import Image from 'next/image';
 import React from 'react';
 
-export default function NoPending() {
+export default function NoRecord() {
 	return (
 		<>
 			<Center mt={100}>
@@ -10,14 +10,15 @@ export default function NoPending() {
 					<Image
 						src={'/assets/no-data.svg'}
 						alt='No Data'
-						width={200}
-						height={200}
+						width={150}
+						height={150}
 					/>
 					<Title
+						order={2}
 						weight={'normal'}
 						color='dimmed'
 					>
-						No Pending Appointments
+						No record matched your search or filter
 					</Title>
 				</Stack>
 			</Center>

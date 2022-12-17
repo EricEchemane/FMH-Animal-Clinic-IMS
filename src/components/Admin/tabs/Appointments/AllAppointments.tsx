@@ -29,7 +29,7 @@ import {
 	ClinicServicesArray,
 	Schedule,
 } from '~/entities-interfaces/schedule.entity';
-import NoPending from './NoPending';
+import NoRecord from './NoRecord';
 
 type Props = {
 	appointments: Schedule[];
@@ -106,8 +106,6 @@ export default function Appointments(props: Props) {
 		resetFilters();
 	}, [resetFilters]);
 
-	if (props.appointments.length === 0) return <NoPending />;
-
 	return (
 		<Stack
 			pr={'xl'}
@@ -162,94 +160,98 @@ export default function Appointments(props: Props) {
 				</Button>
 			</Group>
 
-			<div
-				style={{
-					display: 'grid',
-					gridTemplateColumns: '1fr 1fr',
-					gap: '2rem',
-				}}
-			>
-				{appointments.map((sched) => (
-					<Card
-						shadow='sm'
-						p={'xl'}
-						radius='lg'
-						withBorder
-						key={sched.id}
-						style={{ overflow: 'visible' }}
-					>
-						<Stack spacing={1}>
-							<Group
-								position='apart'
-								align='flex-start'
-							>
-								<Group align={'flex-start'}>
-									<Badge
-										variant='filled'
-										size='lg'
-										color={getServiceBadgeColor(sched.service)}
-									>
-										{sched.service}
-									</Badge>
-									<Badge
-										variant='outline'
-										size='lg'
-										color={getStatusBadgeColor(sched.status)}
-									>
-										{sched.status}
-									</Badge>
-									<Text mb='md'>{new Date(sched.date).toDateString()}</Text>
-								</Group>
-								<Menu
-									shadow='md'
-									width={200}
-									position='bottom-end'
+			{appointments.length === 0 ? (
+				<NoRecord />
+			) : (
+				<div
+					style={{
+						display: 'grid',
+						gridTemplateColumns: '1fr 1fr',
+						gap: '2rem',
+					}}
+				>
+					{appointments.map((sched) => (
+						<Card
+							shadow='sm'
+							p={'xl'}
+							radius='lg'
+							withBorder
+							key={sched.id}
+							style={{ overflow: 'visible' }}
+						>
+							<Stack spacing={1}>
+								<Group
+									position='apart'
+									align='flex-start'
 								>
-									<Menu.Target>
-										<ActionIcon>
-											<IconDots size={30} />
-										</ActionIcon>
-									</Menu.Target>
-
-									<Menu.Dropdown>
-										<Menu.Label>Schedule</Menu.Label>
-										<Menu.Item icon={<IconCheck size={14} />}>
-											Mark as done
-										</Menu.Item>
-										<Menu.Item icon={<IconFolderOff size={14} />}>
-											Mark as cancelled
-										</Menu.Item>
-
-										<Menu.Divider />
-
-										<Menu.Label>Danger zone</Menu.Label>
-										<Menu.Item icon={<IconArchive size={14} />}>
-											Archive
-										</Menu.Item>
-										<Menu.Item
-											color='red'
-											icon={<IconTrash size={14} />}
+									<Group align={'flex-start'}>
+										<Badge
+											variant='filled'
+											size='lg'
+											color={getServiceBadgeColor(sched.service)}
 										>
-											Delete permanently
-										</Menu.Item>
-									</Menu.Dropdown>
-								</Menu>
-							</Group>
-							<Title order={2}> {sched.name} </Title>
-							<Text color={'dimmed'}> {sched.email} </Text>
+											{sched.service}
+										</Badge>
+										<Badge
+											variant='outline'
+											size='lg'
+											color={getStatusBadgeColor(sched.status)}
+										>
+											{sched.status}
+										</Badge>
+										<Text mb='md'>{new Date(sched.date).toDateString()}</Text>
+									</Group>
+									<Menu
+										shadow='md'
+										width={200}
+										position='bottom-end'
+									>
+										<Menu.Target>
+											<ActionIcon>
+												<IconDots size={30} />
+											</ActionIcon>
+										</Menu.Target>
 
-							<Divider my={'md'} />
+										<Menu.Dropdown>
+											<Menu.Label>Schedule</Menu.Label>
+											<Menu.Item icon={<IconCheck size={14} />}>
+												Mark as done
+											</Menu.Item>
+											<Menu.Item icon={<IconFolderOff size={14} />}>
+												Mark as cancelled
+											</Menu.Item>
 
-							<Text>
-								<strong>Pet Name:</strong> {sched.pet_name}
-							</Text>
-							<Text>
-								<strong>Concern:</strong> {sched.concern}
-							</Text>
-						</Stack>
-					</Card>
-				))}
-			</div>
+											<Menu.Divider />
+
+											<Menu.Label>Danger zone</Menu.Label>
+											<Menu.Item icon={<IconArchive size={14} />}>
+												Archive
+											</Menu.Item>
+											<Menu.Item
+												color='red'
+												icon={<IconTrash size={14} />}
+											>
+												Delete permanently
+											</Menu.Item>
+										</Menu.Dropdown>
+									</Menu>
+								</Group>
+								<Title order={2}> {sched.name} </Title>
+								<Text color={'dimmed'}> {sched.email} </Text>
+
+								<Divider my={'md'} />
+
+								<Text>
+									<strong>Pet Name:</strong> {sched.pet_name}
+								</Text>
+								<Text>
+									<strong>Concern:</strong> {sched.concern}
+								</Text>
+							</Stack>
+						</Card>
+					))}
+				</div>
+			)}
 		</Stack>
 	);
 }
