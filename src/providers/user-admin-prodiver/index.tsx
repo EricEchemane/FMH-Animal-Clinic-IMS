@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import { Schedule } from '~/entities-interfaces/schedule.entity';
 import Http from '~/utils/http-adapter';
 import {
 	UserAdminProviderProps,
@@ -71,6 +72,18 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 		Http.patch(
 			'/scheduling/' + payload,
 			{ status: 'pending' },
+			{ accessToken: state.access_token }
+		);
+		return { ...state, schedules };
+	}
+
+	if (action === 'mark-schedule-as-archived') {
+		const schedules = state.schedules.filter(
+			(schedule: Schedule) => schedule.id !== payload
+		);
+		Http.patch(
+			'/scheduling/' + payload,
+			{ archived: true },
 			{ accessToken: state.access_token }
 		);
 		return { ...state, schedules };

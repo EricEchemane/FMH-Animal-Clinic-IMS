@@ -15,7 +15,8 @@ export interface DispatchConfig {
   | 'set-schedules'
   | 'mark-schedule-as-done'
   | 'mark-schedule-as-cancelled'
-  | 'mark-schedule-as-pending';
+  | 'mark-schedule-as-pending'
+  | 'mark-schedule-as-archived';
   payload: any;
 }
 

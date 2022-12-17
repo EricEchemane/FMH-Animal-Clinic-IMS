@@ -190,14 +190,12 @@ export default function Appointments(props: Props) {
 									<Group align={'flex-start'}>
 										<Badge
 											variant='filled'
-											size='lg'
 											color={getServiceBadgeColor(sched.service)}
 										>
 											{sched.service}
 										</Badge>
 										<Badge
 											variant='outline'
-											size='lg'
 											color={getStatusBadgeColor(sched.status)}
 										>
 											{sched.status}
@@ -254,7 +252,15 @@ export default function Appointments(props: Props) {
 											<Menu.Divider />
 
 											<Menu.Label>Danger zone</Menu.Label>
-											<Menu.Item icon={<IconArchive size={14} />}>
+											<Menu.Item
+												onClick={() => {
+													dispatch({
+														action: 'mark-schedule-as-archived',
+														payload: sched.id,
+													});
+												}}
+												icon={<IconArchive size={14} />}
+											>
 												Archive
 											</Menu.Item>
 											<Menu.Item

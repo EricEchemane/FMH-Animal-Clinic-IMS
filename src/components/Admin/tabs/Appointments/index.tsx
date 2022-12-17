@@ -54,11 +54,13 @@ export default function Appointments() {
 						top: 0,
 						zIndex: 2,
 						backdropFilter: 'blur(3rem)',
-						padding: '1rem',
+						padding: '0 1rem',
+						marginBottom: '2rem',
 					}}
 					position='apart'
 				>
 					<Title order={2}> Appointments </Title>
+
 					<Group spacing={30}>
 						<button
 							className={css.schedStatus}
