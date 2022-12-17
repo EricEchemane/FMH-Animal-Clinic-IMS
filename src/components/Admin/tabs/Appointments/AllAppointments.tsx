@@ -30,6 +30,7 @@ import {
 	ClinicServicesArray,
 	Schedule,
 } from '~/entities-interfaces/schedule.entity';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import NoRecord from './NoRecord';
 
 type Props = {
@@ -37,6 +38,7 @@ type Props = {
 };
 
 export default function Appointments(props: Props) {
+	const { dispatch } = useUserAdmin();
 	const [appointments, setAppointments] = useState(props.appointments);
 	const [serviceFilter, setServiceFilter] = useState('');
 	const [dateFilter, setDateFilter] = useState<dateFilters>('All');
@@ -215,7 +217,15 @@ export default function Appointments(props: Props) {
 
 										<Menu.Dropdown>
 											<Menu.Label>Schedule</Menu.Label>
-											<Menu.Item icon={<IconCheck size={14} />}>
+											<Menu.Item
+												onClick={() => {
+													dispatch({
+														action: 'mark-schedule-as-done',
+														payload: sched.id,
+													});
+												}}
+												icon={<IconCheck size={14} />}
+											>
 												Mark as done
 											</Menu.Item>
 											<Menu.Item icon={<IconFolderOff size={14} />}>

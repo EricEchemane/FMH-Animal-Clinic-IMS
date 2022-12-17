@@ -20,7 +20,7 @@ export default function Appointments() {
 		});
 	}, [admin?.access_token, dispatch]);
 
-	const [currentTab, setCurrentTab] = useState<AppointmentTabs>('All');
+	const [currentTab, setCurrentTab] = useState<AppointmentTabs>('Pending');
 	const [appointments, setAppointments] = useState(admin?.schedules || []);
 
 	const _appointments = admin?.schedules || [];
@@ -34,7 +34,7 @@ export default function Appointments() {
 		else if (currentTab === 'Done') setAppointments(done);
 		else if (currentTab === 'Cancelled') setAppointments(cancelled);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentTab]);
+	}, [currentTab, admin]);
 
 	return (
 		<>

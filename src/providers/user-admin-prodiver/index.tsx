@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
+import Http from '~/utils/http-adapter';
 import {
 	UserAdminProviderProps,
 	DispatchConfig,
@@ -31,6 +32,20 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 
 	if (action === 'set-schedules') {
 		return { ...state, schedules: payload };
+	}
+
+	if (action === 'mark-schedule-as-done') {
+		const schedules = state.schedules;
+		const index = schedules.findIndex(
+			(schedule: any) => schedule.id === payload
+		);
+		schedules[index].status = 'done';
+		Http.patch(
+			'/scheduling/' + payload,
+			{ status: 'done' },
+			{ accessToken: state.access_token }
+		);
+		return { ...state, schedules };
 	}
 
 	return state;

@@ -9,7 +9,11 @@ export interface Admin {
 }
 
 export interface DispatchConfig {
-  action: 'set-user-admin' | 'set-access-token' | 'set-schedules';
+  action:
+  | 'set-user-admin'
+  | 'set-access-token'
+  | 'set-schedules'
+  | 'mark-schedule-as-done';
   payload: any;
 }
 
