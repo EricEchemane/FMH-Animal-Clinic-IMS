@@ -239,7 +239,15 @@ export default function Appointments(props: Props) {
 											>
 												Mark as cancelled
 											</Menu.Item>
-											<Menu.Item icon={<IconPaperclip size={14} />}>
+											<Menu.Item
+												onClick={() => {
+													dispatch({
+														action: 'mark-schedule-as-pending',
+														payload: sched.id,
+													});
+												}}
+												icon={<IconPaperclip size={14} />}
+											>
 												Mark as pending
 											</Menu.Item>
 

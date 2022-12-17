@@ -62,5 +62,19 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 		return { ...state, schedules };
 	}
 
+	if (action === 'mark-schedule-as-pending') {
+		const schedules = state.schedules;
+		const index = schedules.findIndex(
+			(schedule: any) => schedule.id === payload
+		);
+		schedules[index].status = 'pending';
+		Http.patch(
+			'/scheduling/' + payload,
+			{ status: 'pending' },
+			{ accessToken: state.access_token }
+		);
+		return { ...state, schedules };
+	}
+
 	return state;
 };

@@ -14,7 +14,8 @@ export interface DispatchConfig {
   | 'set-access-token'
   | 'set-schedules'
   | 'mark-schedule-as-done'
-  | 'mark-schedule-as-cancelled';
+  | 'mark-schedule-as-cancelled'
+  | 'mark-schedule-as-pending';
   payload: any;
 }
 
