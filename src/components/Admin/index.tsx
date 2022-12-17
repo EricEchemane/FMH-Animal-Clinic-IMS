@@ -18,7 +18,7 @@ import { Tabs } from './types';
 import {
 	IconBuildingWarehouse,
 	IconCalendarEvent,
-	IconChevronRight,
+	IconDotsVertical,
 	IconPaw,
 	IconTrash,
 	IconUserExclamation,
@@ -143,7 +143,7 @@ export default function Admin() {
 								>
 									<Menu.Target>
 										<ActionIcon variant='subtle'>
-											<IconChevronRight size={20} />
+											<IconDotsVertical size={20} />
 										</ActionIcon>
 									</Menu.Target>
 

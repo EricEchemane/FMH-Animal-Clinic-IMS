@@ -3,6 +3,7 @@ import {
 	UserAdminProviderProps,
 	DispatchConfig,
 	IUserAdminContext,
+	Admin,
 } from './types';
 
 const UserAdminContext = createContext<any>(null);
@@ -19,13 +20,17 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 	);
 }
 
-const reducer = (state: any, { payload, action }: DispatchConfig) => {
+const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 	if (action === 'set-user-admin') {
 		return { ...state, ...payload };
 	}
 
 	if (action === 'set-access-token') {
 		return { ...state, access_token: payload };
+	}
+
+	if (action === 'set-schedules') {
+		return { ...state, schedules: payload };
 	}
 
 	return state;

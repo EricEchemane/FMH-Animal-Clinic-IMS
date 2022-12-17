@@ -1,0 +1,23 @@
+.schedStatus {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 1rem;
+	transition: 100ms ease;
+	padding: 1rem;
+	cursor: pointer;
+	width: 100px;
+	outline: none;
+	border: none;
+	background: none;
+}
+.schedStatus:focus-visible {
+	backdrop-filter: brightness(0.95);
+	box-shadow: 0 0 0 1px #999;
+}
+.schedStatus:hover {
+	backdrop-filter: brightness(0.95);
+}
+.schedStatus[data-active='true'] {
+	backdrop-filter: brightness(0.95);
+}
