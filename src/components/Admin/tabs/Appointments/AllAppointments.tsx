@@ -264,6 +264,7 @@ export default function Appointments(props: Props) {
 												Archive
 											</Menu.Item>
 											<Menu.Item
+												disabled
 												color='red'
 												icon={<IconTrash size={14} />}
 											>

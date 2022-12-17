@@ -174,6 +174,7 @@ export default function Admin() {
 
 										<Menu.Label>Danger zone</Menu.Label>
 										<Menu.Item
+											disabled
 											color='red'
 											icon={<IconTrash size={14} />}
 										>
