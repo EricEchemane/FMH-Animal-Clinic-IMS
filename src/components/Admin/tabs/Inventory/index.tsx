@@ -229,7 +229,15 @@ export default function Inventory() {
 													<Menu.Divider />
 
 													<Menu.Label>Danger zone</Menu.Label>
-													<Menu.Item icon={<IconArchive size={14} />}>
+													<Menu.Item
+														onClick={() => {
+															dispatch({
+																action: 'unarchive-product',
+																payload: id,
+															});
+														}}
+														icon={<IconArchive size={14} />}
+													>
 														Remove from archive
 													</Menu.Item>
 													<Menu.Item

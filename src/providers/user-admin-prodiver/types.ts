@@ -21,6 +21,7 @@ export interface DispatchConfig {
   | 'mark-schedule-as-archived'
 
   | 'set-products'
+  | 'unarchive-product'
   | 'archive-product';
   payload: any;
 }

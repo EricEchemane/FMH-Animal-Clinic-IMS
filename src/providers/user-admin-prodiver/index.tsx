@@ -42,6 +42,20 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 		return { ...state, products };
 	}
 
+	if (action === 'unarchive-product') {
+		const products = state.products;
+		const index = products.findIndex(
+			(product: Product) => product.id === payload
+		);
+		products[index].archived = false;
+		Http.patch(
+			'/product/' + payload,
+			{ archived: false },
+			{ accessToken: state.access_token }
+		);
+		return { ...state, products };
+	}
+
 	if (action === 'set-user-admin') {
 		return { ...state, ...payload };
 	}
