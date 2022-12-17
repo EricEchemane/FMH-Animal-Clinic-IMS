@@ -2,8 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-radius: 1rem;
-	padding: 1rem;
+	padding: 0.5rem;
 	cursor: pointer;
 	width: 100px;
 	outline: none;
@@ -14,5 +13,5 @@
 	box-shadow: 0 0 0 1px #999;
 }
 .schedStatus[data-active='true'] {
-	box-shadow: 0 0 0 1px #999;
+	border-bottom: 5px solid dodgerblue;
 }
