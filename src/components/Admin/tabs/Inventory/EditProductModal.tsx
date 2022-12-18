@@ -15,7 +15,6 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconUpload } from '@tabler/icons';
-import React, { useState } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
 
 type Props = {
@@ -28,6 +27,25 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 	const productForm = useForm({
 		initialValues: product,
 	});
+
+	const handleImageChange = (file: File | null) => {
+		//create a base64 image
+		if (file) {
+			const reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => {
+				const base64 = reader.result;
+				if (base64) {
+					//set the image
+					productForm.setFieldValue('image_url', base64.toString());
+				}
+			};
+		}
+	};
+
+	function handleSave() {
+		console.log(productForm.values);
+	}
 
 	return (
 		<Modal
@@ -93,6 +111,7 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 
 					<Group>
 						<Button
+							onClick={handleSave}
 							variant='filled'
 							disabled={!productForm.isDirty()}
 						>
@@ -115,11 +134,11 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 								objectFit: 'cover',
 								width: '100%',
 							}}
-							src={product.image_url}
+							src={productForm.values.image_url}
 							alt={product.name}
 						/>
 						<FileButton
-							onChange={(file) => {}}
+							onChange={handleImageChange}
 							accept='image/png,image/jpeg'
 						>
 							{(props) => (
