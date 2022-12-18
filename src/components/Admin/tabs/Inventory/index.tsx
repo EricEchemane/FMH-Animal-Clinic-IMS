@@ -35,8 +35,8 @@ export default function Inventory() {
 	const [products, setproducts] = useState(
 		(admin?.products || []).filter((p) => p.archived === false)
 	);
-	const archivedProducts = (admin?.products || []).filter(
-		(p) => p.archived === true
+	const [archivedProducts, setArchivedProducts] = useState(
+		(admin?.products || []).filter((p) => p.archived === true)
 	);
 
 	useEffect(() => {
@@ -69,6 +69,7 @@ export default function Inventory() {
 				return 0;
 			});
 		setproducts(filteredProducts);
+		setArchivedProducts(filteredProducts.filter((p) => p.archived === true));
 	};
 
 	return (
@@ -119,6 +120,18 @@ export default function Inventory() {
 					</Group>
 				</Group>
 
+				{currentTab !== 'add' && (
+					<Group mb={'lg'}>
+						<TextInput
+							variant='filled'
+							label='Search product'
+							placeholder='start typing'
+							onChange={searchListener}
+							style={{ width: '300px' }}
+						/>
+					</Group>
+				)}
+
 				<section
 					style={{ paddingRight: '2rem' }}
 					hidden={currentTab !== 'all'}
@@ -130,13 +143,6 @@ export default function Inventory() {
 					>
 						All Products
 					</Title>
-
-					<TextInput
-						variant='filled'
-						label='Search product'
-						placeholder='start typing'
-						onChange={searchListener}
-					/>
 
 					<Table
 						striped
