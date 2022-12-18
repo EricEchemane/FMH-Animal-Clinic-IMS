@@ -24,6 +24,15 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 }
 
 const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
+	if (action === 'set-product-image-url') {
+		const products = state.products;
+		const index = products.findIndex(
+			(product: Product) => product.id === payload.id
+		);
+		products[index] = payload;
+		return { ...state, products };
+	}
+
 	if (action === 'set-products') {
 		return { ...state, products: payload };
 	}

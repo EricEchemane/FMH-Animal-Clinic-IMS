@@ -14,8 +14,12 @@ import {
 	NumberInput,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 import { IconUpload } from '@tabler/icons';
+import { useState } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
+import Http from '~/utils/http-adapter';
 
 type Props = {
 	opened: boolean;
@@ -24,6 +28,9 @@ type Props = {
 };
 
 export default function EditProductModal({ onClose, opened, product }: Props) {
+	const { admin, dispatch } = useUserAdmin();
+	const [isLoading, setIsLoading] = useState(false);
+
 	const productForm = useForm({
 		initialValues: product,
 	});
@@ -44,7 +51,20 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 	};
 
 	function handleSave() {
-		console.log(productForm.values);
+		if (!admin?.access_token) return;
+		Http.patch('/product/' + product.id, productForm.values, {
+			accessToken: admin.access_token,
+			onFail: (message) => showNotification({ message, color: 'red' }),
+			onSuccess: (data) => {
+				showNotification({ message: 'Changes saved!', color: 'green' });
+				onClose();
+				dispatch({
+					action: 'set-product-image-url',
+					payload: data,
+				});
+			},
+			loadingToggler: setIsLoading,
+		});
 	}
 
 	return (
@@ -89,17 +109,11 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 					<Group grow>
 						<NumberInput
 							size='md'
-							label='Price/Unit'
+							label='Price/Unit (₱)'
 							precision={2}
 							min={-1}
 							step={0.05}
 							{...productForm.getInputProps('unit_price')}
-							parser={(value) => value!.replace(/\$\s?|(,*)/g, '')}
-							formatter={(value) =>
-								!Number.isNaN(parseFloat(value!))
-									? `₱  ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-									: '₱  '
-							}
 						/>
 						<NumberInput
 							size='md'
@@ -114,6 +128,7 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 							onClick={handleSave}
 							variant='filled'
 							disabled={!productForm.isDirty()}
+							loading={isLoading}
 						>
 							Save
 						</Button>
