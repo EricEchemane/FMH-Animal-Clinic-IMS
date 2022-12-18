@@ -10,17 +10,15 @@ import {
 	Tooltip,
 } from '@mantine/core';
 import { IconPencil } from '@tabler/icons';
-import { useState } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
 
 type Props = {
 	opened: boolean;
-	product: Product | undefined;
+	product: Product;
 	onClose: () => void;
 };
 
 export default function ViewProductModal({ opened, onClose, product }: Props) {
-	if (product === undefined) return <></>;
 	return (
 		<>
 			<Modal

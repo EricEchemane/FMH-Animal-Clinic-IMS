@@ -267,11 +267,13 @@ export default function Inventory() {
 				<section hidden={currentTab !== 'add'}>Add</section>
 			</Stack>
 
-			<ViewProductModal
-				product={selectedProduct}
-				opened={selectedProduct !== undefined}
-				onClose={() => setSelectedProduct(undefined)}
-			/>
+			{selectedProduct && (
+				<ViewProductModal
+					product={selectedProduct}
+					opened={selectedProduct !== undefined}
+					onClose={() => setSelectedProduct(undefined)}
+				/>
+			)}
 		</>
 	);
 }
