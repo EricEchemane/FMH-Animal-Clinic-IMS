@@ -6,6 +6,7 @@ import {
 	Title,
 	ActionIcon,
 	Menu,
+	TextInput,
 } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import {
@@ -31,7 +32,9 @@ export default function Inventory() {
 	const [selectedProduct, setSelectedProduct] = useState<Product | undefined>();
 	const [isInEditProductMode, setIsInEditProductMode] = useState(false);
 
-	const products = (admin?.products || []).filter((p) => p.archived === false);
+	const [products, setproducts] = useState(
+		(admin?.products || []).filter((p) => p.archived === false)
+	);
 	const archivedProducts = (admin?.products || []).filter(
 		(p) => p.archived === true
 	);
@@ -44,6 +47,29 @@ export default function Inventory() {
 			onFail: (message) => showNotification({ message, color: 'red' }),
 		});
 	}, [admin?.access_token, dispatch]);
+
+	const searchListener = (e: React.ChangeEvent<HTMLInputElement>) => {
+		// search product base on name and description and sort them base on match
+		const search = e.target.value.toLowerCase();
+		const filteredProducts = admin?.products
+			.filter((p) => {
+				const name = p.name.toLowerCase();
+				const description = p.description.toLowerCase();
+				return name.includes(search) || description.includes(search);
+			})
+			.sort((a, b) => {
+				const nameA = a.name.toLowerCase();
+				const nameB = b.name.toLowerCase();
+				const descriptionA = a.description.toLowerCase();
+				const descriptionB = b.description.toLowerCase();
+				if (nameA.includes(search)) return -1;
+				if (nameB.includes(search)) return 1;
+				if (descriptionA.includes(search)) return -1;
+				if (descriptionB.includes(search)) return 1;
+				return 0;
+			});
+		setproducts(filteredProducts);
+	};
 
 	return (
 		<>
@@ -104,6 +130,13 @@ export default function Inventory() {
 					>
 						All Products
 					</Title>
+
+					<TextInput
+						variant='filled'
+						label='Search product'
+						placeholder='start typing'
+						onChange={searchListener}
+					/>
 
 					<Table
 						striped
