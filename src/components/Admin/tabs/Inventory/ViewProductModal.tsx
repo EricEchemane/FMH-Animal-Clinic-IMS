@@ -16,9 +16,15 @@ type Props = {
 	opened: boolean;
 	product: Product;
 	onClose: () => void;
+	onEditClicked: () => void;
 };
 
-export default function ViewProductModal({ opened, onClose, product }: Props) {
+export default function ViewProductModal({
+	opened,
+	onClose,
+	product,
+	onEditClicked,
+}: Props) {
 	return (
 		<>
 			<Modal
@@ -27,6 +33,7 @@ export default function ViewProductModal({ opened, onClose, product }: Props) {
 				onClose={onClose}
 				radius={'xl'}
 				closeOnEscape
+				padding={'xl'}
 			>
 				<Stack>
 					<div
@@ -60,6 +67,7 @@ export default function ViewProductModal({ opened, onClose, product }: Props) {
 							arrowSize={10}
 						>
 							<ActionIcon
+								onClick={onEditClicked}
 								variant='subtle'
 								size={'lg'}
 							>

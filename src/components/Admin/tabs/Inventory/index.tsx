@@ -283,6 +283,7 @@ export default function Inventory() {
 
 			{selectedProduct && !isInEditProductMode && (
 				<ViewProductModal
+					onEditClicked={() => setIsInEditProductMode(true)}
 					product={selectedProduct}
 					opened={selectedProduct !== undefined && !isInEditProductMode}
 					onClose={() => setSelectedProduct(undefined)}
