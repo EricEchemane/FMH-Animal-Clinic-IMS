@@ -7,6 +7,7 @@ import {
 	ActionIcon,
 	Menu,
 	TextInput,
+	Select,
 } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import {
@@ -17,6 +18,7 @@ import {
 	IconPlus,
 	IconTrash,
 } from '@tabler/icons';
+import { setPriority } from 'os';
 import React, { useEffect, useState } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
@@ -31,6 +33,9 @@ export default function Inventory() {
 	const [currentTab, setCurrentTab] = useState<InventoryTabs>('all');
 	const [selectedProduct, setSelectedProduct] = useState<Product | undefined>();
 	const [isInEditProductMode, setIsInEditProductMode] = useState(false);
+	const [stockFilter, setStockFilter] = useState('');
+	const [priceFilter, setPriceFilter] = useState('');
+	const [searchQuery, setSearchQuery] = useState('');
 
 	const [products, setproducts] = useState(
 		(admin?.products || []).filter((p) => p.archived === false)
@@ -43,13 +48,17 @@ export default function Inventory() {
 		if (!admin?.access_token) return;
 		Http.get('/product', {
 			accessToken: admin.access_token,
-			onSuccess: (data) => dispatch({ action: 'set-products', payload: data }),
+			onSuccess: (data) => {
+				dispatch({ action: 'set-products', payload: data });
+				setproducts(data.filter((p: Product) => p.archived === false));
+			},
 			onFail: (message) => showNotification({ message, color: 'red' }),
 		});
 	}, [admin?.access_token, dispatch]);
 
 	const searchListener = (e: React.ChangeEvent<HTMLInputElement>) => {
 		// search product base on name and description and sort them base on match
+		setSearchQuery(e.target.value);
 		const search = e.target.value.toLowerCase();
 		const filteredProducts = admin?.products
 			.filter((p) => {
@@ -70,6 +79,33 @@ export default function Inventory() {
 			});
 		setproducts(filteredProducts);
 		setArchivedProducts(filteredProducts.filter((p) => p.archived === true));
+	};
+
+	const sortByPriceByOrder = (order: string) => {
+		setPriceFilter(order);
+		const sortedProducts = [...products].sort((a, b) => {
+			if (order === 'asc') return a.unit_price - b.unit_price;
+			if (order === 'desc') return b.unit_price - a.unit_price;
+			return 0;
+		});
+		setproducts(sortedProducts);
+	};
+
+	const sortByStockByOrder = (order: string) => {
+		setStockFilter(order);
+		const sortedProducts = [...products].sort((a, b) => {
+			if (order === 'asc') return a.stock - b.stock;
+			if (order === 'desc') return b.stock - a.stock;
+			return 0;
+		});
+		setproducts(sortedProducts);
+	};
+
+	const resetFilters = () => {
+		setproducts((admin?.products || []).filter((p) => p.archived === false));
+		setStockFilter('');
+		setPriceFilter('');
+		setSearchQuery('');
 	};
 
 	return (
@@ -121,14 +157,48 @@ export default function Inventory() {
 				</Group>
 
 				{currentTab !== 'add' && (
-					<Group mb={'lg'}>
+					<Group
+						mb={'lg'}
+						align={'flex-end'}
+					>
 						<TextInput
 							variant='filled'
 							label='Search product'
 							placeholder='start typing'
 							onChange={searchListener}
+							value={searchQuery}
 							style={{ width: '300px' }}
 						/>
+						<Select
+							onChange={sortByPriceByOrder}
+							variant='filled'
+							label='Filter by Price'
+							placeholder='Select order'
+							value={priceFilter}
+							data={[
+								{ value: 'asc', label: 'Min - Max' },
+								{ value: 'desc', label: 'Max - Min' },
+							]}
+						/>
+						<Select
+							onChange={sortByStockByOrder}
+							variant='filled'
+							label='Filter by Stock'
+							placeholder='Select order'
+							value={stockFilter}
+							data={[
+								{ value: 'asc', label: 'Min - Max' },
+								{ value: 'desc', label: 'Max - Min' },
+							]}
+						/>
+						<Button
+							onClick={resetFilters}
+							compact
+							variant='outline'
+							radius={'xl'}
+						>
+							Reset filters
+						</Button>
 					</Group>
 				)}
 
