@@ -26,13 +26,24 @@ export default function ViewProductModal({ opened, onClose, product }: Props) {
 				title={'Product Details'}
 				onClose={onClose}
 				radius={'xl'}
+				closeOnEscape
 			>
 				<Stack>
-					<img
-						style={{ width: '100%', borderRadius: '1rem' }}
-						src={product.image_url}
-						alt={product.name}
-					/>
+					<div
+						style={{
+							position: 'relative',
+							minHeight: '250px',
+							borderRadius: '1rem',
+							backgroundImage: 'url(/assets/product-image-placeholder.png)',
+							overflow: 'hidden',
+						}}
+					>
+						<img
+							style={{ objectFit: 'cover', width: '100%' }}
+							src={product.image_url}
+							alt={product.name}
+						/>
+					</div>
 					<Group
 						position='apart'
 						align={'center'}

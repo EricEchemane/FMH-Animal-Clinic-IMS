@@ -21,12 +21,14 @@ import { Product } from '~/entities-interfaces/product.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
 import { InventoryTabs } from '../../types';
+import EditProductModal from './EditProductModal';
 import ViewProductModal from './ViewProductModal';
 
 export default function Inventory() {
 	const { admin, dispatch } = useUserAdmin();
 	const [currentTab, setCurrentTab] = useState<InventoryTabs>('all');
 	const [selectedProduct, setSelectedProduct] = useState<Product | undefined>();
+	const [isInEditProductMode, setIsInEditProductMode] = useState(false);
 
 	const products = (admin?.products || []).filter((p) => p.archived === false);
 	const archivedProducts = (admin?.products || []).filter(
@@ -143,7 +145,13 @@ export default function Inventory() {
 												>
 													View Details
 												</Menu.Item>
-												<Menu.Item icon={<IconPencil size={14} />}>
+												<Menu.Item
+													onClick={() => {
+														setSelectedProduct(product);
+														setIsInEditProductMode(true);
+													}}
+													icon={<IconPencil size={14} />}
+												>
 													Edit
 												</Menu.Item>
 
@@ -230,7 +238,13 @@ export default function Inventory() {
 												>
 													View Details
 												</Menu.Item>
-												<Menu.Item icon={<IconPencil size={14} />}>
+												<Menu.Item
+													onClick={() => {
+														setSelectedProduct(product);
+														setIsInEditProductMode(true);
+													}}
+													icon={<IconPencil size={14} />}
+												>
 													Edit
 												</Menu.Item>
 
@@ -267,11 +281,21 @@ export default function Inventory() {
 				<section hidden={currentTab !== 'add'}>Add</section>
 			</Stack>
 
-			{selectedProduct && (
+			{selectedProduct && !isInEditProductMode && (
 				<ViewProductModal
 					product={selectedProduct}
-					opened={selectedProduct !== undefined}
+					opened={selectedProduct !== undefined && !isInEditProductMode}
 					onClose={() => setSelectedProduct(undefined)}
+				/>
+			)}
+			{selectedProduct && isInEditProductMode && (
+				<EditProductModal
+					product={selectedProduct}
+					opened={selectedProduct !== undefined && isInEditProductMode}
+					onClose={() => {
+						setSelectedProduct(undefined);
+						setIsInEditProductMode(false);
+					}}
 				/>
 			)}
 		</>
