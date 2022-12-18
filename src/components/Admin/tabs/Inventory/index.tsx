@@ -21,6 +21,7 @@ import { Product } from '~/entities-interfaces/product.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
 import { InventoryTabs } from '../../types';
+import AddProduct from './AddProduct';
 import EditProductModal from './EditProductModal';
 import ViewProductModal from './ViewProductModal';
 
@@ -278,7 +279,9 @@ export default function Inventory() {
 					</Table>
 				</section>
 
-				<section hidden={currentTab !== 'add'}>Add</section>
+				<section hidden={currentTab !== 'add'}>
+					<AddProduct />
+				</section>
 			</Stack>
 
 			{selectedProduct && !isInEditProductMode && (
