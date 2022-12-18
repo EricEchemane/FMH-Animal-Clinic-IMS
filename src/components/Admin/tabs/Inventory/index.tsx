@@ -280,7 +280,7 @@ export default function Inventory() {
 				</section>
 
 				<section hidden={currentTab !== 'add'}>
-					<AddProduct />
+					<AddProduct onClose={() => setCurrentTab('all')} />
 				</section>
 			</Stack>
 

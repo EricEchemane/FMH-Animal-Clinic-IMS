@@ -23,7 +23,8 @@ export interface DispatchConfig {
   | 'set-products'
   | 'unarchive-product'
   | 'archive-product'
-  | 'set-product-image-url';
+  | 'set-product-image-url'
+  | 'add-new-product';
   payload: any;
 }
 

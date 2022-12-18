@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import {
-	ActionIcon,
 	Button,
 	FileButton,
 	Group,
@@ -12,12 +11,18 @@ import {
 	Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 import { IconUpload } from '@tabler/icons';
 import React, { FormEvent, useRef, useState } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
+import Http from '~/utils/http-adapter';
 
-export default function AddProduct() {
+type Props = {
+	onClose: () => void;
+};
+
+export default function AddProduct({ onClose }: Props) {
 	const { admin, dispatch } = useUserAdmin();
 	const [isLoading, setIsLoading] = useState(false);
 	const resetRef = useRef<() => void>(null);
@@ -60,9 +65,42 @@ export default function AddProduct() {
 
 	function handleSave(e: FormEvent) {
 		e.preventDefault();
-		productForm.validate();
 		if (!admin?.access_token) return;
+		const validation = productForm.validate();
+
+		if (validation.hasErrors) return;
+
+		Http.post('/product', productForm.values, {
+			accessToken: admin.access_token,
+			onFail: (message) => {
+				showNotification({
+					title: 'Error',
+					message,
+					color: 'red',
+				});
+			},
+			onSuccess: (data) => {
+				showNotification({
+					title: 'Success',
+					message: 'Product added successfully',
+					color: 'green',
+					autoClose: false,
+				});
+				dispatch({
+					action: 'add-new-product',
+					payload: data,
+				});
+				resetAll();
+				onClose();
+			},
+			loadingToggler: setIsLoading,
+		});
 	}
+
+	const resetAll = () => {
+		productForm.reset();
+		resetRef.current?.();
+	};
 
 	return (
 		<Stack>
@@ -133,10 +171,7 @@ export default function AddProduct() {
 								variant='outline'
 								size='md'
 								disabled={isLoading || !productForm.isDirty()}
-								onClick={() => {
-									productForm.reset();
-									resetRef.current?.();
-								}}
+								onClick={resetAll}
 							>
 								Reset
 							</Button>
