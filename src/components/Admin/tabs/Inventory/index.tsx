@@ -172,7 +172,7 @@ export default function Inventory() {
 						<Select
 							onChange={sortByPriceByOrder}
 							variant='filled'
-							label='Filter by Price'
+							label='Sort by Price'
 							placeholder='Select order'
 							value={priceFilter}
 							data={[
@@ -183,7 +183,7 @@ export default function Inventory() {
 						<Select
 							onChange={sortByStockByOrder}
 							variant='filled'
-							label='Filter by Stock'
+							label='Sort by Stock'
 							placeholder='Select order'
 							value={stockFilter}
 							data={[
