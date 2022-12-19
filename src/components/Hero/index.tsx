@@ -16,7 +16,7 @@ export default function Hero() {
 					<div className={style.contentCon}>
 						{session && session.user && (
 							<div className={style.user}>
-								<h2> Hello, {session.user.name} </h2>
+								<h2> Hello, <span>{session.user.name}</span> </h2>
 								<p> {session.user.email} </p> <br />
 							</div>
 						)}

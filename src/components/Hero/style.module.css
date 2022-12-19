@@ -82,6 +82,19 @@
 	background: rgb(222, 222, 222);
 }
 
+.user h2 {
+	color: var(--brown);
+	font-size: 3rem;
+}
+
+.user span {
+	color: #7950f2;
+}
+
+.user p {
+	color: var(--brown)
+}
+
 @media (max-width: 1054px) {
 	.imageCon {
 		display: none;
