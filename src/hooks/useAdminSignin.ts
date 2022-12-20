@@ -1,5 +1,5 @@
 import { useUserAdmin } from './../providers/user-admin-prodiver/index';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Router from 'next/router';
 
 export default function useAdminSignin() {
