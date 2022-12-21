@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import { createContext, useContext, useReducer } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
 import { Schedule } from '~/entities-interfaces/schedule.entity';
@@ -60,6 +61,17 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 		products[index].archived = false;
 		Http.patch('/product/' + payload, { archived: false });
 		return { ...state, products };
+	}
+
+	if (action === 'sign-out') {
+		Http.get('/auth/signout');
+		Router.replace('/sign-in');
+	}
+
+	if (action === 'set-prefer-color-scheme') {
+		Http.patch('/user/' + payload.id, { prefer_color_scheme: payload.theme });
+		Http.get('/auth/signout');
+		Router.replace('/sign-in');
 	}
 
 	if (action === 'set-user-admin') {

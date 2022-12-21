@@ -62,6 +62,7 @@ export default function CreateAccountComponent() {
 			{
 				...signUpForm.values,
 				role: UserRole.pending,
+				prefer_color_scheme: 'light',
 			},
 			{
 				onSuccess: (data) => {
@@ -73,6 +74,8 @@ export default function CreateAccountComponent() {
 					Router.push('/sign-in');
 				},
 				onFail: (message) => {
+					console.log({ message });
+
 					showNotification({
 						message,
 						title: 'Error',
