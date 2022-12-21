@@ -74,8 +74,6 @@ export default function CreateAccountComponent() {
 					Router.push('/sign-in');
 				},
 				onFail: (message) => {
-					console.log({ message });
-
 					showNotification({
 						message,
 						title: 'Error',
