@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
-import useAdminSignin from '~/hooks/useAdminSignin';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import css from './style.module.css';
 import {
@@ -41,7 +40,6 @@ export default function Admin() {
 
 	const { admin, dispatch } = useUserAdmin();
 	const { data: session } = useSession({ required: true });
-	useAdminSignin();
 
 	const [currentTab, setCurrentTab] = useState<Tabs>('appointments');
 
@@ -203,11 +201,6 @@ export default function Admin() {
 					<section hidden={currentTab !== 'accounts'}>
 						<Accounts />
 					</section>
-					{/*{currentTab === 'appointments' && <Appointments />}
-					{currentTab === 'inventory' && <Inventory />}
-					{currentTab === 'feedbacks' && <Feedbacks />}
-					{currentTab === 'services' && <Services />}
-					{currentTab === 'accounts' && <Accounts />}*/}
 				</main>
 			</div>
 		</>

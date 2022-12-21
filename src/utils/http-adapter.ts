@@ -21,6 +21,7 @@ export default class Http {
         method: "PATCH",
         headers: createHeader(accessToken),
         body: JSON.stringify(payload),
+        credentials: 'include',
       });
 
       const json = await res.json();
@@ -57,6 +58,7 @@ export default class Http {
         method: "POST",
         headers: createHeader(accessToken),
         body: JSON.stringify(payload),
+        credentials: 'include',
       });
 
       const json = await res.json();
@@ -91,6 +93,7 @@ export default class Http {
 
       const res = await fetch(backendUrl + url, {
         headers: createHeader(accessToken),
+        credentials: 'include',
       });
 
       const json = await res.json();
