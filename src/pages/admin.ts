@@ -19,6 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	}
 
 	if(!process.env.JWTSECRET) {
+		console.log('no JWTSECRET is provided');
 		throw new Error('no JWTSECRET is provided');
 	}
 
@@ -28,6 +29,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 			props: { user },
 		};
 	} catch (error) {
+		console.log({ error });
+		
 		return {
 				redirect: {
 					destination: '/sign-in',
