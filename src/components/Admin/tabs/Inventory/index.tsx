@@ -18,7 +18,6 @@ import {
 	IconPlus,
 	IconTrash,
 } from '@tabler/icons';
-import { setPriority } from 'os';
 import React, { useEffect, useState } from 'react';
 import { Product } from '~/entities-interfaces/product.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
@@ -45,16 +44,14 @@ export default function Inventory() {
 	);
 
 	useEffect(() => {
-		if (!admin?.access_token) return;
 		Http.get('/product', {
-			accessToken: admin.access_token,
 			onSuccess: (data) => {
 				dispatch({ action: 'set-products', payload: data });
 				setproducts(data.filter((p: Product) => p.archived === false));
 			},
 			onFail: (message) => showNotification({ message, color: 'red' }),
 		});
-	}, [admin?.access_token, dispatch]);
+	}, [dispatch]);
 
 	const searchListener = (e: React.ChangeEvent<HTMLInputElement>) => {
 		// search product base on name and description and sort them base on match

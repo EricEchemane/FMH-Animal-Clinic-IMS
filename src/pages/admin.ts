@@ -7,7 +7,6 @@ export default Admin;
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	const cookies = new Cookies(req, res);
 	const token = cookies.get('token');
-	console.log({ cookies: req.cookies });
 	
 	if (!token) {
 		return {
@@ -17,6 +16,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 			},
 		};
 	}
+	
 	return {
 		props: {},
 	};

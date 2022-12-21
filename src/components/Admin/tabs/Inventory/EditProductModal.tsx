@@ -51,9 +51,7 @@ export default function EditProductModal({ onClose, opened, product }: Props) {
 	};
 
 	function handleSave() {
-		if (!admin?.access_token) return;
 		Http.patch('/product/' + product.id, productForm.values, {
-			accessToken: admin.access_token,
 			onFail: (message) => showNotification({ message, color: 'red' }),
 			onSuccess: (data) => {
 				showNotification({ message: 'Changes saved!', color: 'green' });

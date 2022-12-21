@@ -5,7 +5,6 @@ import { UserRole } from '../customer-provider/types';
 export interface Admin {
   email: string;
   name: string;
-  access_token: string;
   schedules: Schedule[];
   products: Product[];
 }
@@ -13,7 +12,6 @@ export interface Admin {
 export interface DispatchConfig {
   action:
   | 'set-user-admin'
-  | 'set-access-token'
   | 'set-schedules'
   | 'mark-schedule-as-done'
   | 'mark-schedule-as-cancelled'

@@ -48,11 +48,7 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 			(product: Product) => product.id === payload
 		);
 		products[index].archived = true;
-		Http.patch(
-			'/product/' + payload,
-			{ archived: true },
-			{ accessToken: state.access_token }
-		);
+		Http.patch('/product/' + payload, { archived: true });
 		return { ...state, products };
 	}
 
@@ -62,20 +58,12 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 			(product: Product) => product.id === payload
 		);
 		products[index].archived = false;
-		Http.patch(
-			'/product/' + payload,
-			{ archived: false },
-			{ accessToken: state.access_token }
-		);
+		Http.patch('/product/' + payload, { archived: false });
 		return { ...state, products };
 	}
 
 	if (action === 'set-user-admin') {
 		return { ...state, ...payload };
-	}
-
-	if (action === 'set-access-token') {
-		return { ...state, access_token: payload };
 	}
 
 	if (action === 'set-schedules') {
@@ -88,11 +76,7 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 			(schedule: any) => schedule.id === payload
 		);
 		schedules[index].status = 'done';
-		Http.patch(
-			'/scheduling/' + payload,
-			{ status: 'done' },
-			{ accessToken: state.access_token }
-		);
+		Http.patch('/scheduling/' + payload, { status: 'done' });
 		return { ...state, schedules };
 	}
 
@@ -102,11 +86,7 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 			(schedule: any) => schedule.id === payload
 		);
 		schedules[index].status = 'cancelled';
-		Http.patch(
-			'/scheduling/' + payload,
-			{ status: 'cancelled' },
-			{ accessToken: state.access_token }
-		);
+		Http.patch('/scheduling/' + payload, { status: 'cancelled' });
 		return { ...state, schedules };
 	}
 
@@ -116,11 +96,7 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 			(schedule: any) => schedule.id === payload
 		);
 		schedules[index].status = 'pending';
-		Http.patch(
-			'/scheduling/' + payload,
-			{ status: 'pending' },
-			{ accessToken: state.access_token }
-		);
+		Http.patch('/scheduling/' + payload, { status: 'pending' });
 		return { ...state, schedules };
 	}
 
@@ -128,11 +104,7 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 		const schedules = state.schedules.filter(
 			(schedule: Schedule) => schedule.id !== payload
 		);
-		Http.patch(
-			'/scheduling/' + payload,
-			{ archived: true },
-			{ accessToken: state.access_token }
-		);
+		Http.patch('/scheduling/' + payload, { archived: true });
 		return { ...state, schedules };
 	}
 

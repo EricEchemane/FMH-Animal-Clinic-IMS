@@ -1,6 +1,5 @@
 import { Group, Stack, Title, Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
@@ -12,13 +11,13 @@ export default function Appointments() {
 	const { admin, dispatch } = useUserAdmin();
 
 	useEffect(() => {
-		if (!admin?.access_token) return;
 		Http.get('/scheduling', {
-			accessToken: admin.access_token,
-			onSuccess: (data) => dispatch({ action: 'set-schedules', payload: data }),
+			onSuccess: (data) => {
+				dispatch({ action: 'set-schedules', payload: data });
+			},
 			onFail: (message) => showNotification({ message, color: 'red' }),
 		});
-	}, [admin?.access_token, dispatch]);
+	}, [dispatch]);
 
 	const [currentTab, setCurrentTab] = useState<AppointmentTabs>('Pending');
 	const [appointments, setAppointments] = useState(admin?.schedules || []);

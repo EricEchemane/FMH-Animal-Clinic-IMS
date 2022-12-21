@@ -1,9 +1,8 @@
 import { backendUrl } from '~/constants/backend';
 
-function createHeader(accessToken: string) {
+function createHeader() {
   return {
     "Content-Type": "application/json",
-    "Authorization": "Bearer " + accessToken,
   };
 }
 
@@ -12,14 +11,13 @@ export default class Http {
     onFail = (message: string) => {},
     onSuccess = (data: any) => {},
     loadingToggler = (isLoading: boolean) => {},
-    accessToken = ''
   } = {}) => {
     try {
       loadingToggler(true);
 
       const res = await fetch(backendUrl + url, {
         method: "PATCH",
-        headers: createHeader(accessToken),
+        headers: createHeader(),
         body: JSON.stringify(payload),
         credentials: 'include',
       });
@@ -49,14 +47,13 @@ export default class Http {
     onFail = (message: string) => {},
     onSuccess = (data: any) => {},
     loadingToggler = (isLoading: boolean) => {},
-    accessToken = ''
   } = {}) => {
     try {
       loadingToggler(true);
 
       const res = await fetch(backendUrl + url, {
         method: "POST",
-        headers: createHeader(accessToken),
+        headers: createHeader(),
         body: JSON.stringify(payload),
         credentials: 'include',
       });
@@ -86,13 +83,12 @@ export default class Http {
     onFail = (message: string) => {},
     onSuccess = (data: any) => {},
     loadingToggler = (isLoading: boolean) => {},
-    accessToken = ''
   } = {}) => {
     try {
       loadingToggler(true);
 
       const res = await fetch(backendUrl + url, {
-        headers: createHeader(accessToken),
+        headers: createHeader(),
         credentials: 'include',
       });
 
