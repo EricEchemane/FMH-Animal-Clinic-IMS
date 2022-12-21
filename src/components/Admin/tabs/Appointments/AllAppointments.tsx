@@ -155,9 +155,9 @@ export default function Appointments(props: Props) {
 				/>
 				<Button
 					onClick={resetFilters}
+					compact
 					variant='outline'
 					radius={'xl'}
-					size='md'
 				>
 					Reset filters
 				</Button>
