@@ -5,39 +5,39 @@ import jwt from 'jsonwebtoken';
 
 export default Admin;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-	const cookies = new Cookies(req, res);
-	const token = cookies.get('token');
+//export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+//	const cookies = new Cookies(req, res);
+//	const token = cookies.get('token');
 	
-	if (!token) {
-		return {
-			redirect: {
-				destination: '/sign-in',
-				permanent: false,
-			},
-		};
-	}
+//	if (!token) {
+//		return {
+//			redirect: {
+//				destination: '/sign-in',
+//				permanent: false,
+//			},
+//		};
+//	}
 
-	res.setHeader('Set-Cookie', token);
+//	res.setHeader('Set-Cookie', token);
 
-	if(!process.env.JWTSECRET) {
-		console.log('no JWTSECRET is provided');
-		throw new Error('no JWTSECRET is provided');
-	}
+//	if(!process.env.JWTSECRET) {
+//		console.log('no JWTSECRET is provided');
+//		throw new Error('no JWTSECRET is provided');
+//	}
 
-	try {
-		const user = jwt.verify(token, process.env.JWTSECRET);
-		return {
-			props: { user },
-		};
-	} catch (error) {
-		console.log({ error });
+//	try {
+//		const user = jwt.verify(token, process.env.JWTSECRET);
+//		return {
+//			props: { user },
+//		};
+//	} catch (error) {
+//		console.log({ error });
 		
-		return {
-				redirect: {
-					destination: '/sign-in',
-					permanent: false,
-			},
-		};
-	}
-};
+//		return {
+//				redirect: {
+//					destination: '/sign-in',
+//					permanent: false,
+//			},
+//		};
+//	}
+//};
