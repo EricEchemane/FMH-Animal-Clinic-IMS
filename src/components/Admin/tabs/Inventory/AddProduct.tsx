@@ -65,13 +65,11 @@ export default function AddProduct({ onClose }: Props) {
 
 	function handleSave(e: FormEvent) {
 		e.preventDefault();
-		if (!admin?.access_token) return;
 		const validation = productForm.validate();
 
 		if (validation.hasErrors) return;
 
 		Http.post('/product', productForm.values, {
-			accessToken: admin.access_token,
 			onFail: (message) => {
 				showNotification({
 					title: 'Error',

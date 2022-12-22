@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import React, { useState } from 'react';
-import useAdminSignin from '~/hooks/useAdminSignin';
+import React, { useEffect, useState } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import css from './style.module.css';
 import {
@@ -28,22 +27,37 @@ import {
 	IconUserOff,
 	IconUsers,
 } from '@tabler/icons';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import Appointments from './tabs/Appointments';
 import Accounts from './tabs/Accounts';
 import Feedbacks from './tabs/Feedbacks';
 import Inventory from './tabs/Inventory';
 import Services from './tabs/Services';
 
-export default function Admin() {
+export default function Admin(props: any) {
 	const { toggleColorScheme, colorScheme } = useMantineColorScheme();
 	const dark = colorScheme === 'dark';
 
 	const { admin, dispatch } = useUserAdmin();
 	const { data: session } = useSession({ required: true });
-	useAdminSignin();
 
 	const [currentTab, setCurrentTab] = useState<Tabs>('appointments');
+
+	useEffect(() => {
+		toggleColorScheme(props.user.prefer_color_scheme as any);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const togglePreferColorScheme = () => {
+		toggleColorScheme('light');
+		dispatch({
+			action: 'set-prefer-color-scheme',
+			payload: {
+				theme: dark ? 'light' : 'dark',
+				id: props.user.sub,
+			},
+		});
+	};
 
 	return (
 		<>
@@ -156,13 +170,15 @@ export default function Admin() {
 									<Menu.Dropdown>
 										<Menu.Label>Settings</Menu.Label>
 										<Menu.Item
-											onClick={() => signOut()}
+											onClick={() =>
+												dispatch({ action: 'sign-out', payload: null })
+											}
 											icon={<IconUserOff size={14} />}
 										>
 											Sign Out
 										</Menu.Item>
 										<Menu.Item
-											onClick={() => toggleColorScheme()}
+											onClick={togglePreferColorScheme}
 											icon={
 												dark ? <IconSun size={14} /> : <IconMoon size={14} />
 											}
@@ -203,11 +219,6 @@ export default function Admin() {
 					<section hidden={currentTab !== 'accounts'}>
 						<Accounts />
 					</section>
-					{/*{currentTab === 'appointments' && <Appointments />}
-					{currentTab === 'inventory' && <Inventory />}
-					{currentTab === 'feedbacks' && <Feedbacks />}
-					{currentTab === 'services' && <Services />}
-					{currentTab === 'accounts' && <Accounts />}*/}
 				</main>
 			</div>
 		</>

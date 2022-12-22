@@ -5,7 +5,7 @@ import { UserRole } from '../customer-provider/types';
 export interface Admin {
   email: string;
   name: string;
-  access_token: string;
+  prefer_color_scheme: string;
   schedules: Schedule[];
   products: Product[];
 }
@@ -13,8 +13,9 @@ export interface Admin {
 export interface DispatchConfig {
   action:
   | 'set-user-admin'
-  | 'set-access-token'
   | 'set-schedules'
+  | 'set-prefer-color-scheme'
+  | 'sign-out'
   | 'mark-schedule-as-done'
   | 'mark-schedule-as-cancelled'
   | 'mark-schedule-as-pending'
@@ -25,6 +26,7 @@ export interface DispatchConfig {
   | 'archive-product'
   | 'set-product-image-url'
   | 'add-new-product';
+  
   payload: any;
 }
 

@@ -62,6 +62,7 @@ export default function CreateAccountComponent() {
 			{
 				...signUpForm.values,
 				role: UserRole.pending,
+				prefer_color_scheme: 'light',
 			},
 			{
 				onSuccess: (data) => {

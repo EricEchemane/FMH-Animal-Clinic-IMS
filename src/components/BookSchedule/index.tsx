@@ -55,7 +55,6 @@ export default function BookSchedule() {
 
 	useEffect(() => {
 		Http.get('/scheduling/from-this-month-and-next', {
-			accessToken: customer?.access_token,
 			onSuccess: (data) => setSchedules(data),
 		});
 	}, [customer?.access_token]);
@@ -72,7 +71,6 @@ export default function BookSchedule() {
 		Http.post('/scheduling', payload, {
 			onFail: alert,
 			onSuccess: () => setSubmitted(true),
-			accessToken: customer?.access_token,
 			loadingToggler: setIsSubmitting,
 		});
 	};
