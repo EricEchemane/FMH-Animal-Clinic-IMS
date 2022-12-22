@@ -170,9 +170,10 @@ export default function Admin(props: any) {
 									<Menu.Dropdown>
 										<Menu.Label>Settings</Menu.Label>
 										<Menu.Item
-											onClick={() =>
-												dispatch({ action: 'sign-out', payload: null })
-											}
+											onClick={() => {
+												dispatch({ action: 'sign-out', payload: null });
+												toggleColorScheme('light');
+											}}
 											icon={<IconUserOff size={14} />}
 										>
 											Sign Out

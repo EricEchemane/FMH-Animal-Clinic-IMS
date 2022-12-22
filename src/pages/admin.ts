@@ -28,8 +28,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 		return {
 			props: { user },
 		};
-	} catch (error) {
-		console.log({ error });
+	} catch (error: any) {
+		console.log({ error: error?.message });
 		
 		return {
 				redirect: {
