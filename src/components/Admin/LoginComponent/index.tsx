@@ -36,7 +36,6 @@ export default function LoginComponent() {
 				dispatch({
 					action: 'set-user-admin',
 					payload: {
-						access_token: data.access_token,
 						email: loginForm.values.email,
 					},
 				});

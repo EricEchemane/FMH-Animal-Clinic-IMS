@@ -18,6 +18,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 		};
 	}
 
+	res.setHeader('Set-Cookie', token);
+
 	if(!process.env.JWTSECRET) {
 		console.log('no JWTSECRET is provided');
 		throw new Error('no JWTSECRET is provided');
