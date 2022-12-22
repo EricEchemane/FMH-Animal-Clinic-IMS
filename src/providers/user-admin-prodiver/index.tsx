@@ -64,13 +64,13 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 	}
 
 	if (action === 'sign-out') {
-		Http.get('/auth/signout');
+		Http.post('/auth/signout', {});
 		Router.replace('/sign-in');
 	}
 
 	if (action === 'set-prefer-color-scheme') {
 		Http.patch('/user/' + payload.id, { prefer_color_scheme: payload.theme });
-		Http.get('/auth/signout');
+		Http.post('/auth/signout', {});
 		Router.replace('/sign-in');
 	}
 
