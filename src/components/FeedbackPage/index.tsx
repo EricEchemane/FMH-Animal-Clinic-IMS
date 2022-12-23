@@ -1,7 +1,7 @@
 import React from 'react'
 import css from './style.module.css'
 import { Button, Group } from '@mantine/core';
-
+import Link from 'next/link'
 
 
 export default function Feedback() {
@@ -28,6 +28,11 @@ export default function Feedback() {
 							<Button color="yellow" size="md">
 								Submit
 							</Button>
+							<Link href="/" passHref>
+								<Button variant='outline' size="md" color="yellow">
+									Cancel
+								</Button>
+							</Link>
 						</Group>
 						{/* </div> */}
 					</div>
