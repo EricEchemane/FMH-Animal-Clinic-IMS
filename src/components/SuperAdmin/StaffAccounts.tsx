@@ -26,6 +26,7 @@ export default function StaffAccounts({ accounts }: Props) {
 				<thead>
 					<tr>
 						<th> Account Id </th>
+						<th> Name </th>
 						<th> Email </th>
 						<th> Action </th>
 					</tr>
@@ -34,6 +35,7 @@ export default function StaffAccounts({ accounts }: Props) {
 					{accounts.map((account) => (
 						<tr key={account.id}>
 							<td> {account.id} </td>
+							<td> {account.name} </td>
 							<td> {account.email} </td>
 							<td> Action </td>
 						</tr>

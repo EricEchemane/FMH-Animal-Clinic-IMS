@@ -26,7 +26,6 @@ export default function SuperAdmin() {
 		Http.get('/user', {
 			onSuccess: (data) => {
 				setAccounts(data);
-				console.log(data);
 			},
 		});
 	}, []);
