@@ -44,7 +44,9 @@ export default function LoginComponent() {
 					title: 'Success',
 					color: 'green',
 				});
-				Router.replace('/admin');
+				if (data.role === 'super_admin') {
+					Router.replace('/super-admin');
+				} else Router.replace('/admin');
 			},
 			onFail: (message) =>
 				showNotification({
