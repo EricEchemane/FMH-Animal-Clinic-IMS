@@ -33,6 +33,16 @@ export default function SuperAdmin() {
 		setAccounts(newAccounts);
 	};
 
+	const handleDemoteToStaff = (accountId: string) => {
+		const newAccounts = accounts.map((account) => {
+			if (account.id === accountId) {
+				account.role = UserRole.pending;
+			}
+			return account;
+		});
+		setAccounts(newAccounts);
+	};
+
 	useEffect(() => {
 		Http.get('/user', {
 			onSuccess: (data) => {
@@ -90,7 +100,12 @@ export default function SuperAdmin() {
 						accounts={pendingAccounts}
 					/>
 				)}
-				{tab === 'Staff' && <StaffAccounts accounts={staffAccounts} />}
+				{tab === 'Staff' && (
+					<StaffAccounts
+						onDemoteToStaff={handleDemoteToStaff}
+						accounts={staffAccounts}
+					/>
+				)}
 				{tab === 'Customers' && (
 					<CustomerAccounts accounts={customerAccounts} />
 				)}
