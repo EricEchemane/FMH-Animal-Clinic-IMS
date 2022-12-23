@@ -49,6 +49,10 @@ export default function Admin(props: any) {
 	}, []);
 
 	const togglePreferColorScheme = () => {
+		const confirm = window.confirm(
+			'You need to sign-in again to apply the changes. Do you want to continue?'
+		);
+		if (!confirm) return;
 		toggleColorScheme('light');
 		dispatch({
 			action: 'set-prefer-color-scheme',
