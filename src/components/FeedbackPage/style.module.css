@@ -84,4 +84,10 @@
     width: 490px;
     border: 1px solid black;
     border-radius: 5px;
+    padding: 2rem;
+    text-align: justify;
+}
+
+.instructions ul li {
+    list-style-image: url(./assets/FootprintSVG.svg);
 }

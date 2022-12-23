@@ -28,7 +28,14 @@ export default function Feedback() {
 					</div>
 					<div className={css.instructions}>
 						<h1>How to write feedback</h1>
-						<p>Describe your experience with out clinic.</p>
+						<ul>
+							<li>Think about your overall experience with the clinic. Did you have a positive or negative experience? What stood out to you?</li>
+							<li>Be specific about what you liked or didn't like. Did the staff treat you and your pet well? Was the clinic clean and well-maintained? Did the veterinarian take the time to explain things to you?</li>
+							<li>Keep it brief. A few sentences or a short paragraph should be sufficient.</li>
+							<li>Be honest and respectful. Don't leave a fake review or use offensive language.</li>
+							<li>Consider the tone of your review. You don't want to sound angry or bitter, even if you had a negative experience. Try to be constructive and offer suggestions for improvement.</li>
+							<li>Proofread your review before submitting it. Make sure it's clear and easy to understand.</li>
+						</ul>
 					</div>
 				</div>
 			</div>
