@@ -2,7 +2,6 @@ import React from 'react';
 import Hero from '~/components/Hero';
 import Navbar from '~/components/Navbar';
 import Service from '~/components/Servicess';
-import Products from '~/components/Products';
 import Testimonials from '~/components/Testimonials';
 import Footer from '~/components/Footer';
 import Head from 'next/head';

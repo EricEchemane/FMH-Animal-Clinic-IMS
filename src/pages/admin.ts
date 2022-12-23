@@ -28,17 +28,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	try {
 		const user = jwt.verify(token, process.env.JWTSECRET) as User;
 
-		if (user.role === UserRole.customer) {
+		if (user.role === UserRole.staff || user.role === UserRole.super_admin) {
 			return {
-				redirect: {
-					destination: '/',
-					permanent: false,
-				},
+				props: { user },
 			};
 		}
-
 		return {
-			props: { user },
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
 		};
 	} catch (error: any) {
 		console.log({ error: error?.message });

@@ -25,7 +25,6 @@ import {
 	IconTrash,
 	IconUserExclamation,
 	IconUserOff,
-	IconUsers,
 } from '@tabler/icons';
 import { useSession } from 'next-auth/react';
 import Appointments from './tabs/Appointments';

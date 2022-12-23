@@ -4,9 +4,7 @@ import style from './style.module.css';
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Button } from '@mantine/core';
-import Navlogo from './assets/Navlogo.svg'
-
-
+import Navlogo from './assets/Navlogo.svg';
 
 export default function Navbar() {
 	const navLinkRef = useRef<HTMLDivElement>(null);
