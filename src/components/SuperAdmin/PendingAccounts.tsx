@@ -6,10 +6,12 @@ import {
 	Title,
 	Text,
 	ActionIcon,
+	Group,
+	TextInput,
 } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-import { IconDots, IconUserCheck } from '@tabler/icons';
-import React, { useState } from 'react';
+import { IconDots, IconSearch, IconUserCheck } from '@tabler/icons';
+import React, { useEffect, useState } from 'react';
 import { UserRole } from '~/providers/customer-provider/types';
 import Http from '~/utils/http-adapter';
 import { Account } from './index';
@@ -19,7 +21,11 @@ type Props = {
 	onPromoteToStaff: (accountId: string) => void;
 };
 
-export default function PendingAccounts({ accounts, onPromoteToStaff }: Props) {
+export default function PendingAccounts({
+	accounts: _accounts,
+	onPromoteToStaff,
+}: Props) {
+	const [accounts, setAccounts] = useState<Account[]>([]);
 	const promoteToStaff = (accountId: string) => {
 		const confirmed = confirm(
 			'Are you sure you want to promote this account to staff?'
@@ -48,18 +54,51 @@ export default function PendingAccounts({ accounts, onPromoteToStaff }: Props) {
 		);
 	};
 
+	useEffect(() => {
+		setAccounts(_accounts);
+	}, [_accounts]);
+
+	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		const filteredAccounts = _accounts
+			.filter(
+				(account) =>
+					account.name.toLowerCase().startsWith(value.toLowerCase()) ||
+					account.email.toLowerCase().startsWith(value.toLowerCase())
+			)
+			.sort((a, b) => {
+				if (a.name.toLowerCase().startsWith(value.toLowerCase())) return -1;
+				if (b.name.toLowerCase().startsWith(value.toLowerCase())) return 1;
+				return 0;
+			});
+		setAccounts(filteredAccounts);
+	};
+
 	return (
 		<Card
 			withBorder
 			px='xl'
 		>
-			<Title
-				order={2}
-				color={'dimmed'}
-				weight={'normal'}
+			<Group
+				position='apart'
+				align={'center'}
 			>
-				Pending Accounts
-			</Title>
+				<Title
+					order={2}
+					color={'dimmed'}
+					weight={'normal'}
+				>
+					Pending Accounts
+				</Title>
+
+				<TextInput
+					variant='filled'
+					name='Search'
+					placeholder='Search'
+					onChange={handleSearch}
+					icon={<IconSearch size={26} />}
+				/>
+			</Group>
 
 			<Table mt={'lg'}>
 				<thead>

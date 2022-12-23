@@ -1,7 +1,15 @@
-import { ActionIcon, Card, Menu, Table, Title } from '@mantine/core';
+import {
+	ActionIcon,
+	Card,
+	Group,
+	Menu,
+	Table,
+	TextInput,
+	Title,
+} from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
-import { IconDots, IconUserX } from '@tabler/icons';
-import React from 'react';
+import { IconDots, IconSearch, IconUserX } from '@tabler/icons';
+import React, { useEffect } from 'react';
 import { UserRole } from '~/providers/customer-provider/types';
 import Http from '~/utils/http-adapter';
 import { Account } from './index';
@@ -11,7 +19,32 @@ type Props = {
 	onDemoteToStaff: (accountId: string) => void;
 };
 
-export default function StaffAccounts({ accounts, onDemoteToStaff }: Props) {
+export default function StaffAccounts({
+	accounts: _accounts,
+	onDemoteToStaff,
+}: Props) {
+	const [accounts, setAccounts] = React.useState<Account[]>([]);
+
+	useEffect(() => {
+		setAccounts(_accounts);
+	}, [_accounts]);
+
+	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value;
+		const filteredAccounts = _accounts
+			.filter(
+				(account) =>
+					account.name.toLowerCase().startsWith(value.toLowerCase()) ||
+					account.email.toLowerCase().startsWith(value.toLowerCase())
+			)
+			.sort((a, b) => {
+				if (a.name.toLowerCase().startsWith(value.toLowerCase())) return -1;
+				if (b.name.toLowerCase().startsWith(value.toLowerCase())) return 1;
+				return 0;
+			});
+		setAccounts(filteredAccounts);
+	};
+
 	const demoteToStaff = (accountId: string) => {
 		const confirmed = confirm(
 			'Are you sure you want to demote this account to staff?'
@@ -45,13 +78,26 @@ export default function StaffAccounts({ accounts, onDemoteToStaff }: Props) {
 			withBorder
 			px='xl'
 		>
-			<Title
-				order={2}
-				color={'dimmed'}
-				weight={'normal'}
+			<Group
+				position='apart'
+				align={'center'}
 			>
-				Staff Accounts
-			</Title>
+				<Title
+					order={2}
+					color={'dimmed'}
+					weight={'normal'}
+				>
+					Staff Accounts
+				</Title>
+
+				<TextInput
+					variant='filled'
+					name='Search'
+					placeholder='Search'
+					onChange={handleSearch}
+					icon={<IconSearch size={26} />}
+				/>
+			</Group>
 
 			<Table mt={'lg'}>
 				<thead>
