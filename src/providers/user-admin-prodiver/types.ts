@@ -1,3 +1,4 @@
+import { ClinicService } from '~/entities-interfaces/service.entity';
 import { Feedback } from '~/entities-interfaces/feedback.entity';
 import { Product } from '~/entities-interfaces/product.entity';
 import { Schedule } from '~/entities-interfaces/schedule.entity';
@@ -10,6 +11,7 @@ export interface Admin {
 	schedules: Schedule[];
 	products: Product[];
 	feedbacks: Feedback[];
+	services: ClinicService[];
 }
 
 export interface DispatchConfig {
@@ -29,7 +31,8 @@ export interface DispatchConfig {
 		| 'add-new-product'
 		| 'set-feedbacks'
 		| 'unpublish-feedback'
-		| 'publish-feedback';
+		| 'publish-feedback'
+		| 'set-services';
 
 	payload: any;
 }
