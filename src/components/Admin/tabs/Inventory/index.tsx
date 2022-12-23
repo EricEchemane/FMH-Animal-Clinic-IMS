@@ -44,10 +44,17 @@ export default function Inventory() {
 	);
 
 	useEffect(() => {
+		if (!admin?.products) return;
+		setproducts(admin?.products.filter((p) => p.archived === false));
+		setArchivedProducts(admin?.products.filter((p) => p.archived === true));
+	}, [admin?.products]);
+
+	useEffect(() => {
 		Http.get('/product', {
 			onSuccess: (data) => {
 				dispatch({ action: 'set-products', payload: data });
 				setproducts(data.filter((p: Product) => p.archived === false));
+				setArchivedProducts(data.filter((p: Product) => p.archived === true));
 			},
 			onFail: (message) => showNotification({ message, color: 'red' }),
 		});

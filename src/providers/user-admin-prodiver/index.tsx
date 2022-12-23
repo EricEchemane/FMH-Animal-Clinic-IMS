@@ -100,22 +100,22 @@ const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
 	}
 
 	if (action === 'archive-product') {
-		const products = state.products;
+		Http.patch('/product/toggle-archive/' + payload, {});
+		const products = [...state.products];
 		const index = products.findIndex(
 			(product: Product) => product.id === payload
 		);
 		products[index].archived = true;
-		Http.patch('/product/' + payload, { archived: true });
 		return { ...state, products };
 	}
 
 	if (action === 'unarchive-product') {
-		const products = state.products;
+		Http.patch('/product/toggle-archive/' + payload, {});
+		const products = [...state.products];
 		const index = products.findIndex(
 			(product: Product) => product.id === payload
 		);
 		products[index].archived = false;
-		Http.patch('/product/' + payload, { archived: false });
 		return { ...state, products };
 	}
 

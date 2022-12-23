@@ -11,9 +11,6 @@ import {
 	IconSettings,
 	IconMessageCircle,
 	IconPhoto,
-	IconSearch,
-	IconArrowsLeftRight,
-	IconTrash,
 	IconDots,
 } from '@tabler/icons';
 import React from 'react';
