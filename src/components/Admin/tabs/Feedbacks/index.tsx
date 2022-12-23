@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FeedbackTabs } from '../../types';
-import { Feedback } from '~/entities-interfaces/feedback.entity';
 import Http from '~/utils/http-adapter';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import { Stack, Group, Title, Text, Badge } from '@mantine/core';
@@ -11,9 +10,6 @@ import PublishedFeedbacks from './PublishedFeedbacks';
 export default function Feedbacks() {
 	const { admin, dispatch } = useUserAdmin();
 	const [currentTab, setCurrentTab] = useState<FeedbackTabs>('To Review');
-	const [feedbacks, setFeedbacks] = useState<Feedback[]>(
-		admin?.feedbacks || []
-	);
 
 	const _feedbacks = admin?.feedbacks || [];
 	const forReviews = _feedbacks.filter(
