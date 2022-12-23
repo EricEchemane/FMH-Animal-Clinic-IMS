@@ -1,6 +1,7 @@
 import { Button, Card, Group, Stack, Title } from '@mantine/core';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
+import { UserRole } from '~/providers/customer-provider/types';
 import Http from '~/utils/http-adapter';
 import { User } from '../../entities-interfaces/user.entity';
 import CustomerAccounts from './CustomerAccounts';
@@ -21,6 +22,16 @@ export default function SuperAdmin() {
 		(account) => account.role === 'customer'
 	);
 	const staffAccounts = accounts.filter((account) => account.role === 'staff');
+
+	const handlePromoteToStaff = (accountId: string) => {
+		const newAccounts = accounts.map((account) => {
+			if (account.id === accountId) {
+				account.role = UserRole.staff;
+			}
+			return account;
+		});
+		setAccounts(newAccounts);
+	};
 
 	useEffect(() => {
 		Http.get('/user', {
@@ -73,7 +84,12 @@ export default function SuperAdmin() {
 					</Group>
 				</Card>
 
-				{tab === 'Pending' && <PendingAccounts accounts={pendingAccounts} />}
+				{tab === 'Pending' && (
+					<PendingAccounts
+						onPromoteToStaff={handlePromoteToStaff}
+						accounts={pendingAccounts}
+					/>
+				)}
 				{tab === 'Staff' && <StaffAccounts accounts={staffAccounts} />}
 				{tab === 'Customers' && (
 					<CustomerAccounts accounts={customerAccounts} />

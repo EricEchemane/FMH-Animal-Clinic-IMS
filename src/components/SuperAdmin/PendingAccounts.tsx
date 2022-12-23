@@ -7,21 +7,46 @@ import {
 	Text,
 	ActionIcon,
 } from '@mantine/core';
-import {
-	IconSettings,
-	IconMessageCircle,
-	IconPhoto,
-	IconDots,
-} from '@tabler/icons';
-import React from 'react';
+import { showNotification } from '@mantine/notifications';
+import { IconDots, IconUserCheck } from '@tabler/icons';
+import React, { useState } from 'react';
+import { UserRole } from '~/providers/customer-provider/types';
+import Http from '~/utils/http-adapter';
 import { Account } from './index';
 
 type Props = {
 	accounts: Account[];
+	onPromoteToStaff: (accountId: string) => void;
 };
 
-export default function PendingAccounts({ accounts }: Props) {
-	console.log({ accounts });
+export default function PendingAccounts({ accounts, onPromoteToStaff }: Props) {
+	const promoteToStaff = (accountId: string) => {
+		const confirmed = confirm(
+			'Are you sure you want to promote this account to staff?'
+		);
+		if (!confirmed) return;
+		Http.patch(
+			`/user/${accountId}`,
+			{ role: UserRole.staff },
+			{
+				onFail: (message) => {
+					showNotification({
+						title: 'Failed to promote account',
+						message,
+						color: 'red',
+					});
+				},
+				onSuccess: () => {
+					onPromoteToStaff(accountId);
+					showNotification({
+						title: 'Account promoted to staff',
+						message: 'Account has been promoted to staff',
+						color: 'green',
+					});
+				},
+			}
+		);
+	};
 
 	return (
 		<Card
@@ -67,14 +92,11 @@ export default function PendingAccounts({ accounts }: Props) {
 
 									<Menu.Dropdown>
 										<Menu.Label>Actions</Menu.Label>
-										<Menu.Item icon={<IconSettings size={14} />}>
-											Settings
-										</Menu.Item>
-										<Menu.Item icon={<IconMessageCircle size={14} />}>
-											Messages
-										</Menu.Item>
-										<Menu.Item icon={<IconPhoto size={14} />}>
-											Gallery
+										<Menu.Item
+											onClick={() => promoteToStaff(account.id)}
+											icon={<IconUserCheck size={14} />}
+										>
+											Promote to staff
 										</Menu.Item>
 									</Menu.Dropdown>
 								</Menu>
