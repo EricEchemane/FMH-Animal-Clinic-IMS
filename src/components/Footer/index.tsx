@@ -2,6 +2,7 @@ import React from 'react';
 import style from './style.module.css';
 import Image from 'next/image';
 import fmhLogo from './assets/Logo.svg';
+import Link from 'next/link'
 
 export default function Footer() {
 	return (
@@ -60,7 +61,7 @@ export default function Footer() {
 								<a href='#testimonials'>Feedback</a>
 							</li>
 							<li>
-								<a href='#customer-review'>Customer Review</a>
+								<Link href="/feedback">Write feedback</Link>
 							</li>
 						</ul>
 					</div>
