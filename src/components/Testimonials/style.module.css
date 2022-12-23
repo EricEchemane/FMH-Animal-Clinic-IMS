@@ -17,22 +17,22 @@
 }
 
 .testimonialContainer {
-  width: 600px;
+  width: 100%;
   height: auto;
   /* background-color: yellow; */
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  gap: 3rem;
+  gap: 5rem;
   padding: 1rem 1rem;
 }
 
 .titleContainer {
   /* background: blue; */
   width: 100%;
-  height: 150px;
-  padding: 1rem;
+  height: auto;
+  padding: 1rem 1rem 2rem 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -51,6 +51,27 @@
   font-size: 1.5rem;
 }
 
+.cardsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.cardsthis {
+  width: 300px;
+  background: rgb(255, 255, 255);
+  padding: 1.5rem;
+  border: 1px solid brown;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .cardContainer {
   width: 365px;
   background: rgb(246, 246, 246);
@@ -64,8 +85,8 @@
 }
 
 .profilePic {
-  width: 85px;
-  height: 85px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 }
 
@@ -80,6 +101,10 @@
   color: var(--brown);
   font-family: 'Nunito';
   font-size: 1.6rem;
+}
+
+.userName h4 {
+  color: var(--brown);
 }
 
 .userMessage {
@@ -123,7 +148,7 @@
   }
 
   .titleContainer {
-    height: 170px;
+    height: auto;
     gap: 1rem;
   }
 
@@ -133,7 +158,7 @@
   }
 
   .testimonialContainer {
-    width: 600px;
+    width: 100%;
     height: auto;
     /* background-color: yellow; */
     display: flex;
@@ -147,7 +172,7 @@
 
 @media (max-width: 375px) {
   .titleContainer {
-    height: 200px;
+    height: auto;
   }
 
   .carContainer {
