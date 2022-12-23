@@ -77,7 +77,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -99,7 +100,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -121,7 +123,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -143,7 +146,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -163,7 +167,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -185,7 +190,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -207,7 +213,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -229,7 +236,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
@@ -251,7 +259,8 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<Link href="/book-schedule">									Get Service <i className='bx bx-right-arrow-alt'></i>
+								<Link href="/book-schedule">
+									Get Service <i className='bx bx-right-arrow-alt'></i>
 								</Link>
 							</div>
 						</div>
