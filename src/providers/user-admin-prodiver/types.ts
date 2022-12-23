@@ -28,6 +28,7 @@ export interface DispatchConfig {
 		| 'set-product-image-url'
 		| 'add-new-product'
 		| 'set-feedbacks'
+		| 'unpublish-feedback'
 		| 'publish-feedback';
 
 	payload: any;

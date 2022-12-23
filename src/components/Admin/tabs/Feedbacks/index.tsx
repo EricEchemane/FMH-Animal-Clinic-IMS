@@ -92,10 +92,10 @@ export default function Feedbacks() {
 				{currentTab === 'To Review' && <ForReviews feedbacks={forReviews} />}
 
 				{currentTab === 'Published' && (
-					<PublishedFeedbacks feedbacks={forReviews} />
+					<PublishedFeedbacks feedbacks={published} />
 				)}
 
-				{currentTab === 'All' && <AllFeedbacks feedbacks={forReviews} />}
+				{currentTab === 'All' && <AllFeedbacks feedbacks={_feedbacks} />}
 			</Stack>
 		</>
 	);

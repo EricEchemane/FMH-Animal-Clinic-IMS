@@ -35,6 +35,7 @@ export default function ForReviews(props: Props) {
 			<Title
 				weight={'normal'}
 				order={2}
+				mb={'md'}
 			>
 				To Review
 			</Title>
