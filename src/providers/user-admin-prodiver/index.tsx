@@ -25,6 +25,23 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 }
 
 const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
+	if (action === 'remove-service') {
+		const services = state.services.filter(
+			(service: any) => service.id !== payload
+		);
+		Http.delete('/service/' + payload, {});
+		return { ...state, services };
+	}
+
+	if (action === 'update-service') {
+		const services = state.services;
+		const index = services.findIndex(
+			(service: any) => service.id === payload.id
+		);
+		services[index] = payload;
+		return { ...state, services };
+	}
+
 	if (action === 'set-services') {
 		return { ...state, services: payload };
 	}

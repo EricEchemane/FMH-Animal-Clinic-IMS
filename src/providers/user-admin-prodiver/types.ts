@@ -32,7 +32,9 @@ export interface DispatchConfig {
 		| 'set-feedbacks'
 		| 'unpublish-feedback'
 		| 'publish-feedback'
-		| 'set-services';
+		| 'set-services'
+		| 'update-service'
+		| 'remove-service';
 
 	payload: any;
 }

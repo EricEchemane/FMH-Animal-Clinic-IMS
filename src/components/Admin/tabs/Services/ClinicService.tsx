@@ -1,15 +1,22 @@
 import { Card, Group, Stack, Title, Text, ActionIcon } from '@mantine/core';
 import { IconEdit, IconTrash } from '@tabler/icons';
-import React, { useState } from 'react';
 import { ClinicService } from '~/entities-interfaces/service.entity';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
 
 type Props = {
 	service: ClinicService;
+	onEdit: () => void;
 };
 
-export default function ClinicServiceComponent({ service }: Props) {
-	const [isInEditMode, setIsInEditMode] = useState(false);
-
+export default function ClinicServiceComponent({ service, onEdit }: Props) {
+	const { dispatch } = useUserAdmin();
+	const remove = () => {
+		const confirmed = confirm(
+			'Are you sure you want to delete this service? This is irreversible.'
+		);
+		if (!confirmed) return;
+		dispatch({ action: 'remove-service', payload: service.id });
+	};
 	return (
 		<Card
 			radius={'lg'}
@@ -19,7 +26,7 @@ export default function ClinicServiceComponent({ service }: Props) {
 			shadow={'md'}
 		>
 			<Stack sx={{ height: '100%' }}>
-				<Title> {service.name} </Title>
+				<Title order={2}> {service.name} </Title>
 				<Text> {service.description} </Text>
 
 				<Group
@@ -31,6 +38,7 @@ export default function ClinicServiceComponent({ service }: Props) {
 						color={'violet'}
 						radius={'xl'}
 						size={'lg'}
+						onClick={onEdit}
 					>
 						<IconEdit size={18} />
 					</ActionIcon>
@@ -39,6 +47,7 @@ export default function ClinicServiceComponent({ service }: Props) {
 						color={'red'}
 						radius={'xl'}
 						size={'lg'}
+						onClick={remove}
 					>
 						<IconTrash size={18} />
 					</ActionIcon>
