@@ -25,6 +25,10 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 }
 
 const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
+	if (action === 'set-feedbacks') {
+		return { ...state, feedbacks: payload };
+	}
+
 	if (action === 'add-new-product') {
 		const products = [payload, ...state.products];
 		return { ...state, products };

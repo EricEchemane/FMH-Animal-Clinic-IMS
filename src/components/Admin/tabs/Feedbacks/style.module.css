@@ -1,0 +1,23 @@
+.feedbackStatus {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5rem;
+	cursor: pointer;
+	width: 100px;
+	outline: none;
+	border: none;
+	background: none;
+}
+.feedbackStatus:focus-visible {
+	box-shadow: 0 0 0 1px #999;
+}
+.feedbackStatus:nth-child(1)[data-active='true'] {
+	border-bottom: 5px solid orange;
+}
+.feedbackStatus:nth-child(2)[data-active='true'] {
+	border-bottom: 5px solid lime;
+}
+.feedbackStatus:nth-child(3)[data-active='true'] {
+	border-bottom: 5px solid #704be1;
+}
