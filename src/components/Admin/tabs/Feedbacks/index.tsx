@@ -3,11 +3,10 @@ import { FeedbackTabs } from '../../types';
 import { Feedback } from '~/entities-interfaces/feedback.entity';
 import Http from '~/utils/http-adapter';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
-import { Stack, Group, Title, Text } from '@mantine/core';
+import { Stack, Group, Title, Text, Badge } from '@mantine/core';
 import css from './style.module.css';
 import ForReviews from './ForReviews';
 import PublishedFeedbacks from './PublishedFeedbacks';
-import AllFeedbacks from './AllFeedbacks';
 
 export default function Feedbacks() {
 	const { admin, dispatch } = useUserAdmin();
@@ -56,7 +55,10 @@ export default function Feedbacks() {
 					}}
 					position='apart'
 				>
-					<Title order={2}> Feedbacks </Title>
+					<Group align={'flex-end'}>
+						<Title order={2}> Feedbacks </Title>
+						<Badge size='xl'>Average Rating: {averateRating}</Badge>
+					</Group>
 
 					<Group spacing={30}>
 						<button
@@ -77,15 +79,6 @@ export default function Feedbacks() {
 							<Title color='green'>{published.length}</Title>
 							<Text>Published</Text>
 						</button>
-						<button
-							className={css.feedbackStatus}
-							tabIndex={1}
-							data-active={currentTab === 'All'}
-							onClick={() => setCurrentTab('All')}
-						>
-							<Title color='violet'>{(admin?.feedbacks || []).length}</Title>
-							<Text>All</Text>
-						</button>
 					</Group>
 				</Group>
 
@@ -94,8 +87,6 @@ export default function Feedbacks() {
 				{currentTab === 'Published' && (
 					<PublishedFeedbacks feedbacks={published} />
 				)}
-
-				{currentTab === 'All' && <AllFeedbacks feedbacks={_feedbacks} />}
 			</Stack>
 		</>
 	);

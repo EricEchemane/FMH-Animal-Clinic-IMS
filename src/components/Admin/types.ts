@@ -6,7 +6,7 @@ export type Tabs =
 	| 'accounts';
 export type AppointmentTabs = 'Pending' | 'Done' | 'Cancelled' | 'All';
 export type InventoryTabs = 'all' | 'add' | 'archive';
-export type FeedbackTabs = 'To Review' | 'Published' | 'All';
+export type FeedbackTabs = 'To Review' | 'Published';
 
 export type dateFilters =
 	| 'Today'
