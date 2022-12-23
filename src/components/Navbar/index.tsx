@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Button } from '@mantine/core';
 import Navlogo from './assets/Navlogo.svg';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
 
 export default function Navbar() {
 	const navLinkRef = useRef<HTMLDivElement>(null);
 	const showRef = useRef<boolean>(false);
 	const { data: session } = useSession();
+	const { dispatch } = useUserAdmin();
 
 	const toggleNavbar = () => {
 		if (!navLinkRef.current || window.innerWidth > 758) return;
@@ -113,7 +115,13 @@ export default function Navbar() {
 						<li>
 							<Button
 								radius={'xl'}
-								onClick={() => signOut()}
+								onClick={() => {
+									dispatch({
+										action: 'sign-out',
+										payload: null,
+									});
+									signOut();
+								}}
 								variant='outline'
 							>
 								Sign out
