@@ -30,7 +30,7 @@ import { useViewportSize } from '@mantine/hooks';
 const formatdate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
 
-const scheduleThresholdPerDay = 5;
+const scheduleThresholdPerDay = 10;
 
 const countSchedules = (schedules: Schedule[], date: Date) => {
 	const formattedDate = formatdate(date);
@@ -190,7 +190,7 @@ export default function BookSchedule() {
 							excludeDate={(date) => {
 								const count = countSchedules(schedules, date);
 								const isFull = count >= scheduleThresholdPerDay;
-								return date.getDay() === 0 || date.getDay() === 6 || isFull;
+								return isFull || date.getDay() === new Date().getDay();
 							}}
 							renderDay={(date) => {
 								const day = date.getDate();

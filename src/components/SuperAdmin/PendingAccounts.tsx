@@ -43,6 +43,7 @@ export default function PendingAccounts({ accounts }: Props) {
 				<thead>
 					<tr>
 						<th> Account Id </th>
+						<th> Name </th>
 						<th> Email </th>
 						<th> Action </th>
 					</tr>
@@ -51,6 +52,7 @@ export default function PendingAccounts({ accounts }: Props) {
 					{accounts.map((account) => (
 						<tr key={account.id}>
 							<td> {account.id} </td>
+							<td> {account.name} </td>
 							<td> {account.email} </td>
 							<td>
 								<Menu
@@ -67,7 +69,7 @@ export default function PendingAccounts({ accounts }: Props) {
 									</Menu.Target>
 
 									<Menu.Dropdown>
-										<Menu.Label>Application</Menu.Label>
+										<Menu.Label>Actions</Menu.Label>
 										<Menu.Item icon={<IconSettings size={14} />}>
 											Settings
 										</Menu.Item>
@@ -76,32 +78,6 @@ export default function PendingAccounts({ accounts }: Props) {
 										</Menu.Item>
 										<Menu.Item icon={<IconPhoto size={14} />}>
 											Gallery
-										</Menu.Item>
-										<Menu.Item
-											icon={<IconSearch size={14} />}
-											rightSection={
-												<Text
-													size='xs'
-													color='dimmed'
-												>
-													⌘K
-												</Text>
-											}
-										>
-											Search
-										</Menu.Item>
-
-										<Menu.Divider />
-
-										<Menu.Label>Danger zone</Menu.Label>
-										<Menu.Item icon={<IconArrowsLeftRight size={14} />}>
-											Transfer my data
-										</Menu.Item>
-										<Menu.Item
-											color='red'
-											icon={<IconTrash size={14} />}
-										>
-											Delete my account
 										</Menu.Item>
 									</Menu.Dropdown>
 								</Menu>
