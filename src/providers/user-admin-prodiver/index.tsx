@@ -25,6 +25,16 @@ export function UserAdminContextProvider(props: UserAdminProviderProps) {
 }
 
 const reducer = (state: Admin, { payload, action }: DispatchConfig) => {
+	if (action === 'publish-feedback') {
+		const feedbacks = state.feedbacks;
+		const index = feedbacks.findIndex(
+			(feedback: any) => feedback.id === payload
+		);
+		feedbacks[index].is_published = true;
+		Http.patch('/feedback/' + payload, { is_published: true });
+		return { ...state, feedbacks };
+	}
+
 	if (action === 'set-feedbacks') {
 		return { ...state, feedbacks: payload };
 	}

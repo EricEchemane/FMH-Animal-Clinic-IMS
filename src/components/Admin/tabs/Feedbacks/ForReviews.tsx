@@ -10,12 +10,26 @@ import {
 import { IconStar } from '@tabler/icons';
 import React from 'react';
 import { Feedback } from '~/entities-interfaces/feedback.entity';
+import { useUserAdmin } from '~/providers/user-admin-prodiver';
 
 type Props = {
 	feedbacks: Feedback[];
 };
 
 export default function ForReviews(props: Props) {
+	const { dispatch } = useUserAdmin();
+
+	const publish = (id: string) => {
+		const confirmed = window.confirm(
+			'Are you sure you want to publish this feedback?'
+		);
+		if (!confirmed) return;
+		dispatch({
+			action: 'publish-feedback',
+			payload: id,
+		});
+	};
+
 	return (
 		<Stack>
 			<Title
@@ -67,6 +81,7 @@ export default function ForReviews(props: Props) {
 								<Button
 									radius={'xl'}
 									variant='light'
+									onClick={() => publish(feedback.id)}
 								>
 									Publish
 								</Button>

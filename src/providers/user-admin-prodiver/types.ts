@@ -27,7 +27,8 @@ export interface DispatchConfig {
 		| 'archive-product'
 		| 'set-product-image-url'
 		| 'add-new-product'
-		| 'set-feedbacks';
+		| 'set-feedbacks'
+		| 'publish-feedback';
 
 	payload: any;
 }
