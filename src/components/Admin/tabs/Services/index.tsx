@@ -1,8 +1,8 @@
-import { Group, Stack, Table, Title } from '@mantine/core';
+import { Group, Stack, Title, SimpleGrid } from '@mantine/core';
 import React, { useEffect } from 'react';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
-import { ClinicService } from '../../../../entities-interfaces/service.entity';
+import ClinicService from './ClinicService';
 
 export default function Services() {
 	const { admin, dispatch } = useUserAdmin();
@@ -11,7 +11,7 @@ export default function Services() {
 
 	useEffect(() => {
 		Http.get('/service', {
-			onSuccess: (data: ClinicService[]) => {
+			onSuccess: (data) => {
 				dispatch({ action: 'set-services', payload: data });
 			},
 		});
@@ -38,24 +38,17 @@ export default function Services() {
 					<Title order={2}> Clinic Services </Title>
 				</Group>
 
-				<Table>
-					<thead>
-						<tr>
-							<th> Name </th>
-							<th> Description </th>
-							<th> Action </th>
-						</tr>
-					</thead>
-					<tbody>
-						{services.map((service) => (
-							<tr key={service.id}>
-								<td> {service.name} </td>
-								<td> {service.description} </td>
-								<td> Action </td>
-							</tr>
-						))}
-					</tbody>
-				</Table>
+				<SimpleGrid
+					cols={3}
+					spacing={'xl'}
+				>
+					{services.map((service) => (
+						<ClinicService
+							service={service}
+							key={service.id}
+						/>
+					))}
+				</SimpleGrid>
 			</Stack>
 		</>
 	);
