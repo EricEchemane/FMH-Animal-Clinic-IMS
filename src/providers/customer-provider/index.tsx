@@ -23,9 +23,5 @@ const reducer = (state: any, { payload, action }: DispatchConfig) => {
 		return { ...state, ...payload };
 	}
 
-	if (action === 'set-access-token') {
-		return { ...state, access_token: payload };
-	}
-
 	return state;
 };

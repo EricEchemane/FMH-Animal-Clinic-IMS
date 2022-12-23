@@ -57,7 +57,7 @@ export default function BookSchedule() {
 		Http.get('/scheduling/from-this-month-and-next', {
 			onSuccess: (data) => setSchedules(data),
 		});
-	}, [customer?.access_token]);
+	}, []);
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
@@ -75,7 +75,7 @@ export default function BookSchedule() {
 		});
 	};
 
-	if (!customer || !customer.access_token)
+	if (!customer)
 		return (
 			<>
 				<Head>
