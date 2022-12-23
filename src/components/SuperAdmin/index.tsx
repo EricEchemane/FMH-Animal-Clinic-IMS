@@ -2,13 +2,25 @@ import { Button, Card, Group, Stack, Title } from '@mantine/core';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import Http from '~/utils/http-adapter';
-import { User as Account } from '../../entities-interfaces/user.entity';
+import { User } from '../../entities-interfaces/user.entity';
+import CustomerAccounts from './CustomerAccounts';
+import PendingAccounts from './PendingAccounts';
+import StaffAccounts from './StaffAccounts';
 
+export type Account = User;
 type tabs = 'Pending' | 'Customers' | 'Staff';
 
 export default function SuperAdmin() {
 	const [tab, setTab] = useState<tabs>('Pending');
 	const [accounts, setAccounts] = useState<Account[]>([]);
+
+	const pendingAccounts = accounts.filter(
+		(account) => account.role === 'pending'
+	);
+	const customerAccounts = accounts.filter(
+		(account) => account.role === 'customer'
+	);
+	const staffAccounts = accounts.filter((account) => account.role === 'staff');
 
 	useEffect(() => {
 		Http.get('/user', {
@@ -62,17 +74,11 @@ export default function SuperAdmin() {
 					</Group>
 				</Card>
 
-				<Card
-					withBorder
-					px='xl'
-				>
-					<Title
-						order={2}
-						color={'dimmed'}
-					>
-						{tab}
-					</Title>
-				</Card>
+				{tab === 'Pending' && <PendingAccounts accounts={pendingAccounts} />}
+				{tab === 'Staff' && <StaffAccounts accounts={staffAccounts} />}
+				{tab === 'Customers' && (
+					<CustomerAccounts accounts={customerAccounts} />
+				)}
 			</Stack>
 		</>
 	);
