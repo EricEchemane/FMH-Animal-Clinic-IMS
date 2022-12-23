@@ -34,7 +34,8 @@ export interface DispatchConfig {
 		| 'publish-feedback'
 		| 'set-services'
 		| 'update-service'
-		| 'remove-service';
+		| 'remove-service'
+		| 'add-new-service';
 
 	payload: any;
 }

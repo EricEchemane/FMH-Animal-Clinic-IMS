@@ -15,20 +15,23 @@ import ClinicService from './ClinicService';
 import { ClinicService as ClinicServiceType } from '~/entities-interfaces/service.entity';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
+import { IconPlus } from '@tabler/icons';
 
 export default function Services() {
 	const { admin, dispatch } = useUserAdmin();
 	const [isLoading, setIsLoading] = useState(false);
+	const [addServiceModalIsOpen, setAddServiceModalIsOpen] = useState(false);
+	const services = admin?.services || [];
 	const [selectedService, setSelectedService] = useState<
 		ClinicServiceType | undefined
 	>();
+
 	const form = useForm({
 		initialValues: {
 			name: selectedService?.name || '',
 			description: selectedService?.description || '',
 		},
 	});
-	const services = admin?.services || [];
 
 	const save = (e: FormEvent) => {
 		e.preventDefault();
@@ -42,6 +45,23 @@ export default function Services() {
 					message: 'Service updated successfully',
 					color: 'green',
 				});
+			},
+		});
+	};
+
+	const add = (e: FormEvent) => {
+		e.preventDefault();
+		Http.post(`/service`, form.values, {
+			loadingToggler: setIsLoading,
+			onSuccess: (payload) => {
+				dispatch({ action: 'add-new-service', payload });
+				showNotification({
+					title: 'Saved!',
+					message: 'Service added successfully',
+					color: 'green',
+				});
+				setAddServiceModalIsOpen(false);
+				form.reset();
 			},
 		});
 	};
@@ -76,11 +96,18 @@ export default function Services() {
 						top: 0,
 						zIndex: 2,
 						backdropFilter: 'blur(3rem)',
-						padding: '1rem',
+						padding: '2rem 1rem',
 					}}
 					position='apart'
 				>
 					<Title order={2}> Clinic Services </Title>
+					<Button
+						leftIcon={<IconPlus />}
+						radius={'xl'}
+						onClick={() => setAddServiceModalIsOpen(true)}
+					>
+						Add new service
+					</Button>
 				</Group>
 
 				<SimpleGrid
@@ -100,6 +127,49 @@ export default function Services() {
 			</Stack>
 
 			<Modal
+				opened={addServiceModalIsOpen}
+				onClose={() => setAddServiceModalIsOpen(false)}
+				title='Add New Service'
+				size={'lg'}
+				radius='lg'
+				closeOnClickOutside={!isLoading}
+				withCloseButton={!isLoading}
+				closeOnEscape={!isLoading}
+			>
+				<form onSubmit={add}>
+					<Stack>
+						<TextInput
+							size='lg'
+							label='Service Name'
+							placeholder='Service Name'
+							{...form.getInputProps('name')}
+							required
+						/>
+						<Textarea
+							size='lg'
+							label='Description'
+							placeholder='Description'
+							minRows={5}
+							{...form.getInputProps('description')}
+							required
+						/>
+						<Group
+							my='md'
+							position='right'
+						>
+							<Button
+								type='submit'
+								loading={isLoading}
+								disabled={!form.isDirty()}
+							>
+								Save
+							</Button>
+						</Group>
+					</Stack>
+				</form>
+			</Modal>
+
+			<Modal
 				opened={selectedService !== undefined}
 				onClose={() => setSelectedService(undefined)}
 				title='Edit Service'
@@ -110,8 +180,8 @@ export default function Services() {
 					<Stack>
 						<TextInput
 							size='lg'
-							label='Name'
-							placeholder='Name'
+							label='Service Name'
+							placeholder='Service Name'
 							{...form.getInputProps('name')}
 							required
 						/>
