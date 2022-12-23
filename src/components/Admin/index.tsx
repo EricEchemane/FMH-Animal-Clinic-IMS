@@ -29,7 +29,6 @@ import {
 } from '@tabler/icons';
 import { useSession } from 'next-auth/react';
 import Appointments from './tabs/Appointments';
-import Accounts from './tabs/Accounts';
 import Feedbacks from './tabs/Feedbacks';
 import Inventory from './tabs/Inventory';
 import Services from './tabs/Services';
@@ -133,15 +132,6 @@ export default function Admin(props: any) {
 								>
 									Services
 								</Button>
-								<Button
-									size='md'
-									className={css.navButton}
-									leftIcon={<IconUsers />}
-									variant={currentTab === 'accounts' ? 'light' : 'subtle'}
-									onClick={() => setCurrentTab('accounts')}
-								>
-									User Accounts
-								</Button>
 							</Stack>
 
 							<Group position='apart'>
@@ -220,9 +210,6 @@ export default function Admin(props: any) {
 					</section>
 					<section hidden={currentTab !== 'services'}>
 						<Services />
-					</section>
-					<section hidden={currentTab !== 'accounts'}>
-						<Accounts />
 					</section>
 				</main>
 			</div>

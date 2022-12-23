@@ -1,9 +1,4 @@
-export type Tabs =
-	| 'appointments'
-	| 'services'
-	| 'inventory'
-	| 'feedbacks'
-	| 'accounts';
+export type Tabs = 'appointments' | 'services' | 'inventory' | 'feedbacks';
 export type AppointmentTabs = 'Pending' | 'Done' | 'Cancelled' | 'All';
 export type InventoryTabs = 'all' | 'add' | 'archive';
 export type FeedbackTabs = 'To Review' | 'Published';
