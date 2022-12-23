@@ -106,7 +106,19 @@
   display: flex;
 }
 
-.getServiceButton {
+.getServiceCon a {
+  display: flex;
+  font-weight: bold;
+  font-size: 1.2rem;
+  align-items: center;
+  color: var(--brown);
+}
+
+.getServiceCon a:hover {
+  color: #f3f5f9;
+}
+
+/* .getServiceButton {
   color: var(--brown);
   font-size: 1.2rem;
   text-decoration: none;
@@ -116,7 +128,7 @@
 
 .getServiceButton:hover {
   color: #f3f5f9;
-}
+} */
 
 /* ======================================media================= */
 

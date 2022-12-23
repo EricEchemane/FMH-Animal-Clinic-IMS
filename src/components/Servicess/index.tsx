@@ -12,6 +12,7 @@ import xrayImg from './assets/X-ray.svg';
 import minorSurgeryImg from './assets/Minor-Surgery.svg';
 import petGroomingImg from './assets/Pet-Grooming.svg';
 import confinementImg from './assets/Confinement.svg';
+import Link from 'next/link'
 
 
 
@@ -52,12 +53,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -79,12 +77,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -105,12 +100,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -131,12 +123,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -157,12 +146,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -181,12 +167,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -207,12 +190,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -233,12 +213,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -259,12 +236,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 
@@ -285,12 +259,9 @@ export default function Service() {
 								</p>
 							</div>
 							<div className={style.getServiceCon}>
-								<a
-									href='#'
-									className={style.getServiceButton}
-								>
+								<Link href="/book-schedule">
 									Get Service <i className='bx bx-right-arrow-alt'></i>
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>
