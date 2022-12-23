@@ -1,5 +1,6 @@
 import React from 'react'
 import css from './style.module.css'
+import { Button, Group } from '@mantine/core';
 
 
 
@@ -22,12 +23,16 @@ export default function Feedback() {
 							<label htmlFor="Message">Write a feedback</label>
 							<textarea className={css.textArea} name="message" id="message" cols={30} rows={10} placeholder='Message'></textarea>
 						</div>
-						<div className={css.buttonContainer}>
-							<button type='submit'>Submit</button>
-						</div>
+						{/* <div className={css.buttonContainer}> */}
+						<Group>
+							<Button color="yellow" size="md">
+								Submit
+							</Button>
+						</Group>
+						{/* </div> */}
 					</div>
 					<div className={css.instructions}>
-						<h1>How to write feedback</h1>
+						<h1>How to write review</h1>
 						<ul>
 							<li>
 								{"Think about your overall experience with the clinic. Did you have a positive or negative experience? What stood out to you?"}
