@@ -11,6 +11,8 @@ import {
 	Modal,
 	TextInput,
 	Textarea,
+	Badge,
+	Tooltip,
 } from '@mantine/core';
 import { signIn, signOut } from 'next-auth/react';
 import Head from 'next/head';
@@ -27,15 +29,18 @@ import Router from 'next/router';
 import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
 
-const formatdate = (date: Date) => dayjs(date).format('YYYY-MM-DD');
+const formatdate = (date: Date) => dayjs(new Date(date)).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
 
 const scheduleThresholdPerDay = 10;
 
 const countSchedules = (schedules: Schedule[], date: Date) => {
 	const formattedDate = formatdate(date);
-	return schedules.filter((sched) => sched.date.toString() === formattedDate)
-		.length;
+	return schedules.filter((sched) => {
+		const d = new Date(sched.date);
+		const schedDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+		return formatdate(schedDate) === formattedDate;
+	}).length;
 };
 
 export default function BookSchedule() {
@@ -55,7 +60,8 @@ export default function BookSchedule() {
 
 	useEffect(() => {
 		Http.get('/scheduling/from-this-month-and-next', {
-			onSuccess: (data) => setSchedules(data),
+			onSuccess: (data: Schedule[]) => setSchedules(data),
+			loadingToggler: setIsLoading,
 		});
 	}, []);
 
@@ -70,7 +76,10 @@ export default function BookSchedule() {
 		};
 		Http.post('/scheduling', payload, {
 			onFail: alert,
-			onSuccess: () => setSubmitted(true),
+			onSuccess: () => {
+				setSubmitted(true);
+				Router.reload();
+			},
 			loadingToggler: setIsSubmitting,
 		});
 	};
@@ -178,7 +187,9 @@ export default function BookSchedule() {
 						sx={{ position: 'relative' }}
 					>
 						<LoadingOverlay visible={isLoading} />
+
 						<Calendar
+							fullWidth
 							size={width > 700 ? 'xl' : 'md'}
 							value={chosenDate}
 							onChange={setChosenDate}
@@ -196,14 +207,65 @@ export default function BookSchedule() {
 								const day = date.getDate();
 								const count = countSchedules(schedules, date);
 								const isFull = count >= scheduleThresholdPerDay;
+								const done = date < new Date();
+
+								let badgeColor = isFull ? 'red' : 'green';
+								if (done) badgeColor = 'gray';
+
+								let badgeText: any = count + ' booked';
+								if (isFull) badgeText = 'Full';
+								if (done) badgeText = 'Done';
+
 								return (
-									<div>
-										<div className={isFull ? style.full : ''}>
-											{isFull ? 'Full' : day}{' '}
+									<Tooltip label='Book now!'>
+										<div>
+											<div className={isFull && !done ? style.full : ''}>
+												<Group
+													position='apart'
+													px={'xl'}
+												>
+													<div>{day}</div>
+													<Badge
+														style={{ textTransform: 'capitalize' }}
+														size='lg'
+														color={badgeColor}
+													>
+														{badgeText}
+													</Badge>
+												</Group>
+											</div>
 										</div>
-									</div>
+									</Tooltip>
 								);
 							}}
+							styles={(theme) => ({
+								cell: {
+									border: `1px solid ${
+										theme.colorScheme === 'dark'
+											? theme.colors.dark[4]
+											: theme.colors.gray[2]
+									}`,
+								},
+								day: {
+									borderRadius: 0,
+									height: 70,
+									fontSize: theme.fontSizes.lg,
+								},
+								weekday: { fontSize: theme.fontSizes.lg },
+								weekdayCell: {
+									fontSize: theme.fontSizes.xl,
+									backgroundColor:
+										theme.colorScheme === 'dark'
+											? theme.colors.dark[5]
+											: theme.colors.gray[0],
+									border: `1px solid ${
+										theme.colorScheme === 'dark'
+											? theme.colors.dark[4]
+											: theme.colors.gray[2]
+									}`,
+									height: 70,
+								},
+							})}
 						/>
 					</Stack>
 				</Stack>
