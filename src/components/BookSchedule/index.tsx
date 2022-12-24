@@ -189,8 +189,8 @@ export default function BookSchedule() {
 						<LoadingOverlay visible={isLoading} />
 
 						<Calendar
-							fullWidth
-							size={width > 700 ? 'xl' : 'md'}
+							fullWidth={width > 1000 ? true : false}
+							size={width > 7000 ? 'lg' : 'md'}
 							value={chosenDate}
 							onChange={setChosenDate}
 							minDate={dayjs(new Date()).toDate()}
@@ -220,19 +220,23 @@ export default function BookSchedule() {
 									<Tooltip label='Book now!'>
 										<div>
 											<div className={isFull && !done ? style.full : ''}>
-												<Group
-													position='apart'
-													px={'xl'}
-												>
-													<div>{day}</div>
-													<Badge
-														style={{ textTransform: 'capitalize' }}
-														size='lg'
-														color={badgeColor}
+												{width > 1000 ? (
+													<Group
+														position='apart'
+														px={'xl'}
 													>
-														{badgeText}
-													</Badge>
-												</Group>
+														<div>{day}</div>
+														<Badge
+															style={{ textTransform: 'capitalize' }}
+															size='lg'
+															color={badgeColor}
+														>
+															{badgeText}
+														</Badge>
+													</Group>
+												) : (
+													<div>{isFull ? 'Full' : day}</div>
+												)}
 											</div>
 										</div>
 									</Tooltip>
