@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import {
 	Button,
 	Card,
@@ -13,17 +13,25 @@ import {
 	TextInput,
 	Textarea,
 } from '@mantine/core';
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import Router from 'next/router';
 import { useForm } from '@mantine/form';
 import Head from 'next/head';
 import { IconPaw } from '@tabler/icons';
+import Http from '~/utils/http-adapter';
+import { showNotification } from '@mantine/notifications';
+import useCustomerSignIn from '~/hooks/useCustomerSignIn';
+import { useViewportSize } from '@mantine/hooks';
 
 export default function Feedback() {
+	useCustomerSignIn();
+	const { width } = useViewportSize();
+
 	const { data: session } = useSession({
 		required: true,
 		onUnauthenticated() {
-			Router.replace('/');
+			alert('You must be signed in to leave a feedback');
+			signIn('google');
 		},
 	});
 
@@ -43,10 +51,25 @@ export default function Feedback() {
 		},
 	});
 
+	const [isLoading, setIsLoading] = useState(false);
+
 	const submitFeedback = async (e: FormEvent) => {
 		e.preventDefault();
 		const errors = feedbackForm.validate();
 		if (errors.hasErrors) return;
+
+		Http.post('/feedback', feedbackForm.values, {
+			loadingToggler: setIsLoading,
+			onFail: alert,
+			onSuccess: () => {
+				showNotification({
+					message: 'Thank you for your feedback!',
+					title: 'Feedback submitted',
+					icon: <IconPaw size={24} />,
+					color: 'green',
+				});
+			},
+		});
 	};
 
 	useEffect(() => {
@@ -66,13 +89,17 @@ export default function Feedback() {
 			</Head>
 
 			<SimpleGrid
-				cols={2}
+				cols={width < 800 ? 1 : 2}
 				m='auto'
 				my={'xl'}
 				spacing='xl'
 				sx={{ maxWidth: '1000px' }}
+				p={'lg'}
 			>
-				<form onSubmit={submitFeedback}>
+				<form
+					onSubmit={submitFeedback}
+					method='post'
+				>
 					<Stack mt={'xl'}>
 						<Stack>
 							<Title order={2}>How was your experience with our clinic?</Title>
@@ -110,6 +137,7 @@ export default function Feedback() {
 								size='md'
 								color={'orange'}
 								type='submit'
+								loading={isLoading}
 							>
 								Submit review
 							</Button>
@@ -118,6 +146,7 @@ export default function Feedback() {
 								color={'orange'}
 								variant='outline'
 								onClick={() => Router.back()}
+								disabled={isLoading}
 							>
 								Cancel
 							</Button>
