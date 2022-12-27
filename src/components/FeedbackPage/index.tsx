@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import {
 	Button,
 	Card,
@@ -18,7 +18,6 @@ import Router from 'next/router';
 import { useForm } from '@mantine/form';
 import Head from 'next/head';
 import { IconPaw } from '@tabler/icons';
-import BACKG from './assets/BACKG.svg';
 
 export default function Feedback() {
 	const { data: session } = useSession({
@@ -33,9 +32,22 @@ export default function Feedback() {
 			name: '',
 			email: '',
 			message: '',
-			rating: 0,
+			rating: 5,
+		},
+		validate: {
+			message: (value) => {
+				if (value.length < 10) {
+					return 'Message must be at least 10 characters long';
+				}
+			},
 		},
 	});
+
+	const submitFeedback = async (e: FormEvent) => {
+		e.preventDefault();
+		const errors = feedbackForm.validate();
+		if (errors.hasErrors) return;
+	};
 
 	useEffect(() => {
 		if (session && session.user) {
@@ -60,7 +72,7 @@ export default function Feedback() {
 				spacing='xl'
 				sx={{ maxWidth: '1000px' }}
 			>
-				<form>
+				<form onSubmit={submitFeedback}>
 					<Stack mt={'xl'}>
 						<Stack>
 							<Title order={2}>How was your experience with our clinic?</Title>
@@ -89,14 +101,15 @@ export default function Feedback() {
 							placeholder='Your comment'
 							{...feedbackForm.getInputProps('message')}
 							required
-							readOnly
 							size='lg'
 							minRows={5}
+							error={feedbackForm.errors.message}
 						/>
 						<Group mt='md'>
 							<Button
 								size='md'
 								color={'orange'}
+								type='submit'
 							>
 								Submit review
 							</Button>
@@ -126,7 +139,7 @@ export default function Feedback() {
 						How to write review
 					</Title>
 					<List
-						spacing='xs'
+						spacing='md'
 						size='sm'
 						center
 						icon={
