@@ -28,6 +28,7 @@ import ServiceSelect from './ServiceSelect';
 import Router from 'next/router';
 import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
+import Appointments from './Appointments';
 
 const formatdate = (date: Date) => dayjs(new Date(date)).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
@@ -57,6 +58,9 @@ export default function BookSchedule() {
 	const [schedules, setSchedules] = useState<Schedule[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [currentTab, setCurrentTab] = useState<'booking' | 'appointments'>(
+		'booking'
+	);
 
 	useEffect(() => {
 		Http.get('/scheduling/from-this-month-and-next', {
@@ -145,134 +149,153 @@ export default function BookSchedule() {
 							</div>
 						</Group>
 
-						<Button
-							variant='outline'
-							radius={'xl'}
-							onClick={() => signOut()}
-						>
-							Sign Out
-						</Button>
-					</Group>
-				</Card>
-				<Stack
-					my='xl'
-					spacing={'xl'}
-				>
-					{!chosenDate ? (
-						<Text
-							align='center'
-							color={'violet'}
-							weight={'bold'}
-						>
-							Please choose a date for your appointment by tapping a date from
-							the calendar
-						</Text>
-					) : (
-						<Group position={'apart'}>
-							<div>
-								<Text>Chosen Date:</Text>
-								<Text weight={'bold'}>{formatChosenDate(chosenDate)}</Text>
-							</div>
+						<Group>
 							<Button
-								onClick={() => setShowModal(true)}
-								size='lg'
+								variant={currentTab === 'booking' ? 'filled' : 'light'}
+								radius={'xl'}
+								onClick={() => setCurrentTab('booking')}
 							>
-								Book Now
+								Booking
+							</Button>
+							<Button
+								variant={currentTab === 'appointments' ? 'filled' : 'light'}
+								radius={'xl'}
+								onClick={() => setCurrentTab('appointments')}
+							>
+								My Appointments
+							</Button>
+							<Button
+								variant='outline'
+								radius={'xl'}
+								onClick={() => signOut()}
+							>
+								Sign Out
 							</Button>
 						</Group>
-					)}
-
+					</Group>
+				</Card>
+				{currentTab === 'appointments' && <Appointments />}
+				{currentTab === 'booking' && (
 					<Stack
-						align={'center'}
-						sx={{ position: 'relative' }}
+						my='xl'
+						spacing={'xl'}
 					>
-						<LoadingOverlay visible={isLoading} />
+						{!chosenDate ? (
+							<Text
+								align='center'
+								color={'violet'}
+								weight={'bold'}
+							>
+								Please choose a date for your appointment by tapping a date from
+								the calendar
+							</Text>
+						) : (
+							<Group position={'apart'}>
+								<div>
+									<Text>Chosen Date:</Text>
+									<Text weight={'bold'}>{formatChosenDate(chosenDate)}</Text>
+								</div>
+								<Button
+									onClick={() => setShowModal(true)}
+									size='lg'
+								>
+									Book Now
+								</Button>
+							</Group>
+						)}
 
-						<Calendar
-							fullWidth={width > 1000 ? true : false}
-							size={width > 7000 ? 'lg' : 'md'}
-							value={chosenDate}
-							onChange={setChosenDate}
-							minDate={dayjs(new Date()).toDate()}
-							maxDate={dayjs(new Date())
-								.add(1, 'month')
-								.endOf('month')
-								.toDate()}
-							excludeDate={(date) => {
-								const count = countSchedules(schedules, date);
-								const isFull = count >= scheduleThresholdPerDay;
-								return isFull || date.getDay() === new Date().getDay();
-							}}
-							renderDay={(date) => {
-								const day = date.getDate();
-								const count = countSchedules(schedules, date);
-								const isFull = count >= scheduleThresholdPerDay;
-								const done = date < new Date();
+						<Stack
+							align={'center'}
+							sx={{ position: 'relative' }}
+						>
+							<LoadingOverlay visible={isLoading} />
 
-								let badgeColor = isFull ? 'red' : 'green';
-								if (done) badgeColor = 'gray';
+							<Calendar
+								fullWidth={width > 1000 ? true : false}
+								size={width > 7000 ? 'lg' : 'md'}
+								value={chosenDate}
+								onChange={setChosenDate}
+								minDate={dayjs(new Date()).toDate()}
+								maxDate={dayjs(new Date())
+									.add(1, 'month')
+									.endOf('month')
+									.toDate()}
+								excludeDate={(date) => {
+									const count = countSchedules(schedules, date);
+									const isFull = count >= scheduleThresholdPerDay;
+									return isFull || date.getDay() === new Date().getDay();
+								}}
+								renderDay={(date) => {
+									const day = date.getDate();
+									const count = countSchedules(schedules, date);
+									const isFull = count >= scheduleThresholdPerDay;
+									const done = date < new Date();
 
-								let badgeText: any = count + ' booked';
-								if (isFull) badgeText = 'Full';
-								if (done) badgeText = 'Done';
+									let badgeColor = isFull ? 'red' : 'green';
+									if (done) badgeColor = 'gray';
 
-								return (
-									<Tooltip label='Book now!'>
-										<div>
-											<div className={isFull && !done ? style.full : ''}>
-												{width > 1000 ? (
-													<Group
-														position='apart'
-														px={'xl'}
-													>
-														<div>{day}</div>
-														<Badge
-															style={{ textTransform: 'capitalize' }}
-															size='lg'
-															color={badgeColor}
+									let badgeText: any = count + ' booked';
+									if (isFull) badgeText = 'Full';
+									if (done) badgeText = 'Done';
+
+									return (
+										<Tooltip label='Book now!'>
+											<div>
+												<div className={isFull && !done ? style.full : ''}>
+													{width > 1000 ? (
+														<Group
+															position='apart'
+															px={'xl'}
 														>
-															{badgeText}
-														</Badge>
-													</Group>
-												) : (
-													<div>{isFull ? 'Full' : day}</div>
-												)}
+															<div>{day}</div>
+															<Badge
+																style={{ textTransform: 'capitalize' }}
+																size='lg'
+																color={badgeColor}
+															>
+																{badgeText}
+															</Badge>
+														</Group>
+													) : (
+														<div>{isFull ? 'Full' : day}</div>
+													)}
+												</div>
 											</div>
-										</div>
-									</Tooltip>
-								);
-							}}
-							styles={(theme) => ({
-								cell: {
-									border: `1px solid ${
-										theme.colorScheme === 'dark'
-											? theme.colors.dark[4]
-											: theme.colors.gray[2]
-									}`,
-								},
-								day: {
-									borderRadius: 0,
-									height: 70,
-									fontSize: theme.fontSizes.lg,
-								},
-								weekday: { fontSize: theme.fontSizes.lg },
-								weekdayCell: {
-									fontSize: theme.fontSizes.xl,
-									backgroundColor:
-										theme.colorScheme === 'dark'
-											? theme.colors.dark[5]
-											: theme.colors.gray[0],
-									border: `1px solid ${
-										theme.colorScheme === 'dark'
-											? theme.colors.dark[4]
-											: theme.colors.gray[2]
-									}`,
-									height: 70,
-								},
-							})}
-						/>
+										</Tooltip>
+									);
+								}}
+								styles={(theme) => ({
+									cell: {
+										border: `1px solid ${
+											theme.colorScheme === 'dark'
+												? theme.colors.dark[4]
+												: theme.colors.gray[2]
+										}`,
+									},
+									day: {
+										borderRadius: 0,
+										height: 70,
+										fontSize: theme.fontSizes.lg,
+									},
+									weekday: { fontSize: theme.fontSizes.lg },
+									weekdayCell: {
+										fontSize: theme.fontSizes.xl,
+										backgroundColor:
+											theme.colorScheme === 'dark'
+												? theme.colors.dark[5]
+												: theme.colors.gray[0],
+										border: `1px solid ${
+											theme.colorScheme === 'dark'
+												? theme.colors.dark[4]
+												: theme.colors.gray[2]
+										}`,
+										height: 70,
+									},
+								})}
+							/>
+						</Stack>
 					</Stack>
-				</Stack>
+				)}
 			</Stack>
 
 			<Modal

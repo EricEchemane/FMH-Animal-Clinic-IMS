@@ -306,7 +306,7 @@ function getStatusBadgeColor(status: ScheduleStatus) {
 	}
 }
 
-function getServiceBadgeColor(service: ClinicServices) {
+export function getServiceBadgeColor(service: ClinicServices) {
 	switch (service) {
 		case 'Check-up':
 			return 'red';
