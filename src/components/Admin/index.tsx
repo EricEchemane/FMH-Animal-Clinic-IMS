@@ -79,7 +79,7 @@ export default function Admin(props: any) {
 								order={2}
 								color={'dimmed'}
 							>
-								Admin
+								{props.user.role}
 							</Title>
 							<Title
 								color={'violet'}
@@ -95,42 +95,50 @@ export default function Admin(props: any) {
 							sx={{ height: '85%' }}
 						>
 							<Stack>
-								<Button
-									size='md'
-									className={css.navButton}
-									leftIcon={<IconCalendarEvent />}
-									variant={currentTab === 'appointments' ? 'light' : 'subtle'}
-									onClick={() => setCurrentTab('appointments')}
-								>
-									Appointments
-								</Button>
-								<Button
-									size='md'
-									className={css.navButton}
-									leftIcon={<IconBuildingWarehouse />}
-									variant={currentTab === 'inventory' ? 'light' : 'subtle'}
-									onClick={() => setCurrentTab('inventory')}
-								>
-									Inventory
-								</Button>
-								<Button
-									size='md'
-									className={css.navButton}
-									leftIcon={<IconUserExclamation />}
-									variant={currentTab === 'feedbacks' ? 'light' : 'subtle'}
-									onClick={() => setCurrentTab('feedbacks')}
-								>
-									Feedbacks
-								</Button>
-								<Button
-									size='md'
-									className={css.navButton}
-									leftIcon={<IconPaw />}
-									variant={currentTab === 'services' ? 'light' : 'subtle'}
-									onClick={() => setCurrentTab('services')}
-								>
-									Services
-								</Button>
+								{props.user.role === 'veterinarian' && (
+									<Button
+										size='md'
+										className={css.navButton}
+										leftIcon={<IconCalendarEvent />}
+										variant={currentTab === 'appointments' ? 'light' : 'subtle'}
+										onClick={() => setCurrentTab('appointments')}
+									>
+										Appointments
+									</Button>
+								)}
+								{props.user.role === 'staff' && (
+									<Button
+										size='md'
+										className={css.navButton}
+										leftIcon={<IconBuildingWarehouse />}
+										variant={currentTab === 'inventory' ? 'light' : 'subtle'}
+										onClick={() => setCurrentTab('inventory')}
+									>
+										Inventory
+									</Button>
+								)}
+								{props.user.role === 'staff' && (
+									<Button
+										size='md'
+										className={css.navButton}
+										leftIcon={<IconUserExclamation />}
+										variant={currentTab === 'feedbacks' ? 'light' : 'subtle'}
+										onClick={() => setCurrentTab('feedbacks')}
+									>
+										Feedbacks
+									</Button>
+								)}
+								{props.user.role === 'veterinarian' && (
+									<Button
+										size='md'
+										className={css.navButton}
+										leftIcon={<IconPaw />}
+										variant={currentTab === 'services' ? 'light' : 'subtle'}
+										onClick={() => setCurrentTab('services')}
+									>
+										Services
+									</Button>
+								)}
 							</Stack>
 
 							<Group position='apart'>

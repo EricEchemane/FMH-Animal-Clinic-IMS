@@ -28,7 +28,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	try {
 		const user = jwt.verify(token, process.env.JWTSECRET) as User;
 
-		if (user.role === UserRole.staff || user.role === UserRole.super_admin) {
+		if (
+			user.role === UserRole.staff ||
+			user.role === UserRole.super_admin ||
+			user.role === UserRole.veterinarian
+		) {
 			return {
 				props: { user },
 			};
