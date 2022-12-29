@@ -57,5 +57,5 @@ export interface SignInDto {
 export interface SignUpDto {
 	email: string;
 	password: string;
-	role: UserRole.admin;
+	role: UserRole.pending;
 }
