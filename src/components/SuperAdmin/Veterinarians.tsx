@@ -1,6 +1,17 @@
-import { Card, Group, Table, TextInput, Title } from '@mantine/core';
-import { IconSearch } from '@tabler/icons';
+import {
+	ActionIcon,
+	Card,
+	Group,
+	Menu,
+	Table,
+	TextInput,
+	Title,
+} from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { IconDots, IconSearch, IconUserX } from '@tabler/icons';
 import React, { useEffect } from 'react';
+import { UserRole } from '~/providers/customer-provider/types';
+import Http from '~/utils/http-adapter';
 import { Account } from './index';
 
 type Props = {
@@ -28,6 +39,31 @@ export default function VeterinariansAccounts({ accounts: _accounts }: Props) {
 				return 0;
 			});
 		setAccounts(filteredAccounts);
+	};
+
+	const demoteStaff = (accountId: string) => {
+		const confirmed = confirm('Are you sure you want to demote this account?');
+		if (!confirmed) return;
+		Http.patch(
+			`/user/${accountId}`,
+			{ role: UserRole.pending },
+			{
+				onFail: (message) => {
+					showNotification({
+						title: 'Failed to promote account',
+						message,
+						color: 'red',
+					});
+				},
+				onSuccess: () => {
+					showNotification({
+						title: 'Account demoted',
+						message: 'Account has been demoted',
+						color: 'green',
+					});
+				},
+			}
+		);
 	};
 
 	return (
@@ -71,7 +107,31 @@ export default function VeterinariansAccounts({ accounts: _accounts }: Props) {
 							<td> {account.id} </td>
 							<td> {account.name} </td>
 							<td> {account.email} </td>
-							<td> Action </td>
+							<td>
+								<Menu
+									shadow='md'
+									width={200}
+								>
+									<Menu.Target>
+										<ActionIcon
+											color='violet'
+											size='lg'
+										>
+											<IconDots size={26} />
+										</ActionIcon>
+									</Menu.Target>
+
+									<Menu.Dropdown>
+										<Menu.Label>Actions</Menu.Label>
+										<Menu.Item
+											onClick={() => demoteStaff(account.id)}
+											icon={<IconUserX size={14} />}
+										>
+											Demote staff
+										</Menu.Item>
+									</Menu.Dropdown>
+								</Menu>
+							</td>
 						</tr>
 					))}
 				</tbody>

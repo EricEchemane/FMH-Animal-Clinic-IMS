@@ -45,10 +45,8 @@ export default function StaffAccounts({
 		setAccounts(filteredAccounts);
 	};
 
-	const demoteToStaff = (accountId: string) => {
-		const confirmed = confirm(
-			'Are you sure you want to demote this account to staff?'
-		);
+	const demoteStaff = (accountId: string) => {
+		const confirmed = confirm('Are you sure you want to demote this account?');
 		if (!confirmed) return;
 		Http.patch(
 			`/user/${accountId}`,
@@ -64,8 +62,8 @@ export default function StaffAccounts({
 				onSuccess: () => {
 					onDemoteToStaff(accountId);
 					showNotification({
-						title: 'Account promoted to staff',
-						message: 'Account has been promoted to staff',
+						title: 'Account demoted',
+						message: 'Account has been demoted',
 						color: 'green',
 					});
 				},
@@ -131,10 +129,10 @@ export default function StaffAccounts({
 									<Menu.Dropdown>
 										<Menu.Label>Actions</Menu.Label>
 										<Menu.Item
-											onClick={() => demoteToStaff(account.id)}
+											onClick={() => demoteStaff(account.id)}
 											icon={<IconUserX size={14} />}
 										>
-											Demote to staff
+											Demote staff
 										</Menu.Item>
 									</Menu.Dropdown>
 								</Menu>
