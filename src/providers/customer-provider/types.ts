@@ -1,6 +1,5 @@
 export enum UserRole {
-	vet = 'vet',
-	admin = 'admin',
+	veterinarian = 'veterinarian',
 	staff = 'staff',
 	super_admin = 'super_admin',
 	customer = 'customer',

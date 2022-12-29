@@ -8,9 +8,10 @@ import { User } from '../../entities-interfaces/user.entity';
 import CustomerAccounts from './CustomerAccounts';
 import PendingAccounts from './PendingAccounts';
 import StaffAccounts from './StaffAccounts';
+import VeterinariansAccounts from './Veterinarians';
 
 export type Account = User;
-type tabs = 'Pending' | 'Customers' | 'Staff';
+type tabs = 'Pending' | 'Customers' | 'Staff' | 'Veterinarians';
 
 export default function SuperAdmin() {
 	const { dispatch } = useUserAdmin();
@@ -24,6 +25,10 @@ export default function SuperAdmin() {
 		(account) => account.role === 'customer'
 	);
 	const staffAccounts = accounts.filter((account) => account.role === 'staff');
+
+	const vetAccounts = accounts.filter(
+		(account) => account.role === 'veterinarian'
+	);
 
 	const handlePromoteToStaff = (accountId: string) => {
 		const newAccounts = accounts.map((account) => {
@@ -97,6 +102,13 @@ export default function SuperAdmin() {
 								Staff
 							</Button>
 							<Button
+								variant={tab === 'Veterinarians' ? 'filled' : 'light'}
+								radius='xl'
+								onClick={() => setTab('Veterinarians')}
+							>
+								Veterinarians
+							</Button>
+							<Button
 								variant='outline'
 								radius='xl'
 								onClick={signout}
@@ -121,6 +133,9 @@ export default function SuperAdmin() {
 				)}
 				{tab === 'Customers' && (
 					<CustomerAccounts accounts={customerAccounts} />
+				)}
+				{tab === 'Veterinarians' && (
+					<VeterinariansAccounts accounts={vetAccounts} />
 				)}
 			</Stack>
 		</>

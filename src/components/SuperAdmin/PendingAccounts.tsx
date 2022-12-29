@@ -4,7 +4,6 @@ import {
 	Menu,
 	Table,
 	Title,
-	Text,
 	ActionIcon,
 	Group,
 	TextInput,
@@ -47,6 +46,34 @@ export default function PendingAccounts({
 					showNotification({
 						title: 'Account promoted to staff',
 						message: 'Account has been promoted to staff',
+						color: 'green',
+					});
+				},
+			}
+		);
+	};
+	const promoteToVet = (accountId: string) => {
+		const confirmed = confirm(
+			'Are you sure you want to promote this account to veterinarian?'
+		);
+		if (!confirmed) return;
+
+		Http.patch(
+			`/user/${accountId}`,
+			{ role: UserRole.veterinarian },
+			{
+				onFail: (message) => {
+					showNotification({
+						title: 'Failed to promote account',
+						message,
+						color: 'red',
+					});
+				},
+				onSuccess: () => {
+					onPromoteToStaff(accountId);
+					showNotification({
+						title: 'Account promoted',
+						message: 'Account has been promoted to veterinarian',
 						color: 'green',
 					});
 				},
@@ -118,7 +145,7 @@ export default function PendingAccounts({
 							<td>
 								<Menu
 									shadow='md'
-									width={200}
+									width={250}
 								>
 									<Menu.Target>
 										<ActionIcon
@@ -135,7 +162,13 @@ export default function PendingAccounts({
 											onClick={() => promoteToStaff(account.id)}
 											icon={<IconUserCheck size={14} />}
 										>
-											Promote to staff
+											Promote as staff
+										</Menu.Item>
+										<Menu.Item
+											onClick={() => promoteToVet(account.id)}
+											icon={<IconUserCheck size={14} />}
+										>
+											Promote as Veterinarian
 										</Menu.Item>
 									</Menu.Dropdown>
 								</Menu>
