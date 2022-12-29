@@ -18,13 +18,16 @@ import { Account } from './index';
 type Props = {
 	accounts: Account[];
 	onPromoteToStaff: (accountId: string) => void;
+	onPromoteToVet: (accountId: string) => void;
 };
 
 export default function PendingAccounts({
 	accounts: _accounts,
 	onPromoteToStaff,
+	onPromoteToVet,
 }: Props) {
 	const [accounts, setAccounts] = useState<Account[]>([]);
+
 	const promoteToStaff = (accountId: string) => {
 		const confirmed = confirm(
 			'Are you sure you want to promote this account to staff?'
@@ -70,7 +73,7 @@ export default function PendingAccounts({
 					});
 				},
 				onSuccess: () => {
-					onPromoteToStaff(accountId);
+					onPromoteToVet(accountId);
 					showNotification({
 						title: 'Account promoted',
 						message: 'Account has been promoted to veterinarian',

@@ -16,9 +16,13 @@ import { Account } from './index';
 
 type Props = {
 	accounts: Account[];
+	onDemoteToStaff: (accountId: string) => void;
 };
 
-export default function VeterinariansAccounts({ accounts: _accounts }: Props) {
+export default function VeterinariansAccounts({
+	accounts: _accounts,
+	onDemoteToStaff,
+}: Props) {
 	const [accounts, setAccounts] = React.useState<Account[]>([]);
 
 	useEffect(() => {
@@ -44,6 +48,7 @@ export default function VeterinariansAccounts({ accounts: _accounts }: Props) {
 	const demoteStaff = (accountId: string) => {
 		const confirmed = confirm('Are you sure you want to demote this account?');
 		if (!confirmed) return;
+		onDemoteToStaff(accountId);
 		Http.patch(
 			`/user/${accountId}`,
 			{ role: UserRole.pending },

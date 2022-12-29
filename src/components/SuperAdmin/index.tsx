@@ -40,6 +40,16 @@ export default function SuperAdmin() {
 		setAccounts(newAccounts);
 	};
 
+	const handlePromoteToVet = (accountId: string) => {
+		const newAccounts = accounts.map((account) => {
+			if (account.id === accountId) {
+				account.role = UserRole.veterinarian;
+			}
+			return account;
+		});
+		setAccounts(newAccounts);
+	};
+
 	const signout = () => {
 		dispatch({ action: 'sign-out', payload: null });
 	};
@@ -121,6 +131,7 @@ export default function SuperAdmin() {
 
 				{tab === 'Pending' && (
 					<PendingAccounts
+						onPromoteToVet={handlePromoteToVet}
 						onPromoteToStaff={handlePromoteToStaff}
 						accounts={pendingAccounts}
 					/>
@@ -135,7 +146,10 @@ export default function SuperAdmin() {
 					<CustomerAccounts accounts={customerAccounts} />
 				)}
 				{tab === 'Veterinarians' && (
-					<VeterinariansAccounts accounts={vetAccounts} />
+					<VeterinariansAccounts
+						accounts={vetAccounts}
+						onDemoteToStaff={handleDemoteToStaff}
+					/>
 				)}
 			</Stack>
 		</>
