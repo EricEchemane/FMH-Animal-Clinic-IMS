@@ -62,7 +62,6 @@ export default function CustomerAccounts({ accounts: _accounts }: Props) {
 						<th> Account Id </th>
 						<th> Name </th>
 						<th> Email </th>
-						<th> Action </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -71,7 +70,6 @@ export default function CustomerAccounts({ accounts: _accounts }: Props) {
 							<td> {account.id} </td>
 							<td> {account.name} </td>
 							<td> {account.email} </td>
-							<td> Action </td>
 						</tr>
 					))}
 				</tbody>
