@@ -73,19 +73,6 @@ export default function Navbar() {
 						</a>
 					</li>
 					<li>
-						<a
-							onClick={toggleNavbar}
-							href='#products'
-						>
-							<Button
-								radius={'xl'}
-								variant='subtle'
-							>
-								Products
-							</Button>
-						</a>
-					</li>
-					<li>
 						<Link
 							onClick={toggleNavbar}
 							href='/book-schedule'
