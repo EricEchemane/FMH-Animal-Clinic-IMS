@@ -39,7 +39,7 @@ const countSchedules = (schedules: Schedule[], date: Date) => {
 	const formattedDate = formatdate(date);
 	return schedules.filter((sched) => {
 		const d = new Date(sched.date);
-		const schedDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+		const schedDate = new Date(d.getFullYear(), d.getMonth(), d.getDate());
 		return formatdate(schedDate) === formattedDate;
 	}).length;
 };
