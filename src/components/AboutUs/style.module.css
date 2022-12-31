@@ -1,0 +1,27 @@
+.main {
+    width: 100%;
+    height: 100vh;
+    background: #e2f6ff;
+    display: flex;
+    justify-content: center;
+}
+
+.mainWrapper {
+    width: 1080px;
+    /* background: red; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+}
+
+.textContainer {
+    width: 520px;
+    background: green;
+}
+
+.infoContainer {
+    width: 520px;
+    background: rgb(0, 98, 99);
+}

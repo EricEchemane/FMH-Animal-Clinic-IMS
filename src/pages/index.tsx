@@ -5,6 +5,7 @@ import Service from '~/components/Servicess';
 import Testimonials from '~/components/Testimonials';
 import Footer from '~/components/Footer';
 import Head from 'next/head';
+import { AboutUs } from '~/components/AboutUs/AboutUs';
 
 export default function HomePage() {
 	return (
@@ -18,6 +19,7 @@ export default function HomePage() {
 			</Head>
 			<Navbar />
 			<Hero />
+			<AboutUs />
 			<Service />
 			{/* <Products /> */}
 			<Testimonials />
