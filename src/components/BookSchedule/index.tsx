@@ -214,7 +214,9 @@ export default function BookSchedule() {
 								fullWidth={width > 1000 ? true : false}
 								size={width > 7000 ? 'lg' : 'md'}
 								value={chosenDate}
-								onChange={setChosenDate}
+								onChange={(date) => {
+									setChosenDate(date ? new Date(date.toUTCString()) : date);
+								}}
 								minDate={dayjs(new Date()).toDate()}
 								maxDate={dayjs(new Date())
 									.add(1, 'month')

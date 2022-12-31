@@ -5,7 +5,9 @@ import Service from '~/components/Servicess';
 import Testimonials from '~/components/Testimonials';
 import Footer from '~/components/Footer';
 import Head from 'next/head';
-import { AboutUs } from '~/components/AboutUs/AboutUs';
+import { Button } from '@mantine/core';
+import { IconBrandMessenger } from '@tabler/icons';
+import { AboutUs } from '~/components/AboutUs';
 
 export default function HomePage() {
 	return (
@@ -21,9 +23,22 @@ export default function HomePage() {
 			<Hero />
 			<AboutUs />
 			<Service />
-			{/* <Products /> */}
 			<Testimonials />
 			<Footer />
+
+			<a
+				id='open-chat-bot'
+				target={'_blank'}
+				rel='noreferrer'
+				href={'https://www.messenger.com/t/107034002274525/'}
+			>
+				<Button
+					leftIcon={<IconBrandMessenger />}
+					radius={'xl'}
+				>
+					Message us
+				</Button>
+			</a>
 		</>
 	);
 }

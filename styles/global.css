@@ -1,35 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&family=Roboto:wght@100;400;700&display=swap');
 
-
 :root {
-  /* color pallette */
-  --yellow: #EBEF20;
-  --violet: #F230EA;
-  --brown: #814804;
-  --white: #fff;
-  --black: #000000;
+	/* color pallette */
+	--yellow: #ebef20;
+	--violet: #f230ea;
+	--brown: #814804;
+	--white: #fff;
+	--black: #000000;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Nunino', 'Roboto', sans-serif;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Nunino', 'Roboto', sans-serif;
 }
 
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 li {
-  list-style: none;
+	list-style: none;
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .bx {
-  font-size: 2rem;
-  line-height: 100%;
+	font-size: 2rem;
+	line-height: 100%;
+}
+
+#open-chat-bot {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
 }
