@@ -5,9 +5,9 @@ import Service from '~/components/Servicess';
 import Testimonials from '~/components/Testimonials';
 import Footer from '~/components/Footer';
 import Head from 'next/head';
-import Link from 'next/link';
 import { Button } from '@mantine/core';
 import { IconBrandMessenger } from '@tabler/icons';
+import { AboutUs } from '~/components/AboutUs';
 
 export default function HomePage() {
 	return (
@@ -21,8 +21,8 @@ export default function HomePage() {
 			</Head>
 			<Navbar />
 			<Hero />
+			<AboutUs />
 			<Service />
-			{/* <Products /> */}
 			<Testimonials />
 			<Footer />
 
