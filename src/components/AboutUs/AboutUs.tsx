@@ -22,41 +22,48 @@ export const AboutUs = () => {
 
 
                 <div className={css.infoContainer}>
-                    <Image src={AboutUsImg} alt="image" />
-
-
-                    <div className={css.addressContainer}>
-                        <Image src={AdressIcon} alt="icon" width={45} />
-                        <div className={css.linkContainer}>
-                            <h3>Address</h3>
-                            <a
-                                target={'_blank'}
-                                href='https://www.google.com/maps/dir/14.4081327,121.0414667/11+Ruby+Rd,+Las+Pi%C3%B1as,+Metro+Manila/@14.4220543,121.008966,16.66z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3397d1ea3c1a3835:0xa2a4607a02aebc1b!2m2!1d121.0088434!2d14.424671'
-                                rel='noreferrer'
-                            >
-                                11 Ruby Rd, Las Piñas, Metro Manila Philippines<i className='bx bx-link-external'></i>
-                            </a>
+                    <div>
+                        <Image src={AboutUsImg} alt="image" />
+                    </div>
+                    <div>
+                        <div className={css.addressContainer}>
+                            <div>
+                                <i className='bx bx-location-plus'></i>
+                            </div>
+                            <div className={css.linkContainer}>
+                                <h3>Address</h3>
+                                <a
+                                    target={'_blank'}
+                                    href='https://www.google.com/maps/dir/14.4081327,121.0414667/11+Ruby+Rd,+Las+Pi%C3%B1as,+Metro+Manila/@14.4220543,121.008966,16.66z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3397d1ea3c1a3835:0xa2a4607a02aebc1b!2m2!1d121.0088434!2d14.424671'
+                                    rel='noreferrer'
+                                >
+                                    11 Ruby Rd, Las Piñas, Metro Manila Philippines
+                                </a>
+                                {/* <i className='bx bx-link-external'></i> */}
+                            </div>
 
                         </div>
 
-                    </div>
+                        <div className={css.phoneContainer}>
+                            <div>
+                                <i className='bx bxs-phone' ></i>
+                            </div>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>(02)88065772</p>
+                            </div>
+                        </div>
 
-                    <div className={css.phoneContainer}>
-                        <Image src={PhoneIcon} alt="icon" />
-                        <div>
-                            <h3>Phone</h3>
-                            <p>(02)88065772</p>
+                        <div className={css.emailContainer}>
+                            <div>
+                                <i className='bx bx-envelope' ></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>fmhanimalclinic@gmail.com</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div className={css.emailContainer}>
-                        <Image src={EmailIcon} alt="icon" />
-                        <div>
-                            <h3>Email</h3>
-                            <p>fmhanimalclinic@gmail.com</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

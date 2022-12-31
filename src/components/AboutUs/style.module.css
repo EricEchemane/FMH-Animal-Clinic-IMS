@@ -14,11 +14,16 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    gap: 2rem;
+    gap: 0.5rem;
 }
 
 .textContainer {
-    width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    padding: 1rem 2rem;
+    gap: 1rem;
     /* background: green; */
 }
 
@@ -33,7 +38,8 @@
     text-align: justify;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.7rem;
+    width: auto;
 }
 
 .paragraphContainer p {
@@ -44,10 +50,15 @@
 
 
 .infoContainer {
-    width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
     /* background: rgb(0, 98, 99); */
-    padding: 1rem;
+    padding: 1rem 1rem;
+    gap: 1.5rem;
 }
+
 
 .addressContainer {
     padding: 1rem;
@@ -57,7 +68,6 @@
 }
 
 .addressContainer i {
-    font-size: 1.5rem;
     color: #7950f2;
 }
 
@@ -81,6 +91,11 @@
     display: flex;
     padding: 1rem;
     gap: 1rem;
+    align-items: center;
+}
+
+.phoneContainer i {
+    color: #7950f2;
 }
 
 .phoneContainer h3 {
@@ -92,9 +107,95 @@
     display: flex;
     padding: 1rem;
     gap: 1rem;
+    align-items: center;
+}
+
+.emailContainer i {
+    color: #7950f2;
 }
 
 .emailContainer h3 {
     color: #7950f2;
     font-size: 1.5rem;
+}
+
+/* =====================================media====================================== */
+
+@media (max-width: 500px) {
+    .textContainer h1 {
+        font-size: 2.5rem;
+    }
+
+    .paragraphContainer p {
+        font-size: 1rem;
+    }
+
+    .infoContainer img {
+        width: 350px;
+    }
+
+    /* .paragraphContainer {
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+    } */
+}
+
+@media (max-width: 415px) {
+    .textContainer h1 {
+        font-size: 2rem;
+    }
+
+    .paragraphContainer p {
+        font-size: 1 rem;
+    }
+
+    .infoContainer img {
+        width: 300px;
+    }
+
+    .addressContainer i {
+        font-size: 1.6rem;
+    }
+
+    .addressContainer h3 {
+        font-size: 1.1rem
+    }
+
+    .phoneContainer i {
+        font-size: 1.6rem;
+    }
+
+    .phoneContainer h3 {
+        font-size: 1.1rem;
+    }
+
+    .emailContainer i {
+        font-size: 1.6rem;
+    }
+
+    .emailContainer h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 365px) {
+    .textContainer h1 {
+        font-size: 1.8rem;
+    }
+
+    .paragraphContainer p {
+        font-size: 0.9rem;
+    }
+
+    .infoContainer img {
+        width: 250px;
+    }
+}
+
+@media (max-width: 1003px) {
+    .textContainer {
+        width: auto;
+    }
 }
