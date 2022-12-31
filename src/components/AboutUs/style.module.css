@@ -1,6 +1,7 @@
 .main {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 3rem 1rem;
     background: #e2f6ff;
     display: flex;
     justify-content: center;
@@ -18,10 +19,82 @@
 
 .textContainer {
     width: 520px;
-    background: green;
+    /* background: green; */
 }
+
+.textContainer h1 {
+    color: var(--brown);
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Nunito";
+}
+
+.paragraphContainer {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.paragraphContainer p {
+    font-size: 1.2rem;
+    color: var(--brown);
+    padding: 1rem;
+}
+
 
 .infoContainer {
     width: 520px;
-    background: rgb(0, 98, 99);
+    /* background: rgb(0, 98, 99); */
+    padding: 1rem;
+}
+
+.addressContainer {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.addressContainer i {
+    font-size: 1.5rem;
+    color: #7950f2;
+}
+
+.linkContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.linkContainer h3 {
+    color: #7950f2;
+    font-size: 1.5rem;
+}
+
+.linkContainer a {
+    color: black;
+    display: flex;
+    justify-content: end;
+}
+
+.phoneContainer {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.phoneContainer h3 {
+    color: #7950f2;
+    font-size: 1.5rem;
+}
+
+.emailContainer {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.emailContainer h3 {
+    color: #7950f2;
+    font-size: 1.5rem;
 }
