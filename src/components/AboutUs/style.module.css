@@ -1,0 +1,205 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    padding: 3rem 1rem;
+    background: #e2f6ff;
+    display: flex;
+    justify-content: center;
+}
+
+.mainWrapper {
+    width: 1080px;
+    /* background: red; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    /* background: green; */
+}
+
+.textContainer h1 {
+    color: var(--brown);
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Nunito";
+}
+
+.paragraphContainer {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: auto;
+}
+
+.paragraphContainer p {
+    font-size: 1.2rem;
+    color: var(--brown);
+    padding: 1rem;
+}
+
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    /* background: rgb(0, 98, 99); */
+    padding: 1rem 1rem;
+    gap: 1.5rem;
+}
+
+
+.addressContainer {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.addressContainer i {
+    color: #7950f2;
+}
+
+.linkContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.linkContainer h3 {
+    color: #7950f2;
+    font-size: 1.5rem;
+}
+
+.linkContainer a {
+    color: black;
+    display: flex;
+    justify-content: end;
+}
+
+.phoneContainer {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.phoneContainer i {
+    color: #7950f2;
+}
+
+.phoneContainer h3 {
+    color: #7950f2;
+    font-size: 1.5rem;
+}
+
+.emailContainer {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.emailContainer i {
+    color: #7950f2;
+}
+
+.emailContainer h3 {
+    color: #7950f2;
+    font-size: 1.5rem;
+}
+
+/* =====================================media====================================== */
+
+@media (max-width: 500px) {
+    .textContainer h1 {
+        font-size: 2.5rem;
+    }
+
+    .paragraphContainer p {
+        font-size: 1rem;
+    }
+
+    .infoContainer img {
+        width: 350px;
+    }
+
+    /* .paragraphContainer {
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+    } */
+}
+
+@media (max-width: 415px) {
+    .textContainer h1 {
+        font-size: 2rem;
+    }
+
+    .paragraphContainer p {
+        font-size: 1 rem;
+    }
+
+    .infoContainer img {
+        width: 300px;
+    }
+
+    .addressContainer i {
+        font-size: 1.6rem;
+    }
+
+    .addressContainer h3 {
+        font-size: 1.1rem
+    }
+
+    .phoneContainer i {
+        font-size: 1.6rem;
+    }
+
+    .phoneContainer h3 {
+        font-size: 1.1rem;
+    }
+
+    .emailContainer i {
+        font-size: 1.6rem;
+    }
+
+    .emailContainer h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 365px) {
+    .textContainer h1 {
+        font-size: 1.8rem;
+    }
+
+    .paragraphContainer p {
+        font-size: 0.9rem;
+    }
+
+    .infoContainer img {
+        width: 250px;
+    }
+}
+
+@media (max-width: 1019px) {
+    .textContainer {
+        width: auto;
+    }
+
+    .paragraphContainer {
+        width: auto;
+    }
+}

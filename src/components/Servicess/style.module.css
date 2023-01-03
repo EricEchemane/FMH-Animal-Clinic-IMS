@@ -83,7 +83,7 @@
 
 .cards:hover {
   background-image: url(./assets//bg2.svg);
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .cardsTitleCon {
@@ -115,7 +115,7 @@
 }
 
 .getServiceCon a:hover {
-  color: #f3f5f9;
+  color: #bc6100;
 }
 
 /* .getServiceButton {
