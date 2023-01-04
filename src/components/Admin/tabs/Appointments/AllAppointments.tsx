@@ -200,7 +200,13 @@ export default function Appointments(props: Props) {
 										>
 											{sched.status}
 										</Badge>
-										<Text mb='md'>{new Date(sched.date).toDateString()}</Text>
+										<Text mb='md'>
+											{new Date(
+												new Date(sched.date).getFullYear(),
+												new Date(sched.date).getMonth(),
+												new Date(sched.date).getDay() + 1
+											).toDateString()}
+										</Text>
 									</Group>
 									<Menu
 										shadow='md'
