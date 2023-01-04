@@ -73,7 +73,11 @@ export default function BookSchedule() {
 		const formattedDate = formatdate(date);
 		return schedules.some((sched) => {
 			const d = new Date(sched.date);
-			const schedDate = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+			const schedDate = new Date(
+				d.getFullYear(),
+				d.getMonth(),
+				d.getDate() + 1
+			);
 			return (
 				formatdate(schedDate) === formattedDate &&
 				sched.status === 'pending' &&
