@@ -95,20 +95,16 @@ export default function Admin(props: any) {
 							sx={{ height: '85%' }}
 						>
 							<Stack>
-								{props.user.role === 'veterinarian' ||
-									(props.user.role === 'staff' && (
-										<Button
-											size='md'
-											className={css.navButton}
-											leftIcon={<IconCalendarEvent />}
-											variant={
-												currentTab === 'appointments' ? 'light' : 'subtle'
-											}
-											onClick={() => setCurrentTab('appointments')}
-										>
-											Appointments
-										</Button>
-									))}
+								<Button
+									size='md'
+									className={css.navButton}
+									leftIcon={<IconCalendarEvent />}
+									variant={currentTab === 'appointments' ? 'light' : 'subtle'}
+									onClick={() => setCurrentTab('appointments')}
+								>
+									Appointments
+								</Button>
+
 								{props.user.role === 'staff' && (
 									<Button
 										size='md'
