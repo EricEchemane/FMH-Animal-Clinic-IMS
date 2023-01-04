@@ -229,7 +229,7 @@ export default function BookSchedule() {
 									const today = new Date(
 										d.getFullYear(),
 										d.getMonth(),
-										d.getDate() + 1
+										d.getDate()
 									);
 									return isFull || date.toDateString() === today.toDateString();
 								}}
