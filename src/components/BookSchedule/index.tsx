@@ -118,7 +118,7 @@ export default function BookSchedule() {
 						spacing={0}
 						align={'center'}
 					>
-						<Title>FMH Animal Clnic</Title>
+						<Title>FMH Animal Clinic</Title>
 						<Title
 							order={3}
 							mb='xl'
@@ -168,6 +168,15 @@ export default function BookSchedule() {
 						</Group>
 
 						<Group>
+							<Button
+								variant='filled'
+								color='violet'
+								radius='xl'
+								onClick={() => Router.back()}
+								disabled={isLoading}
+							>
+								Home
+							</Button>
 							<Button
 								variant={currentTab === 'booking' ? 'filled' : 'light'}
 								radius={'xl'}
@@ -300,11 +309,10 @@ export default function BookSchedule() {
 								}}
 								styles={(theme) => ({
 									cell: {
-										border: `1px solid ${
-											theme.colorScheme === 'dark'
-												? theme.colors.dark[4]
-												: theme.colors.gray[2]
-										}`,
+										border: `1px solid ${theme.colorScheme === 'dark'
+											? theme.colors.dark[4]
+											: theme.colors.gray[2]
+											}`,
 									},
 									day: {
 										borderRadius: 0,
@@ -318,11 +326,10 @@ export default function BookSchedule() {
 											theme.colorScheme === 'dark'
 												? theme.colors.dark[5]
 												: theme.colors.gray[0],
-										border: `1px solid ${
-											theme.colorScheme === 'dark'
-												? theme.colors.dark[4]
-												: theme.colors.gray[2]
-										}`,
+										border: `1px solid ${theme.colorScheme === 'dark'
+											? theme.colors.dark[4]
+											: theme.colors.gray[2]
+											}`,
 										height: 70,
 									},
 								})}
