@@ -173,126 +173,128 @@ export default function Appointments(props: Props) {
 						gap: '2rem',
 					}}
 				>
-					{appointments.map((sched) => (
-						<Card
-							shadow='sm'
-							p={'xl'}
-							radius='lg'
-							withBorder
-							key={sched.id}
-							style={{ overflow: 'visible' }}
-						>
-							<Stack spacing={1}>
-								<Group
-									position='apart'
-									align='flex-start'
-								>
-									<Group align={'flex-start'}>
-										<Badge
-											variant='filled'
-											color={getServiceBadgeColor(sched.service)}
-										>
-											{sched.service}
-										</Badge>
-										<Badge
-											variant='outline'
-											color={getStatusBadgeColor(sched.status)}
-										>
-											{sched.status}
-										</Badge>
-										<Text mb='md'>
-											{new Date(
-												new Date(sched.date).getFullYear(),
-												new Date(sched.date).getMonth(),
-												new Date(sched.date).getDay() + 1
-											).toDateString()}
-										</Text>
-									</Group>
-									<Menu
-										shadow='md'
-										width={200}
-										position='bottom-end'
+					{appointments.map((sched) => {
+						const d = new Date(sched.date);
+						const date = new Date(
+							d.getFullYear(),
+							d.getMonth(),
+							d.getDate() + 1
+						);
+						return (
+							<Card
+								shadow='sm'
+								p={'xl'}
+								radius='lg'
+								withBorder
+								key={sched.id}
+								style={{ overflow: 'visible' }}
+							>
+								<Stack spacing={1}>
+									<Group
+										position='apart'
+										align='flex-start'
 									>
-										<Menu.Target>
-											<ActionIcon>
-												<IconDots size={30} />
-											</ActionIcon>
-										</Menu.Target>
-
-										<Menu.Dropdown>
-											<Menu.Label>Schedule</Menu.Label>
-											<Menu.Item
-												onClick={() => {
-													dispatch({
-														action: 'mark-schedule-as-done',
-														payload: sched.id,
-													});
-												}}
-												icon={<IconCheck size={14} />}
+										<Group align={'flex-start'}>
+											<Badge
+												variant='filled'
+												color={getServiceBadgeColor(sched.service)}
 											>
-												Mark as done
-											</Menu.Item>
-											<Menu.Item
-												onClick={() => {
-													dispatch({
-														action: 'mark-schedule-as-cancelled',
-														payload: sched.id,
-													});
-												}}
-												icon={<IconFolderOff size={14} />}
+												{sched.service}
+											</Badge>
+											<Badge
+												variant='outline'
+												color={getStatusBadgeColor(sched.status)}
 											>
-												Mark as cancelled
-											</Menu.Item>
-											<Menu.Item
-												onClick={() => {
-													dispatch({
-														action: 'mark-schedule-as-pending',
-														payload: sched.id,
-													});
-												}}
-												icon={<IconPaperclip size={14} />}
-											>
-												Mark as pending
-											</Menu.Item>
+												{sched.status}
+											</Badge>
+											<Text mb='md'>{new Date(date).toDateString()}</Text>
+										</Group>
+										<Menu
+											shadow='md'
+											width={200}
+											position='bottom-end'
+										>
+											<Menu.Target>
+												<ActionIcon>
+													<IconDots size={30} />
+												</ActionIcon>
+											</Menu.Target>
 
-											<Menu.Divider />
+											<Menu.Dropdown>
+												<Menu.Label>Schedule</Menu.Label>
+												<Menu.Item
+													onClick={() => {
+														dispatch({
+															action: 'mark-schedule-as-done',
+															payload: sched.id,
+														});
+													}}
+													icon={<IconCheck size={14} />}
+												>
+													Mark as done
+												</Menu.Item>
+												<Menu.Item
+													onClick={() => {
+														dispatch({
+															action: 'mark-schedule-as-cancelled',
+															payload: sched.id,
+														});
+													}}
+													icon={<IconFolderOff size={14} />}
+												>
+													Mark as cancelled
+												</Menu.Item>
+												<Menu.Item
+													onClick={() => {
+														dispatch({
+															action: 'mark-schedule-as-pending',
+															payload: sched.id,
+														});
+													}}
+													icon={<IconPaperclip size={14} />}
+												>
+													Mark as pending
+												</Menu.Item>
 
-											<Menu.Label>Danger zone</Menu.Label>
-											<Menu.Item
-												onClick={() => {
-													dispatch({
-														action: 'mark-schedule-as-archived',
-														payload: sched.id,
-													});
-												}}
-												icon={<IconArchive size={14} />}
-											>
-												Archive
-											</Menu.Item>
-											<Menu.Item
-												disabled
-												color='red'
-												icon={<IconTrash size={14} />}
-											>
-												Delete permanently
-											</Menu.Item>
-										</Menu.Dropdown>
-									</Menu>
-								</Group>
-								<Title order={2}> {sched.name} </Title>
-								<Text color={'dimmed'}> {sched.email} </Text>
+												<Menu.Divider />
 
-								<Divider my={'md'} />
+												<Menu.Label>Danger zone</Menu.Label>
+												<Menu.Item
+													onClick={() => {
+														dispatch({
+															action: 'mark-schedule-as-archived',
+															payload: sched.id,
+														});
+													}}
+													icon={<IconArchive size={14} />}
+												>
+													Archive
+												</Menu.Item>
+												<Menu.Item
+													disabled
+													color='red'
+													icon={<IconTrash size={14} />}
+												>
+													Delete permanently
+												</Menu.Item>
+											</Menu.Dropdown>
+										</Menu>
+									</Group>
+									<Title order={2}> {sched.name} </Title>
+									<Text color={'dimmed'}> {sched.email} </Text>
 
-								<Text>
-									<strong>Pet Name:</strong> {sched.pet_name}
-								</Text>
-								<Text>
-									<strong>Concern:</strong> {sched.concern}
-								</Text>
-							</Stack>
-						</Card>
-					))}
+									<Divider my={'md'} />
+
+									<Text>
+										<strong>Pet Name:</strong> {sched.pet_name}
+									</Text>
+									<Text>
+										<strong>Concern:</strong> {sched.concern}
+									</Text>
+								</Stack>
+							</Card>
+						);
+					})}
 				</div>
 			)}
 		</Stack>
