@@ -225,7 +225,22 @@ export default function BookSchedule() {
 								excludeDate={(date) => {
 									const count = countSchedules(schedules, date);
 									const isFull = count >= scheduleThresholdPerDay;
-									return isFull || date.getDay() === new Date().getDay();
+									const d = new Date();
+									const today = new Date(
+										d.getFullYear(),
+										d.getMonth(),
+										d.getDate() + 1
+									);
+									const today2 = new Date(
+										d.getFullYear(),
+										d.getMonth(),
+										d.getDate()
+									);
+									return (
+										isFull ||
+										date.toDateString() === today.toDateString() ||
+										date.toDateString() === today2.toDateString()
+									);
 								}}
 								renderDay={(date) => {
 									const day = date.getDate();
