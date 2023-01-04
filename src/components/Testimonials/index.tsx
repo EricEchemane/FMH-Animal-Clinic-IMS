@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import style from './style.module.css';
-import Image from 'next/image';
-import profilePic1 from './assets/ImageProfilePic-1.svg';
-import profilePic2 from './assets/ImageProfilePic-2.svg';
-import profilePic3 from './assets/ImageProfilePic-3.svg';
+//import Image from 'next/image';
+//import profilePic1 from './assets/ImageProfilePic-1.svg';
+//import profilePic2 from './assets/ImageProfilePic-2.svg';
+//import profilePic3 from './assets/ImageProfilePic-3.svg';
 import { Rating, Center, Avatar } from '@mantine/core';
 import Http from '~/utils/http-adapter';
 import { Feedback } from '~/entities-interfaces/feedback.entity';
@@ -12,7 +12,7 @@ export default function Testimonials() {
 	const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
 
 	useEffect(() => {
-		Http.get('/feedback', {
+		Http.get('/feedback/public', {
 			onSuccess: (data: Feedback[]) => {
 				console.log(data);
 				setFeedbacks(data.filter((f) => f.rating > 3));
