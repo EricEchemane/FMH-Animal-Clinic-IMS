@@ -69,6 +69,19 @@ export default function BookSchedule() {
 		});
 	}, []);
 
+	const checkIfUserHasScheduleOnAGivenDate = (date: Date) => {
+		const formattedDate = formatdate(date);
+		return schedules.some((sched) => {
+			const d = new Date(sched.date);
+			const schedDate = new Date(
+				d.getFullYear(),
+				d.getMonth(),
+				d.getDate() + 1
+			);
+			return formatdate(schedDate) === formattedDate;
+		});
+	};
+
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		const payload = {
@@ -231,20 +244,28 @@ export default function BookSchedule() {
 										d.getMonth(),
 										d.getDate()
 									);
-									return isFull || date.toDateString() === today.toDateString();
+									return (
+										isFull ||
+										date.toDateString() === today.toDateString() ||
+										checkIfUserHasScheduleOnAGivenDate(date)
+									);
 								}}
 								renderDay={(date) => {
 									const day = date.getDate();
 									const count = countSchedules(schedules, date);
 									const isFull = count >= scheduleThresholdPerDay;
 									const done = date < new Date();
+									const hasAppointemtn =
+										checkIfUserHasScheduleOnAGivenDate(date);
 
 									let badgeColor = isFull ? 'red' : 'green';
 									if (done) badgeColor = 'gray';
+									if (hasAppointemtn) badgeColor = 'yellow';
 
 									let badgeText: any = count + ' booked';
 									if (isFull) badgeText = 'Full';
 									if (done) badgeText = 'Done';
+									if (hasAppointemtn) badgeText = '1 appointment';
 
 									return (
 										<Tooltip label='Book now!'>
