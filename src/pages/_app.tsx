@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppPropsWithSession) {
 				colorScheme={colorScheme}
 				toggleColorScheme={toggleColorScheme}
 			>
-				<NotificationsProvider>
+				<NotificationsProvider position='bottom-left'>
 					<SessionProvider session={pageProps.session}>
 						<UserAdminContextProvider>
 							<CustomerContextProvider>
