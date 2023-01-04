@@ -30,7 +30,8 @@ import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
 import Appointments from './Appointments';
 
-const formatdate = (date: Date) => dayjs(new Date(date)).format('YYYY-MM-DD');
+export const formatdate = (date: Date) =>
+	dayjs(new Date(date)).format('YYYY-MM-DD');
 const formatChosenDate = (date: Date) => dayjs(date).format('MMMM D, YYYY');
 
 const scheduleThresholdPerDay = 10;
@@ -232,7 +233,7 @@ export default function BookSchedule() {
 								size={width > 7000 ? 'lg' : 'md'}
 								value={chosenDate}
 								onChange={(date) => {
-									setChosenDate(date ? new Date(date.toUTCString()) : date);
+									setChosenDate(date ? new Date(date) : date);
 								}}
 								minDate={dayjs(new Date()).toDate()}
 								maxDate={dayjs(new Date())
