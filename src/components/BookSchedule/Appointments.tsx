@@ -72,8 +72,11 @@ export default function Appointments({}: Props) {
 							<Stack>
 								<Group>
 									<Title order={3}>
-										{' '}
-										{new Date(sched.date).toDateString()}{' '}
+										{new Date(
+											new Date(sched.date).getFullYear(),
+											new Date(sched.date).getMonth(),
+											new Date(sched.date).getDate() + 1
+										).toDateString()}
 									</Title>
 									<Badge
 										size='lg'
