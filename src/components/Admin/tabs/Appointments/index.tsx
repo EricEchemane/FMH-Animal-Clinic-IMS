@@ -11,7 +11,7 @@ export default function Appointments() {
 	const { admin, dispatch } = useUserAdmin();
 
 	useEffect(() => {
-		Http.get('/scheduling', {
+		Http.get('/scheduling/from-this-month-and-next', {
 			onSuccess: (data) => {
 				dispatch({ action: 'set-schedules', payload: data });
 			},

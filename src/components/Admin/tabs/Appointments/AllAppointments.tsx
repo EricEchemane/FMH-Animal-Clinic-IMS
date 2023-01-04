@@ -204,7 +204,7 @@ export default function Appointments(props: Props) {
 											{new Date(
 												new Date(sched.date).getFullYear(),
 												new Date(sched.date).getMonth(),
-												new Date(sched.date).getDay() + 2
+												new Date(sched.date).getDay() + 1
 											).toDateString()}
 										</Text>
 									</Group>
