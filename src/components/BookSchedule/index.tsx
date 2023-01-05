@@ -171,7 +171,7 @@ export default function BookSchedule() {
 
 						<Group>
 							<Button
-								variant='filled'
+								variant='subtle'
 								color='violet'
 								radius='xl'
 							>
