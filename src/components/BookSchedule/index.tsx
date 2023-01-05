@@ -169,14 +169,15 @@ export default function BookSchedule() {
 							</div>
 						</Group>
 
-						<Group>
+						<Group><Link href="/" color='white'>
 							<Button
 								variant='subtle'
 								color='violet'
 								radius='xl'
 							>
-								<Link href="/" color='white'>Home</Link>
+								Home
 							</Button>
+						</Link>
 							<Button
 								variant={currentTab === 'booking' ? 'filled' : 'light'}
 								radius={'xl'}
@@ -372,6 +373,7 @@ export default function BookSchedule() {
 								value={concern}
 								onChange={(e) => setConcern(e.target.value)}
 							/>
+							<Text fz="sm">Note:The available animals for our clinic are Dogs and Cats with Local and Domestics Breeds</Text>
 							<Group position='right'>
 								<Button
 									size='lg'

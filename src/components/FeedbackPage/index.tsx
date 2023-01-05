@@ -142,14 +142,17 @@ export default function Feedback() {
 								loading={isLoading}
 							>
 								Submit review
+
 							</Button>
-							<Button
-								size='md'
-								color={'orange'}
-								variant='outline'
-							>
-								<Link href="/" color='white'>Cancel</Link>
-							</Button>
+							<Link href="/" color='white'>
+								<Button
+									size='md'
+									color={'orange'}
+									variant='outline'
+								>
+									Cancel
+								</Button>
+							</Link>
 						</Group>
 					</Stack>
 				</form>
