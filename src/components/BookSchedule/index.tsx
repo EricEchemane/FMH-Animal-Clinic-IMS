@@ -29,6 +29,8 @@ import Router from 'next/router';
 import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
 import Appointments from './Appointments';
+import Link from 'next/link';
+
 
 export const formatdate = (date: Date) =>
 	dayjs(new Date(date)).format('YYYY-MM-DD');
@@ -118,7 +120,7 @@ export default function BookSchedule() {
 						spacing={0}
 						align={'center'}
 					>
-						<Title>FMH Animal Clnic</Title>
+						<Title>FMH Animal Clinic</Title>
 						<Title
 							order={3}
 							mb='xl'
@@ -167,7 +169,15 @@ export default function BookSchedule() {
 							</div>
 						</Group>
 
-						<Group>
+						<Group><Link href="/" color='white'>
+							<Button
+								variant='subtle'
+								color='violet'
+								radius='xl'
+							>
+								Home
+							</Button>
+						</Link>
 							<Button
 								variant={currentTab === 'booking' ? 'filled' : 'light'}
 								radius={'xl'}
@@ -300,11 +310,10 @@ export default function BookSchedule() {
 								}}
 								styles={(theme) => ({
 									cell: {
-										border: `1px solid ${
-											theme.colorScheme === 'dark'
-												? theme.colors.dark[4]
-												: theme.colors.gray[2]
-										}`,
+										border: `1px solid ${theme.colorScheme === 'dark'
+											? theme.colors.dark[4]
+											: theme.colors.gray[2]
+											}`,
 									},
 									day: {
 										borderRadius: 0,
@@ -318,11 +327,10 @@ export default function BookSchedule() {
 											theme.colorScheme === 'dark'
 												? theme.colors.dark[5]
 												: theme.colors.gray[0],
-										border: `1px solid ${
-											theme.colorScheme === 'dark'
-												? theme.colors.dark[4]
-												: theme.colors.gray[2]
-										}`,
+										border: `1px solid ${theme.colorScheme === 'dark'
+											? theme.colors.dark[4]
+											: theme.colors.gray[2]
+											}`,
 										height: 70,
 									},
 								})}
@@ -365,6 +373,7 @@ export default function BookSchedule() {
 								value={concern}
 								onChange={(e) => setConcern(e.target.value)}
 							/>
+							<Text fz="sm">Note:The available animals for our clinic are Dogs and Cats with Local and Domestics Breeds</Text>
 							<Group position='right'>
 								<Button
 									size='lg'
