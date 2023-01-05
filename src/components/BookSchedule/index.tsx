@@ -29,6 +29,7 @@ import Router from 'next/router';
 import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
 import Appointments from './Appointments';
+import { ClinicService } from '~/entities-interfaces/service.entity';
 
 export const formatdate = (date: Date) =>
 	dayjs(new Date(date)).format('YYYY-MM-DD');
@@ -62,10 +63,15 @@ export default function BookSchedule() {
 	const [currentTab, setCurrentTab] = useState<'booking' | 'appointments'>(
 		'booking'
 	);
+	const [services, setServices] = useState<ClinicService[]>([]);
 
 	useEffect(() => {
 		Http.get('/scheduling/from-this-month-and-next', {
 			onSuccess: (data: Schedule[]) => setSchedules(data),
+			loadingToggler: setIsLoading,
+		});
+		Http.get('/service', {
+			onSuccess: (data: ClinicService[]) => setServices(data),
 			loadingToggler: setIsLoading,
 		});
 	}, []);
@@ -355,6 +361,7 @@ export default function BookSchedule() {
 								required
 							/>
 							<ServiceSelect
+								services={services}
 								value={service}
 								onChange={setService}
 							/>
