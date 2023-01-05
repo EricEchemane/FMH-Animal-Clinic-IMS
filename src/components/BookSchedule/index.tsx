@@ -175,7 +175,7 @@ export default function BookSchedule() {
 								color='violet'
 								radius='xl'
 							>
-								<Link href="/">Book Schedule</Link>
+								<Link href="/" color='white'>Home</Link>
 							</Button>
 							<Button
 								variant={currentTab === 'booking' ? 'filled' : 'light'}
