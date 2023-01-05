@@ -52,9 +52,6 @@ export default function Footer() {
 								<a href='#services'>Services</a>
 							</li>
 							<li>
-								<a href='#products'>Products</a>
-							</li>
-							<li>
 								<a href='#'>Book Schedule</a>
 							</li>
 							<li>
