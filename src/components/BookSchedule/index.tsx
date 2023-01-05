@@ -30,6 +30,7 @@ import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
 import Appointments from './Appointments';
 import { ClinicService } from '~/entities-interfaces/service.entity';
+import Link from 'next/link';
 
 export const formatdate = (date: Date) =>
 	dayjs(new Date(date)).format('YYYY-MM-DD');
@@ -124,7 +125,7 @@ export default function BookSchedule() {
 						spacing={0}
 						align={'center'}
 					>
-						<Title>FMH Animal Clnic</Title>
+						<Title>FMH Animal Clinic</Title>
 						<Title
 							order={3}
 							mb='xl'
@@ -174,6 +175,18 @@ export default function BookSchedule() {
 						</Group>
 
 						<Group>
+							<Link
+								href='/'
+								color='white'
+							>
+								<Button
+									variant='subtle'
+									color='violet'
+									radius='xl'
+								>
+									Home
+								</Button>
+							</Link>
 							<Button
 								variant={currentTab === 'booking' ? 'filled' : 'light'}
 								radius={'xl'}
@@ -372,6 +385,10 @@ export default function BookSchedule() {
 								value={concern}
 								onChange={(e) => setConcern(e.target.value)}
 							/>
+							<Text fz='sm'>
+								Note:The available animals for our clinic are Dogs and Cats with
+								Local and Domestics Breeds
+							</Text>
 							<Group position='right'>
 								<Button
 									size='lg'
