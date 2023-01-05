@@ -52,7 +52,7 @@ export default function Footer() {
 								<a href='#services'>Services</a>
 							</li>
 							<li>
-								<a href='#'>Book Schedule</a>
+								<Link href="/book-schedule">Book Schedule</Link>
 							</li>
 							<li>
 								<a href='#testimonials'>Feedback</a>
