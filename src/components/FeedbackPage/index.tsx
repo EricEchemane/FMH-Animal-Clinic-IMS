@@ -22,6 +22,8 @@ import Http from '~/utils/http-adapter';
 import { showNotification } from '@mantine/notifications';
 import useCustomerSignIn from '~/hooks/useCustomerSignIn';
 import { useViewportSize } from '@mantine/hooks';
+import Link from 'next/link';
+
 
 export default function Feedback() {
 	useCustomerSignIn();
@@ -145,10 +147,8 @@ export default function Feedback() {
 								size='md'
 								color={'orange'}
 								variant='outline'
-								onClick={() => Router.back()}
-								disabled={isLoading}
 							>
-								Cancel
+								<Link href="/" color='white'>Cancel</Link>
 							</Button>
 						</Group>
 					</Stack>
