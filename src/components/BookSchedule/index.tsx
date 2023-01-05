@@ -29,6 +29,8 @@ import Router from 'next/router';
 import Http from '~/utils/http-adapter';
 import { useViewportSize } from '@mantine/hooks';
 import Appointments from './Appointments';
+import Link from 'next/link';
+
 
 export const formatdate = (date: Date) =>
 	dayjs(new Date(date)).format('YYYY-MM-DD');
@@ -172,10 +174,8 @@ export default function BookSchedule() {
 								variant='filled'
 								color='violet'
 								radius='xl'
-								onClick={() => Router.back()}
-								disabled={isLoading}
 							>
-								Home
+								<Link href="/">Book Schedule</Link>
 							</Button>
 							<Button
 								variant={currentTab === 'booking' ? 'filled' : 'light'}
