@@ -1,6 +1,7 @@
 import { Group, Stack, Title, Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import React, { useEffect, useState } from 'react';
+import { ClinicService } from '~/entities-interfaces/service.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import Http from '~/utils/http-adapter';
 import { AppointmentTabs } from '../../types';
@@ -9,6 +10,7 @@ import css from './style.module.css';
 
 export default function Appointments() {
 	const { admin, dispatch } = useUserAdmin();
+	const [services, setServices] = useState<ClinicService[]>([]);
 
 	useEffect(() => {
 		Http.get('/scheduling/from-this-month-and-next', {
@@ -16,6 +18,9 @@ export default function Appointments() {
 				dispatch({ action: 'set-schedules', payload: data });
 			},
 			onFail: (message) => showNotification({ message, color: 'red' }),
+		});
+		Http.get('/service', {
+			onSuccess: (data: ClinicService[]) => setServices(data),
 		});
 	}, [dispatch]);
 
@@ -96,7 +101,10 @@ export default function Appointments() {
 					</Group>
 				</Group>
 
-				<AllAppointments appointments={appointments} />
+				<AllAppointments
+					services={services}
+					appointments={appointments}
+				/>
 			</Stack>
 		</>
 	);

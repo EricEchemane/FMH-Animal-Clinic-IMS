@@ -25,16 +25,14 @@ import {
 } from '@tabler/icons';
 import React, { useCallback, useEffect, useState } from 'react';
 import { dateFilters, ScheduleStatus } from '~/components/Admin/types';
-import {
-	ClinicServices,
-	ClinicServicesArray,
-	Schedule,
-} from '~/entities-interfaces/schedule.entity';
+import { Schedule } from '~/entities-interfaces/schedule.entity';
+import { ClinicService } from '~/entities-interfaces/service.entity';
 import { useUserAdmin } from '~/providers/user-admin-prodiver';
 import NoRecord from './NoRecord';
 
 type Props = {
 	appointments: Schedule[];
+	services: ClinicService[];
 };
 
 export default function Appointments(props: Props) {
@@ -63,7 +61,7 @@ export default function Appointments(props: Props) {
 		setAppointments(filtered);
 	};
 
-	const filterByService = (service: ClinicServices) => {
+	const filterByService = (service: string) => {
 		setServiceFilter(service);
 		const filtered = props.appointments.filter(
 			(sched) => sched.service === service
@@ -130,9 +128,9 @@ export default function Appointments(props: Props) {
 					radius={'xl'}
 					label='Filter by service type'
 					placeholder='Pick service type'
-					data={ClinicServicesArray.map((service) => ({
-						value: service,
-						label: service,
+					data={props.services.map((service) => ({
+						value: service.name,
+						label: service.name,
 					}))}
 					onChange={filterByService}
 					value={serviceFilter}
@@ -314,7 +312,7 @@ function getStatusBadgeColor(status: ScheduleStatus) {
 	}
 }
 
-export function getServiceBadgeColor(service: ClinicServices) {
+export function getServiceBadgeColor(service: string) {
 	switch (service) {
 		case 'Check-up':
 			return 'red';
